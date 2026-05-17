@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../Lubimy_czytac_css/global.css">
+    <link rel="stylesheet" href="../Lubimy_czytac_css/mojeksiążki.css">
     <title>Moje książki</title>
 </head>
 <body>
@@ -17,25 +19,25 @@
         </nav>
     </header> 
     <main>
-        <h1>Moje książki</h1>
-        <p>
+        <section class="ramkamoje">
+        <h1 class="tytulmoje">Moje książki</h1>
+        <p class="opismoje">
             Tutaj znajdują się zapisane przez ciebie książki. Wybierz książkę i ciesz się czytaniem.
         </p>
-        <section>
-            <h2>Wyszukiwanie zapisanych książek</h2>
+        </section>
+        <section class="ramkamoje">
+            <h2 class="tytulszukaniemoje">Wyszukiwanie zapisanych książek</h2>
 
-            <form>
-                <label for="szukaj">Wpisz nazwę książki:</label>
-                <input type="text" id="szukaj" name="szukaj" placeholder="Np. Hobbit">
+            <form class="formamoje">
+                <label class="etykietamoje" for="szukaj">Wpisz nazwę książki:</label>
+                <input class="inputmoje" type="text" id="szukaj" name="szukaj" placeholder="Np. Hobbit">
 
-                <label for="tag">Wybierz tag:</label>
-
-                <button type="submit">Szukaj</button>
+                <button class="przyciskmoje" type="submit">Szukaj</button>
             </form>
         </section>
     </main>
-</body>
-<footer>
+    <footer>
     <p>© 2026 Lubimy czytać, Tsyhanenko Oleksandr, Arsen Medvid</p>
-</footer>
+    </footer>
+</body>
 </html>

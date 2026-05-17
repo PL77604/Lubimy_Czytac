@@ -1,0 +1,78 @@
+header{
+    height:90px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+nav{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:44px;
+}
+
+main{
+    padding:60px 40px;
+}
+
+.ramkalogowanie{
+    max-width:700px;
+    margin:0 auto 35px auto;
+    padding:35px;
+    background-color:#F7FFF5;
+    border:2px solid #CFDBCE;
+    border-radius:18px;
+}
+
+.tytullogowanie{
+    color:#363D33;
+    text-align:center;
+    font-size:38px;
+    margin-top:0;
+}
+
+.opislogowanie{
+    color:#6F8069;
+    text-align:center;
+    font-size:18px;
+    margin-bottom:0;
+}
+
+.formalogowanie{
+    display:flex;
+    flex-direction:column;
+    max-width:700px;
+    margin:0 auto;
+}
+
+.etykietalogowanie{
+    color:#363D33;
+    font-weight:bold;
+    margin-bottom:10px;
+}
+
+.inputlogowanie{
+    padding:14px;
+    border:2px solid #CFDBCE;
+    border-radius:10px;
+    font-size:16px;
+    margin-bottom:25px;
+    background-color:white;
+}
+
+.przycisklogowanie{
+    background-color:#06331A;
+    color:#D3EDDD;
+    border:2px solid #CFDBCE;
+    border-radius:12px;
+    padding:14px;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+    width:100%;
+}
+
+.przycisklogowanie:hover{
+    color:white;
+}

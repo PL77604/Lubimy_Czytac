@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../Lubimy_czytac_css/global.css">
+    <link rel="stylesheet" href="../Lubimy_czytac_css/katalog.css">
     <title>Katalog książek</title>
 </head>
 <body>
@@ -16,27 +18,27 @@
             <a href="logowanie.html">Logowanie</a>
         </nav>
     </header>
-    <main>
-        <h1>Katalog książek</h1>
-        <p>
+    <main  class="glowna">
+        <section class="ramkakatalog">
+        <h1 class="tytulkatalog">Katalog książek</h1>
+        <p class="opiskatalog">
             Tutaj znajduje się nasz katalog książek na każdy smak. Możesz wyszukiwać książki po tytule
             albo wybrać odpowiedni tag.
         </p>
-        <section>
-            <h2>Wyszukiwanie książek</h2>
+        </section>
+        <section  class="ramkakatalog">
+            <h2 class="tytulszukaj">Wyszukiwanie książek</h2>
 
-            <form>
-                <label for="szukaj">Wpisz nazwę książki:</label>
-                <input type="text" id="szukaj" name="szukaj" placeholder="Np. Wiedźmin">
+            <form  class="formakatalog">
+                <label class="etykietakatalog" for="szukaj">Wpisz nazwę książki:</label>
+                <input class="inputkatalog" type="text" id="szukaj" name="szukaj" placeholder="Np. Wiedźmin">
 
-                <label for="tag">Wybierz tag:</label>
-
-                <button type="submit">Szukaj</button>
+                <button class="przyciskkatalog" type="submit">Szukaj</button>
             </form>
         </section>
     </main>
-</body>
-<footer>
+    <footer>
     <p>© 2026 Lubimy czytać, Tsyhanenko Oleksandr, Arsen Medvid</p>
-</footer>
+    </footer>
+</body>
 </html>

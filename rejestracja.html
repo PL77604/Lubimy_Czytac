@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../Lubimy_czytac_css/global.css">
+    <link rel="stylesheet" href="../Lubimy_czytac_css/rejestracja.css">
     <title>Rejestracja</title>
 </head>
 <body>
@@ -17,24 +19,26 @@
         </nav>
     </header>
      <main>
-        <h1>Rejestracja</h1>
-        <p>Zarejestruj się do naszej aplikacji</p>
+        <section class="ramkarejestracja">
+        <h1 class="tytulrejestracja">Rejestracja</h1>
+        <p class="opisrejestracja">Zarejestruj się do naszej aplikacji</p>
+        </section>
 
-        <form>
-            <label for="imie">Imię:</label>
-            <input type="text" id="imie" name="imie">
+        <form class="formarejestracja">
+            <label class="etykietarejestracja" for="imie">Imię:</label>
+            <input class="inputrejestracja" type="text" id="imie" name="imie">
 
-            <label for="email">Adres e-mail:</label>
-            <input type="email" id="email" name="email">
+            <label class="etykietarejestracja" for="email">Adres e-mail:</label>
+            <input class="inputrejestracja" type="email" id="email" name="email">
 
-            <label for="telefon">Numer telefonu:</label>
-            <input type="tel" id="telefon" name="telefon">
+            <label class="etykietarejestracja" for="telefon">Numer telefonu:</label>
+            <input class="inputrejestracja" type="tel" id="telefon" name="telefon">
 
-            <button type="submit">Zarejestruj się</button>
+            <button class="przyciskrejestracja" type="submit">Zarejestruj się</button>
         </form>
     </main>
-</body>
-<footer>
+    <footer>
     <p>© 2026 Lubimy czytać, Tsyhanenko Oleksandr, Arsen Medvid</p>
-</footer>
+    </footer>
+</body>
 </html>

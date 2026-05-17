@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../Lubimy_czytac_css/global.css">
+    <link rel="stylesheet" href="../Lubimy_czytac_css/logowanie.css">
     <title>Logowanie</title>
 </head>
 <body>
@@ -17,20 +19,22 @@
         </nav>
     </header>
     <main>
-        <h1>Logowanie</h1>
-        <p>Zaloguj do naszej aplikacji</p>
-        <form>
-            <label for="email">Adres e-mail:</label>
-            <input type="email" id="email" name="email">
+        <section class="ramkalogowanie">
+        <h1 class="tytullogowanie">Logowanie</h1>
+        <p class="opislogowanie">Zaloguj do naszej aplikacji</p>
+        </section>
+        <form class="formalogowanie">
+            <label class="etykietalogowanie" for="email">Adres e-mail:</label>
+            <input class="inputlogowanie" type="email" id="email" name="email">
 
-            <label for="haslo">Hasło:</label>
-            <input type="password" id="haslo" name="haslo">
+            <label class="etykietalogowanie" for="haslo">Hasło:</label>
+            <input class="inputlogowanie" type="password" id="haslo" name="haslo">
 
-            <button type="submit">Zaloguj się</button>
+            <button class="przycisklogowanie" type="submit">Zaloguj się</button>
         </form>
     </main>
-</body>
-<footer>
+    <footer>
     <p>© 2026 Lubimy czytać, Tsyhanenko Oleksandr, Arsen Medvid</p>
-</footer>
+    </footer>
+</body>
 </html>

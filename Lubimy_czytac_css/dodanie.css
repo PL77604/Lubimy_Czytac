@@ -1,0 +1,90 @@
+header{
+    height:90px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+nav{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:44px;
+}
+
+main{
+    padding:60px 40px;
+}
+
+.ramkadodanie{
+    max-width:950px;
+    margin:0 auto 35px auto;
+    padding:35px;
+    background-color:#F7FFF5;
+    border:2px solid #CFDBCE;
+    border-radius:18px;
+}
+
+.tytuldodanie{
+    color:#363D33;
+    text-align:center;
+    font-size:38px;
+    margin-top:0;
+}
+
+.opisdodanie{
+    color:#6F8069;
+    font-size:18px;
+    line-height:1.6;
+}
+
+.tytulformularz{
+    color:#363D33;
+    font-size:28px;
+    margin-top:0;
+}
+
+.formadodanie{
+    display:flex;
+    flex-direction:column;
+}
+
+.etykietadodanie{
+    color:#363D33;
+    font-weight:bold;
+    margin-bottom:10px;
+}
+
+.inputdodanie{
+    padding:14px;
+    border:2px solid #CFDBCE;
+    border-radius:10px;
+    font-size:16px;
+    margin-bottom:25px;
+    background-color:white;
+}
+
+.areadodanie{
+    padding:14px;
+    border:2px solid #CFDBCE;
+    border-radius:10px;
+    font-size:16px;
+    margin-bottom:25px;
+    resize:vertical;
+    min-height:140px;
+}
+
+.przyciskdodanie{
+    background-color:#06331A;
+    color:#D3EDDD;
+    border:2px solid #CFDBCE;
+    border-radius:12px;
+    padding:14px;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.przyciskdodanie:hover{
+    color:white;
+}

@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../Lubimy_czytac_css/global.css">
+    <link rel="stylesheet" href="../Lubimy_czytac_css/dodanie.css">
     <title>Dadanie książek</title>
 </head>
 <body>
@@ -17,34 +19,36 @@
         </nav>
     </header>
     <main>
-         <h1>Dodanie książki</h1>
-        <p>
+        <section class="ramkadodanie">
+         <h1 class="tytuldodanie">Dodanie książki</h1>
+        <p class="opisdodanie">
             Tutaj możesz dodać książkę napisaną przez siebie albo znalezioną przez ciebie.
             Wypełnij formularz i wybierz najbardziej pasujące tagi.
         </p>
+        </section>
 
-        <section>
-            <h2>Formularz dodawania książki</h2>
+        <section class="ramkadodanie">
+            <h2 class="tytulformularz">Formularz dodawania książki</h2>
 
-            <form>
-                <label for="okladka">Dodaj obraz książki:</label>
-                <input type="file" id="okladka" name="okladka">
+            <form  class="formadodanie">
+                <label  class="etykietadodanie" for="okladka">Dodaj obraz książki:</label>
+                <input  class="inputdodanie" type="file" id="okladka" name="okladka">
 
-                <label for="tytul">Tytuł książki:</label>
-                <input type="text" id="tytul" name="tytul">
+                <label class="etykietadodanie" for="tytul">Tytuł książki:</label>
+                <input class="inputdodanie" type="text" id="tytul" name="tytul">
 
-                <label for="autor">Autor:</label>
-                <input type="text" id="autor" name="autor">
+                <label  class="etykietadodanie" for="autor">Autor:</label>
+                <input class="inputdodanie" type="text" id="autor" name="autor">
 
-                <label for="opis">Opis książki:</label>
-                <textarea id="opis" name="opis" rows="5"></textarea>
+                <label class="etykietadodanie"  for="opis">Opis książki:</label>
+                <textarea class="areadodanie" id="opis" name="opis" rows="5"></textarea>
                 
-                <button type="submit">Dodaj książkę</button>
+                <button class="przyciskdodanie"  type="submit">Dodaj książkę</button>
             </form>
         </section>
     </main>
-</body>
-<footer>
+    <footer>
     <p>© 2026 Lubimy czytać, Tsyhanenko Oleksandr, Arsen Medvid</p>
-</footer>
+    </footer>
+</body>
 </html>

@@ -1,0 +1,79 @@
+main{
+    padding:60px 40px;
+}
+
+.ramkakatalog{
+    max-width:900px;
+    margin:0 auto 35px auto;
+    padding:35px;
+    background-color:#F7FFF5;
+    border:2px solid #CFDBCE;
+    border-radius:18px;
+}
+
+.tytulkatalog{
+    color:#363D33;
+    text-align:center;
+    font-size:38px;
+    margin-top:0;
+}
+
+.tytulszukaj{
+    color:#363D33;
+    font-size:28px;
+    margin-top:0;
+}
+
+.opiskatalog{
+    color:#6F8069;
+    font-size:18px;
+    line-height:1.6;
+}
+
+.formakatalog{
+    display:flex;
+    flex-direction:column;
+}
+
+.etykietakatalog{
+    color:#363D33;
+    font-weight:bold;
+    margin-bottom:10px;
+}
+
+.inputkatalog{
+    padding:14px;
+    border:2px solid #CFDBCE;
+    border-radius:10px;
+    font-size:16px;
+    margin-bottom:25px;
+}
+
+.przyciskkatalog{
+    background-color:#06331A;
+    color:#D3EDDD;
+    border:2px solid #CFDBCE;
+    border-radius:12px;
+    padding:14px;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.przyciskkatalog:hover{
+    color:white;
+}
+
+header{
+    height:90px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+nav{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:44px;
+}
