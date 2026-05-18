@@ -62,7 +62,7 @@ main{
 }
 
 .przycisklogowanie{
-    background-color:#06331A;
+    background:linear-gradient(180deg, #0A4A26 0%, #06331A 60%, #031D0F 100%);
     color:#D3EDDD;
     border:2px solid #CFDBCE;
     border-radius:12px;
@@ -74,5 +74,5 @@ main{
 }
 
 .przycisklogowanie:hover{
-    color:white;
+    background:linear-gradient(180deg, #0D5A2F 0%, #084221 60%, #041A0D 100%);
 }
