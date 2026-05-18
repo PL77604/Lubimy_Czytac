@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class DodanieController {
 
-    @GetMapping("/DodanieKsiążek")
+    @GetMapping("/DodanieKsiazek")
     public String dodanie(Model model) {
         return "dodanie";
     }

@@ -5,10 +5,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-public class MojeksiążkiController {
+public class MojeksiazkiController {
 
-    @GetMapping("/MojeKsiążki")
-    public String mojeksiążki(Model model) {
-        return "mojeksiążki";
+    @GetMapping("/MojeKsiazki")
+    public String mojeksiazki(Model model) {
+        return "mojeksiazki";
     }
 }
