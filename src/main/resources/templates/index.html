@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/css/global.css}">
+    <link rel="stylesheet" th:href="@{/css/index.css}">
+    <title>Lubimy czytać</title>
+</head>
+<body>
+    <header th:insert="blocks/header :: header"></header>
+    <section class="baner">
+        <img th:src="@{/images/książkiżielone.png}" alt="Książki">
+    </section>
+    <main>
+        <section class="ramka">
+        <h1>Lubimy czytać</h1>
+        <p>Witamy na naszej stronie internetowej. Strona została ztworzona przez Tsyhanenka Oleksandra (Pl77316)
+            i Arsen Medvid (Pl77604). Strona pozwala dodawać różne książki, shukać ich i czytać w katalogu.
+        </p>
+        </section>
+    </main>
+    <div th:insert="blocks/footer :: footer"></div>
+</body>
+</html>
