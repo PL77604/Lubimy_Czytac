@@ -5,12 +5,13 @@ body{
 }
 
 header{
-    background:linear-gradient(180deg, #0A4A26 0%, #06331A 60%, #031D0F 100%);
-    border:2px solid #CFDBCE;
+    background:linear-gradient(180deg, #2F5C46 0%, #234A36 55%, #1D402F 100%);
+    padding-top:20px;
 }
 
 nav{
     text-align:center;
+    padding-bottom:20px;
 }
 
 nav a{
@@ -26,9 +27,8 @@ nav a:hover{
 }
 
 footer{
-    background:linear-gradient(180deg, #0A4A26 0%, #06331A 60%, #031D0F 100%);
+    background:linear-gradient(180deg, #1D402F 0%, #234A36 55%, #2F5C46 100%);
     padding:22px;
-    border:2px solid #CFDBCE;
     border-radius:0 0 18px 18px;
     text-align:center;
     margin-top:40px;
