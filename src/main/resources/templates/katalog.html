@@ -8,7 +8,7 @@
     <title>Katalog książek</title>
 </head>
 <body>
-    <header th:insert="blocks/header :: header"></header>
+<th:block th:replace="blocks/header :: header"></th:block>
     <main  class="glowna">
         <section class="ramkakatalog">
         <h1 class="tytulkatalog">Katalog książek</h1>
@@ -28,6 +28,6 @@
             </form>
         </section>
     </main>
-    <div th:insert="blocks/footer :: footer"></div>
+<div th:insert="blocks/footer :: footer"></div>
 </body>
 </html>

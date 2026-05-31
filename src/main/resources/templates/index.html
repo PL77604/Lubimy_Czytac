@@ -8,7 +8,7 @@
     <title>Lubimy czytać</title>
 </head>
 <body>
-    <header th:insert="blocks/header :: header"></header>
+<th:block th:replace="blocks/header :: header"></th:block>
     <section class="baner">
         <img th:src="@{/images/ksiazkizielone.png}" alt="Książki">
     </section>
@@ -20,6 +20,6 @@
         </p>
         </section>
     </main>
-    <div th:insert="blocks/footer :: footer"></div>
+<div th:insert="blocks/footer :: footer"></div>
 </body>
 </html>

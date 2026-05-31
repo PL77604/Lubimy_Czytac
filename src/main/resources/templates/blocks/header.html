@@ -1,12 +1,26 @@
 <div th:fragment="header">
     <header>
-        <nav>
-            <a href="/">Strona tytulowa</a>
-            <a href="/Katalog">Katalog książek</a>
-            <a href="/MojeKsiazki">Moje książki</a>
-            <a href="/DodanieKsiazek">Dodanie książek</a>
-            <a href="/Rejestracja">Rejestracja</a>
-            <a href="/Logowanie">Logowanie</a>
-        </nav>
+        <div class="pasekheadera">
+
+            <nav class="menu">
+                <a href="/">Strona tytulowa</a>
+                <a href="/Katalog">Katalog książek</a>
+                <a href="/MojeKsiazki">Moje książki</a>
+                <a href="/DodanieKsiazek">Dodanie książek</a>
+            </nav>
+
+            <div class="panelprofilu">
+                <div class="avatarprofilu">
+                    Obraz
+                </div>
+                <div class="nazwaprofilu">
+                    Nazwa profilu
+                </div>
+                <div class="statystyki">
+                    <p>Dodane książki: <span>0</span></p>
+                    <p>Pobrane książki: <span>0</span></p>
+                </div>
+            </div>
+        </div>
     </header>
 </div>

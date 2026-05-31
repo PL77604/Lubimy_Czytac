@@ -8,7 +8,7 @@
     <title>Moje książki</title>
 </head>
 <body>
-    <header th:insert="blocks/header :: header"></header>
+<th:block th:replace="blocks/header :: header"></th:block>
     <main>
         <section class="ramkamoje">
         <h1 class="tytulmoje">Moje książki</h1>
@@ -27,6 +27,6 @@
             </form>
         </section>
     </main>
-    <div th:insert="blocks/footer :: footer"></div>
+<div th:insert="blocks/footer :: footer"></div>
 </body>
 </html>

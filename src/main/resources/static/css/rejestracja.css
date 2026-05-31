@@ -62,3 +62,27 @@ main{
 .przyciskrejestracja:hover{
     background:linear-gradient(180deg, #EDBC47 0%, #DEAE3D 55%, #B78928 100%);
 }
+
+@media(max-width:768px){
+    main{
+        padding:30px 15px;
+    }
+
+    .ramkarejestracja{
+        padding:24px;
+        max-width:100%;
+    }
+
+    .tytulrejestracja{
+        font-size:30px;
+    }
+
+    .formarejestracja{
+        max-width:100%;
+    }
+
+    .inputrejestracja{
+        font-size:15px;
+        padding:12px;
+    }
+}

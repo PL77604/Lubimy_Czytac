@@ -8,7 +8,7 @@
     <title>Logowanie</title>
 </head>
 <body>
-    <header th:insert="blocks/header :: header"></header>
+<th:block th:replace="blocks/header :: header"></th:block>
     <main>
         <section class="ramkalogowanie">
         <h1 class="tytullogowanie">Logowanie</h1>
@@ -24,6 +24,6 @@
             <button class="przycisklogowanie" type="submit">Zaloguj się</button>
         </form>
     </main>
-    <div th:insert="blocks/footer :: footer"></div>
+<div th:insert="blocks/footer :: footer"></div>
 </body>
 </html>

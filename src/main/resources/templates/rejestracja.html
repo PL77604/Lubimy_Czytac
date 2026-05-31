@@ -8,26 +8,29 @@
     <title>Rejestracja</title>
 </head>
 <body>
-    <header th:insert="blocks/header :: header"></header>
+<th:block th:replace="blocks/header :: header"></th:block>
      <main>
         <section class="ramkarejestracja">
         <h1 class="tytulrejestracja">Rejestracja</h1>
         <p class="opisrejestracja">Zarejestruj się do naszej aplikacji</p>
         </section>
 
-        <form class="formarejestracja">
-            <label class="etykietarejestracja" for="imie">Imię:</label>
-            <input class="inputrejestracja" type="text" id="imie" name="imie">
+         <form class="formarejestracja">
+             <label class="etykietarejestracja" for="login">Login:</label>
+             <input class="inputrejestracja" type="text" id="login" name="login">
 
-            <label class="etykietarejestracja" for="email">Adres e-mail:</label>
-            <input class="inputrejestracja" type="email" id="email" name="email">
+             <label class="etykietarejestracja" for="email">Adres e-mail:</label>
+             <input class="inputrejestracja" type="email" id="email" name="email">
 
-            <label class="etykietarejestracja" for="telefon">Numer telefonu:</label>
-            <input class="inputrejestracja" type="tel" id="telefon" name="telefon">
+             <label class="etykietarejestracja" for="haslo">Hasło:</label>
+             <input class="inputrejestracja" type="password" id="haslo" name="haslo">
 
-            <button class="przyciskrejestracja" type="submit">Zarejestruj się</button>
-        </form>
+             <label class="etykietarejestracja" for="powtorzHaslo">Powtórz hasło:</label>
+             <input class="inputrejestracja" type="password" id="powtorzHaslo" name="powtorzHaslo">
+
+             <button class="przyciskrejestracja" type="submit">Zarejestruj się</button>
+         </form>
     </main>
-    <div th:insert="blocks/footer :: footer"></div>
+<div th:insert="blocks/footer :: footer"></div>
 </body>
 </html>
