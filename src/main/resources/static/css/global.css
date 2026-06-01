@@ -55,19 +55,13 @@ header{
     gap:12px;
 }
 
-.avatarprofilu{
-    width:48px;
-    height:48px;
-    border-radius:50%;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    color:#D3EDDD;
-    font-size:12px;
+.nazwaprofilu{
+    color:#FFFBED;
     font-weight:bold;
+    font-size:15px;
+    white-space:nowrap;
 }
 
-.nazwaprofilu,
 .statystyki{
     border:2px solid rgba(211,237,221,0.55);
     background-color:rgba(211,237,221,0.12);
@@ -122,4 +116,63 @@ html, body{
     width:100%;
     background-color:#F7FFF5;
     font-family:Arial, Helvetica, sans-serif;
+}
+
+
+.profilinfo{
+    display:flex;
+    align-items:center;
+    gap:12px;
+
+    border:2px solid rgba(211,237,221,0.55);
+    background-color:rgba(211,237,221,0.12);
+
+    border-radius:14px;
+    padding:8px 14px;
+}
+
+/* dla animacji */
+.animacja{
+    opacity:0;
+    transform:translateY(18px);
+    transition:opacity 0.35s ease, transform 0.35s ease;
+}
+
+.animacja.widoczny{
+    opacity:1;
+    transform:translateY(0);
+}
+
+main.zanikanie{
+    opacity:0;
+    transform:translateY(10px);
+    transition:opacity 0.18s ease, transform 0.18s ease;
+}
+
+.menu a{
+    transition:color 0.2s ease, transform 0.2s ease;
+}
+
+.menu a:hover{
+    color:#FFFFFF;
+    transform:translateY(-3px);
+}
+
+button,
+.przyciskkatalog,
+.przyciskdodanie,
+.przyciskmoje,
+.przycisklogowanie,
+.przyciskrejestracja{
+    transition:background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+button:hover,
+.przyciskkatalog:hover,
+.przyciskdodanie:hover,
+.przyciskmoje:hover,
+.przycisklogowanie:hover,
+.przyciskrejestracja:hover{
+    transform:translateY(-3px);
+    box-shadow:0 6px 14px rgba(0,0,0,0.18);
 }

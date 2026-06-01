@@ -7,10 +7,11 @@
     <link rel="stylesheet" th:href="@{/css/dodanie.css}">
     <title>Dadanie książek</title>
 </head>
+<script th:src="@{/js/script.js}"></script>
 <body>
 <th:block th:replace="blocks/header :: header"></th:block>
     <main>
-        <section class="ramkadodanie">
+        <section class="ramkadodanie animacja">
          <h1 class="tytuldodanie">Dodanie książki</h1>
         <p class="opisdodanie">
             Tutaj możesz dodać książkę napisaną przez siebie albo znalezioną przez ciebie.
@@ -18,7 +19,7 @@
         </p>
         </section>
 
-        <section class="ramkadodanie">
+        <section class="ramkadodanie animacja">
             <h2 class="tytulformularz">Formularz dodawania książki</h2>
 
             <form  class="formadodanie">

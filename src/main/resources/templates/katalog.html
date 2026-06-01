@@ -7,17 +7,18 @@
     <link rel="stylesheet" th:href="@{/css/katalog.css}">
     <title>Katalog książek</title>
 </head>
+<script th:src="@{/js/script.js}"></script>
 <body>
 <th:block th:replace="blocks/header :: header"></th:block>
     <main  class="glowna">
-        <section class="ramkakatalog">
+        <section class="ramkakatalog animacja">
         <h1 class="tytulkatalog">Katalog książek</h1>
         <p class="opiskatalog">
             Tutaj znajduje się nasz katalog książek na każdy smak. Możesz wyszukiwać książki po tytule
             albo wybrać odpowiedni tag.
         </p>
         </section>
-        <section  class="ramkakatalog">
+        <section  class="ramkakatalog animacja">
             <h2 class="tytulszukaj">Wyszukiwanie książek</h2>
 
             <form  class="formakatalog">
