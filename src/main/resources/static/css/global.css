@@ -1,161 +1,48 @@
-body{
-    margin:0;
-    padding:0;
-    background-color:#F7FFF5;
-    font-family:Arial, Helvetica, sans-serif;
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-*{
-    box-sizing:border-box;
-    font-family:Arial, Helvetica, sans-serif;
+body {
+    background: linear-gradient(135deg, #F7FFF5 0%, #EBF5E8 100%);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+    min-height: 100vh;
+    color: #2D3E2D;
 }
 
-header{
-    width:100%;
-    box-sizing:border-box;
-    background:linear-gradient(180deg, #2F5C46 0%, #234A36 55%, #1D402F 100%);
-    padding:20px 35px;
+footer {
+    margin-top: 60px;
+    padding: 24px;
+    text-align: center;
+    background: linear-gradient(180deg, #1D402F 0%, #1A3A2A 100%);
+    border-top: 1px solid rgba(224, 175, 58, 0.15);
 }
 
-.pasekheadera{
-    width:100%;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    position:relative;
-    min-height:70px;
+footer p {
+    margin: 0;
+    color: #A8C3AE;
+    font-weight: 500;
+    font-size: 13px;
+    letter-spacing: 0.5px;
 }
 
-.menu{
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    gap:34px;
-    flex-wrap:wrap;
+.animacja {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1), transform 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
 }
 
-.menu a{
-    color:#D3EDDD;
-    text-decoration:none;
-    font-weight:bold;
-    font-size:20px;
+.animacja.widoczny {
+    opacity: 1;
+    transform: translateY(0);
 }
 
-.menu a:hover{
-    color:#FFFFFF;
-}
-
-.panelprofilu{
-    position:absolute;
-    right:0;
-    top:50%;
-    transform:translateY(-50%);
-    display:flex;
-    align-items:center;
-    gap:12px;
-}
-
-.nazwaprofilu{
-    color:#FFFBED;
-    font-weight:bold;
-    font-size:15px;
-    white-space:nowrap;
-}
-
-.statystyki{
-    border:2px solid rgba(211,237,221,0.55);
-    background-color:rgba(211,237,221,0.12);
-    border-radius:14px;
-    padding:8px 12px;
-}
-
-.nazwaprofilu{
-    color:#FFFBED;
-    font-weight:bold;
-    font-size:15px;
-    white-space:nowrap;
-}
-
-.statystyki{
-    display:flex;
-    flex-direction:column;
-    gap:3px;
-}
-
-.statystyki p{
-    margin:0;
-    color:#D3EDDD;
-    font-size:13px;
-    font-weight:bold;
-    white-space:nowrap;
-}
-
-.statystyki span{
-    color:#FFFBED;
-}
-
-footer{
-    width:100%;
-    box-sizing:border-box;
-    margin:40px 0 0 0;
-    padding:22px;
-    border-radius:0 0 18px 18px;
-    text-align:center;
-    background:linear-gradient(180deg, #1D402F 0%, #234A36 55%, #2F5C46 100%);
-}
-
-footer p{
-    margin:0;
-    color:#D3EDDD;
-    font-weight:bold;
-}
-
-html, body{
-    margin:0;
-    padding:0;
-    width:100%;
-    background-color:#F7FFF5;
-    font-family:Arial, Helvetica, sans-serif;
-}
-
-
-.profilinfo{
-    display:flex;
-    align-items:center;
-    gap:12px;
-
-    border:2px solid rgba(211,237,221,0.55);
-    background-color:rgba(211,237,221,0.12);
-
-    border-radius:14px;
-    padding:8px 14px;
-}
-
-/* dla animacji */
-.animacja{
-    opacity:0;
-    transform:translateY(18px);
-    transition:opacity 0.35s ease, transform 0.35s ease;
-}
-
-.animacja.widoczny{
-    opacity:1;
-    transform:translateY(0);
-}
-
-main.zanikanie{
-    opacity:0;
-    transform:translateY(10px);
-    transition:opacity 0.18s ease, transform 0.18s ease;
-}
-
-.menu a{
-    transition:color 0.2s ease, transform 0.2s ease;
-}
-
-.menu a:hover{
-    color:#FFFFFF;
-    transform:translateY(-3px);
+main.zanikanie {
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 0.2s ease, transform 0.2s ease;
 }
 
 button,
@@ -163,8 +50,9 @@ button,
 .przyciskdodanie,
 .przyciskmoje,
 .przycisklogowanie,
-.przyciskrejestracja{
-    transition:background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+.przyciskrejestracja {
+    transition: all 0.25s ease;
+    cursor: pointer;
 }
 
 button:hover,
@@ -172,7 +60,29 @@ button:hover,
 .przyciskdodanie:hover,
 .przyciskmoje:hover,
 .przycisklogowanie:hover,
-.przyciskrejestracja:hover{
-    transform:translateY(-3px);
-    box-shadow:0 6px 14px rgba(0,0,0,0.18);
+.przyciskrejestracja:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+}
+
+.error-message {
+    animation: shake 0.3s ease;
+    background: #FFE8E8 !important;
+    border: 1px solid #FF6B6B !important;
+    color: #D33 !important;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-4px); }
+    75% { transform: translateX(4px); }
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+::selection {
+    background: rgba(224, 175, 58, 0.3);
+    color: #2D3E2D;
 }

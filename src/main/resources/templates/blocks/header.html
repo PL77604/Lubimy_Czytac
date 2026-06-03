@@ -1,27 +1,59 @@
 <div th:fragment="header">
     <header>
         <div class="pasekheadera">
+            <div class="logo">
+                <a href="/">LubimyCzytać</a>
+            </div>
 
-            <nav class="menu">
-                <a href="/">Strona tytulowa</a>
+            <div class="burger-menu" id="burgerMenu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+            <nav class="menu" id="mainMenu">
+                <a href="/">Strona główna</a>
                 <a href="/Katalog">Katalog książek</a>
                 <a href="/MojeKsiazki">Moje książki</a>
-                <a href="/DodanieKsiazek">Dodanie książek</a>
+                <a href="/DodanieKsiazek">Dodaj książkę</a>
             </nav>
 
             <div class="panelprofilu">
-                <div class="profilinfo">
-                    <div class="avatarprofilu">
-                        Obraz
+                <div th:if="${loggedUser != null}" class="profil-zalogowany">
+                    <div class="profilinfo">
+                        <div class="avatarprofilu">
+                            <span th:text="${loggedUser.avatar != null ? loggedUser.avatar : '👤'}"></span>
+                        </div>
+                        <div class="nazwaprofilu">
+                            <span th:text="${loggedUser.username}">Profil</span>
+                        </div>
+                        <div class="dropdown-arrow">▼</div>
                     </div>
-
-                    <div class="nazwaprofilu">
-                        Nazwa profilu
+                    <div class="dropdown-menu">
+                        <div class="dropdown-header">
+                            <div class="user-name" th:text="${loggedUser.username}"></div>
+                            <div class="user-email" th:text="${loggedUser.email}"></div>
+                        </div>
+                        <div class="statystyki-dropdown">
+                            <span class="stats-title">Twoje statystyki</span>
+                            <div class="stats-row">
+                                <div class="stats-item">
+                                    <span class="stats-label">Dodane książki:</span>
+                                    <span class="stats-value" th:text="${loggedUser.dodaneKsiazki}">0</span>
+                                </div>
+                                <div class="stats-item">
+                                    <span class="stats-label">Pobrane książki:</span>
+                                    <span class="stats-value" th:text="${loggedUser.pobraneKsiazki}">0</span>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="/Wyloguj" class="btn-logout">Wyloguj się</a>
                     </div>
                 </div>
-                <div class="statystyki">
-                    <p>Dodane książki: <span>0</span></p>
-                    <p>Pobrane książki: <span>0</span></p>
+
+                <div th:if="${loggedUser == null}" class="profil-niezalogowany">
+                    <a href="/Logowanie" class="btn-login">Zaloguj</a>
+                    <a href="/Rejestracja" class="btn-register">Zarejestruj</a>
                 </div>
             </div>
         </div>
