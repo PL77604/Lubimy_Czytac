@@ -86,3 +86,23 @@ html {
     background: rgba(224, 175, 58, 0.3);
     color: #2D3E2D;
 }
+
+.btn-profil{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:14px 20px;
+    color:#2F5C46;
+    text-decoration:none;
+    font-weight:600;
+    font-size:14px;
+    text-align:center;
+    transition:all 0.25s ease;
+    background:#FFFFFF;
+    border-bottom:1px solid #EDEDED;
+}
+
+.btn-profil:hover{
+    background:#F7FFF5;
+    color:#234A36;
+}

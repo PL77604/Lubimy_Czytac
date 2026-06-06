@@ -1,0 +1,249 @@
+.profil-main{
+    padding:60px 40px;
+}
+
+.profil-layout{
+    max-width:1250px;
+    margin:0 auto;
+    display:grid;
+    grid-template-columns:300px 1fr;
+    gap:30px;
+}
+
+.profil-panel{
+    background-color:#F7FFF5;
+    border:2px solid #CFDBCE;
+    border-radius:18px;
+    padding:30px;
+    text-align:center;
+}
+
+.profil-avatar{
+    width:125px;
+    height:125px;
+    margin:0 auto 20px auto;
+    border-radius:50%;
+    background:linear-gradient(180deg, #E0AF3A 0%, #D6A533 55%, #9E771E 100%);
+    border:3px solid #8A6716;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:54px;
+}
+
+.profil-nazwa{
+    color:#363D33;
+    font-size:28px;
+    font-weight:bold;
+    margin:0 0 8px 0;
+}
+
+.profil-email{
+    color:#6F8069;
+    font-size:15px;
+    margin:0 0 22px 0;
+    word-break:break-word;
+}
+
+.profil-opis{
+    color:#6F8069;
+    font-size:16px;
+    line-height:1.5;
+    margin:0 0 25px 0;
+}
+
+.profil-ikony{
+    display:flex;
+    justify-content:center;
+    gap:14px;
+    margin:25px 0;
+}
+
+.profil-stat{
+    width:72px;
+    height:72px;
+    border:2px solid #CFDBCE;
+    border-radius:16px;
+    background-color:#FFFFFF;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    color:#363D33;
+    font-weight:bold;
+}
+
+.ikonastat{
+    font-size:24px;
+    margin-bottom:5px;
+}
+
+.wartoscstat{
+    color:#363D33;
+    font-size:17px;
+    font-weight:bold;
+}
+
+.przyciskprofil{
+    width:100%;
+    background:linear-gradient(180deg, #E0AF3A 0%, #D6A533 55%, #9E771E 100%);
+    color:#FFFBED;
+    border:2px solid #8A6716;
+    border-radius:12px;
+    padding:14px;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.przyciskprofil:hover{
+    background:linear-gradient(180deg, #EDBC47 0%, #DEAE3D 55%, #B78928 100%);
+    transform:translateY(-2px);
+}
+
+.profil-prawy{
+    display:flex;
+    flex-direction:column;
+    gap:30px;
+}
+
+.profil-zakladki{
+    background-color:#F7FFF5;
+    border:2px solid #CFDBCE;
+    border-radius:18px;
+    padding:25px;
+    display:flex;
+    justify-content:center;
+    gap:18px;
+}
+
+.przyciskzakladka{
+    background:linear-gradient(180deg, #E0AF3A 0%, #D6A533 55%, #9E771E 100%);
+    color:#FFFBED;
+    border:2px solid #8A6716;
+    border-radius:12px;
+    padding:14px 20px;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.przyciskzakladka:hover{
+    background:linear-gradient(180deg, #EDBC47 0%, #DEAE3D 55%, #B78928 100%);
+    transform:translateY(-2px);
+}
+
+.profil-ksiazki{
+    background-color:#F7FFF5;
+    border:2px solid #CFDBCE;
+    border-radius:18px;
+    padding:35px;
+    text-align:center;
+}
+
+.profil-tytul{
+    color:#363D33;
+    font-size:32px;
+    margin:0 0 15px 0;
+}
+
+.profil-tekst{
+    color:#6F8069;
+    font-size:18px;
+    line-height:1.5;
+    margin:0;
+}
+
+.karuzela{
+    display:flex;
+    align-items:stretch;
+    gap:18px;
+    margin-top:30px;
+}
+
+.strzalka{
+    width:52px;
+    border:none;
+    border-radius:14px;
+    background:linear-gradient(180deg, #2F5C46 0%, #234A36 55%, #1D402F 100%);
+    color:#FFFBED;
+    font-size:38px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.strzalka:hover{
+    background:linear-gradient(180deg, #3A7156 0%, #2B5A43 55%, #234A36 100%);
+}
+
+.ksiazki-lista{
+    flex:1;
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:18px;
+}
+
+.karta-ksiazki{
+    min-height:230px;
+    border:2px solid #CFDBCE;
+    border-radius:16px;
+    background-color:#FFFFFF;
+    padding:18px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+}
+
+.okladka-ksiazki{
+    width:90px;
+    height:125px;
+    border:2px solid #CFDBCE;
+    border-radius:12px;
+    background-color:#F7FFF5;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#6F8069;
+    font-weight:bold;
+    margin-bottom:14px;
+}
+
+.karta-ksiazki h3{
+    color:#363D33;
+    font-size:18px;
+    margin:0 0 6px 0;
+}
+
+.karta-ksiazki p{
+    color:#6F8069;
+    font-size:15px;
+    margin:0;
+}
+
+@media(max-width:900px){
+    .profil-main{
+        padding:30px 15px;
+    }
+
+    .profil-layout{
+        grid-template-columns:1fr;
+    }
+
+    .profil-zakladki{
+        flex-direction:column;
+    }
+
+    .karuzela{
+        gap:10px;
+    }
+
+    .ksiazki-lista{
+        grid-template-columns:1fr;
+    }
+
+    .strzalka{
+        width:42px;
+        font-size:32px;
+    }
+}
