@@ -11,11 +11,6 @@
 <body>
 <th:block th:replace="blocks/header :: header"></th:block>
 <main>
-    <section class="ramkarejestracja animacja">
-        <h1 class="tytulrejestracja">Rejestracja</h1>
-        <p class="opisrejestracja">Zarejestruj się do naszej aplikacji</p>
-    </section>
-
     <div th:if="${error}" class="error-message" style="max-width:700px; margin:0 auto 20px auto; background:#ffe0e0; border:1px solid #ff0000; padding:10px; border-radius:8px; color:#ff0000; text-align:center;">
         <span th:text="${error}"></span>
     </div>
