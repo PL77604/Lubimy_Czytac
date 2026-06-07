@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/css/global.css}">
+    <link rel="stylesheet" th:href="@{/css/header.css}">
+    <link rel="stylesheet" th:href="@{/css/mainksiazki.css}">
+    <title>Książka</title>
+</head>
+<body>
+<th:block th:replace="blocks/header :: header"></th:block>
+<main class="mainksiazki">
+    <section class="ksiazka-blok animacja">
+        <div class="ksiazka-okladka">
+            <span>Okładka książki</span>
+        </div>
+        <div class="ksiazka-info">
+            <h1 class="ksiazka-tytul">Tytuł książki</h1>
+            <p class="ksiazka-autor">Autor książki</p>
+            <div class="ksiazka-opis">
+                <h2>Opis książki</h2>
+                <p>Tutaj pojawi się opis książki. To jest przykładowy tekst, który później zostanie zastąpiony właściwym opisem z bazy danych.</p>
+            </div>
+            <div class="ksiazka-przyciski">
+                <button class="przyciskczytaj">Przejdź do czytania</button>
+                <button class="przyciskpowrotksiazki">Wróć do listy książek</button>
+            </div>
+        </div>
+    </section>
+    <section class="ocena-blok animacja">
+        <button class="przyciskoceny">
+            <span class="ikonaoceny">👍</span>
+            <span>Lubię</span>
+        </button>
+        <button class="przyciskoceny">
+            <span class="ikonaoceny">👎</span>
+            <span>Nie lubię</span>
+        </button>
+    </section>
+    <section class="komentarz-formularz animacja">
+        <h2 class="komentarz-tytul">Napisz komentarz</h2>
+        <textarea class="komentarz-area" placeholder="Napisz swój komentarz tutaj"></textarea>
+        <button class="przyciskkomentarz">Dodaj komentarz</button>
+    </section>
+    <section class="komentarze-blok animacja">
+        <h2 class="komentarz-tytul">Komentarze</h2>
+        <div class="komentarz-karta">
+            <div class="komentarz-avatar">
+                <span>👤</span>
+            </div>
+            <div class="komentarz-tresc">
+                <h3>Nazwa użytkownika</h3>
+                <p>Tutaj pojawi się komentarz użytkownika. To jest przykładowy tekst komentarza.</p>
+            </div>
+        </div>
+    </section>
+</main>
+<th:block th:replace="blocks/footer :: footer"></th:block>
+<div class="menu-overlay" id="menuOverlay"></div>
+<script th:src="@{/js/script.js}"></script>
+</body>
+</html>

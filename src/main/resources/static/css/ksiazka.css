@@ -1,0 +1,115 @@
+.ksiazka-main{
+    padding:60px 40px;
+}
+
+.ksiazka-ramka{
+    max-width:1100px;
+    margin:0 auto;
+    padding:35px;
+    background-color:#F7FFF5;
+    border:2px solid #CFDBCE;
+    border-radius:18px;
+    display:grid;
+    grid-template-columns:320px 1fr;
+    gap:35px;
+    align-items:stretch;
+}
+
+.ksiazka-okladka{
+    min-height:460px;
+    border:2px solid #CFDBCE;
+    border-radius:18px;
+    background-color:#FFFFFF;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#6F8069;
+    font-size:20px;
+    font-weight:bold;
+    text-align:center;
+    padding:20px;
+}
+
+.ksiazka-info{
+    display:flex;
+    flex-direction:column;
+}
+
+.ksiazka-tytul{
+    color:#363D33;
+    font-size:40px;
+    font-weight:bold;
+    margin:0 0 10px 0;
+}
+
+.ksiazka-autor{
+    color:#6F8069;
+    font-size:20px;
+    font-weight:bold;
+    margin:0 0 25px 0;
+}
+
+.ksiazka-opis{
+    background-color:#FFFFFF;
+    border:2px solid #CFDBCE;
+    border-radius:16px;
+    padding:25px;
+    margin-bottom:25px;
+}
+
+.ksiazka-opis h2{
+    color:#363D33;
+    font-size:26px;
+    margin:0 0 12px 0;
+}
+
+.ksiazka-opis p{
+    color:#6F8069;
+    font-size:17px;
+    line-height:1.6;
+    margin:0;
+}
+
+.przyciskksiazka{
+    margin-top:auto;
+    background:linear-gradient(135deg, #E0AF3A, #B8860B);
+    border:none;
+    box-shadow:0 2px 8px rgba(224, 175, 58, 0.3);
+    color:#FFFBED;
+    border-radius:12px;
+    padding:15px;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+    transition:all 0.25s ease;
+}
+
+.przyciskksiazka:hover{
+    background:linear-gradient(135deg, #E8BF50, #C49A2E);
+    transform:translateY(-2px);
+    box-shadow:0 8px 20px rgba(224, 175, 58, 0.45);
+}
+
+@media(max-width:900px){
+    .ksiazka-main{
+        padding:30px 15px;
+    }
+
+    .ksiazka-ramka{
+        grid-template-columns:1fr;
+        padding:24px;
+    }
+
+    .ksiazka-okladka{
+        min-height:320px;
+    }
+
+    .ksiazka-tytul{
+        font-size:32px;
+        text-align:center;
+    }
+
+    .ksiazka-autor{
+        text-align:center;
+    }
+}

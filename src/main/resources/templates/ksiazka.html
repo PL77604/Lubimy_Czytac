@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/css/global.css}">
+    <link rel="stylesheet" th:href="@{/css/header.css}">
+    <link rel="stylesheet" th:href="@{/css/ksiazka.css}">
+    <title>Książka</title>
+</head>
+<body>
+<th:block th:replace="blocks/header :: header"></th:block>
+<main class="ksiazka-main">
+    <section class="ksiazka-ramka animacja">
+        <div class="ksiazka-okladka">
+            <span>Okładka książki</span>
+        </div>
+        <div class="ksiazka-info">
+            <h1 class="ksiazka-tytul">Tytuł książki</h1>
+            <p class="ksiazka-autor">Autor książki</p>
+            <div class="ksiazka-opis">
+                <h2>Opis książki</h2>
+                <p>Tutaj pojawi się opis książki. To jest przykładowy tekst, który później zostanie zastąpiony właściwym opisem z bazy danych.</p>
+            </div>
+            <button class="przyciskksiazka">Przejdź do książki</button>
+        </div>
+    </section>
+</main>
+<th:block th:replace="blocks/footer :: footer"></th:block>
+<div class="menu-overlay" id="menuOverlay"></div>
+<script th:src="@{/js/script.js}"></script>
+</body>
+</html>

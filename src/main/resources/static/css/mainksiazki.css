@@ -1,0 +1,234 @@
+.mainksiazki{
+    padding:60px 40px;
+}
+
+.ksiazka-blok{
+    max-width:1100px;
+    margin:0 auto 35px auto;
+    padding:35px;
+    background-color:#F7FFF5;
+    border:2px solid #CFDBCE;
+    border-radius:18px;
+    display:grid;
+    grid-template-columns:320px 1fr;
+    gap:35px;
+}
+
+.ksiazka-okladka{
+    min-height:460px;
+    border:2px solid #CFDBCE;
+    border-radius:18px;
+    background-color:#FFFFFF;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#6F8069;
+    font-size:20px;
+    font-weight:bold;
+    text-align:center;
+    padding:20px;
+}
+
+.ksiazka-info{
+    display:flex;
+    flex-direction:column;
+}
+
+.ksiazka-tytul{
+    color:#363D33;
+    font-size:40px;
+    font-weight:bold;
+    margin:0 0 10px 0;
+}
+
+.ksiazka-autor{
+    color:#6F8069;
+    font-size:20px;
+    font-weight:bold;
+    margin:0 0 25px 0;
+}
+
+.ksiazka-opis{
+    background-color:#FFFFFF;
+    border:2px solid #CFDBCE;
+    border-radius:16px;
+    padding:25px;
+    margin-bottom:25px;
+}
+
+.ksiazka-opis h2{
+    color:#363D33;
+    font-size:26px;
+    margin:0 0 12px 0;
+}
+
+.ksiazka-opis p{
+    color:#6F8069;
+    font-size:17px;
+    line-height:1.6;
+    margin:0;
+}
+
+.ksiazka-przyciski{
+    margin-top:auto;
+    display:flex;
+    gap:18px;
+}
+
+.przyciskczytaj,
+.przyciskpowrotksiazki,
+.przyciskkomentarz{
+    flex:1;
+    background:linear-gradient(135deg, #E0AF3A, #B8860B);
+    border:none;
+    box-shadow:0 2px 8px rgba(224, 175, 58, 0.3);
+    color:#FFFBED;
+    border-radius:12px;
+    padding:15px;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+    transition:all 0.25s ease;
+}
+
+.przyciskczytaj:hover,
+.przyciskpowrotksiazki:hover,
+.przyciskkomentarz:hover{
+    background:linear-gradient(135deg, #E8BF50, #C49A2E);
+    transform:translateY(-2px);
+    box-shadow:0 8px 20px rgba(224, 175, 58, 0.45);
+}
+
+.ocena-blok{
+    max-width:1100px;
+    margin:0 auto 35px auto;
+    padding:25px;
+    background-color:#F7FFF5;
+    border:2px solid #CFDBCE;
+    border-radius:18px;
+    display:flex;
+    justify-content:center;
+    gap:18px;
+}
+
+.przyciskoceny{
+    min-width:160px;
+    background-color:#FFFFFF;
+    color:#363D33;
+    border:2px solid #CFDBCE;
+    border-radius:14px;
+    padding:14px 20px;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    transition:all 0.25s ease;
+}
+
+.przyciskoceny:hover{
+    transform:translateY(-2px);
+    border-color:#2F5C46;
+    box-shadow:0 8px 20px rgba(47, 92, 70, 0.18);
+}
+
+.ikonaoceny{
+    font-size:22px;
+}
+
+.komentarz-formularz,
+.komentarze-blok{
+    max-width:1100px;
+    margin:0 auto 35px auto;
+    padding:35px;
+    background-color:#F7FFF5;
+    border:2px solid #CFDBCE;
+    border-radius:18px;
+}
+
+.komentarz-tytul{
+    color:#363D33;
+    font-size:28px;
+    margin:0 0 20px 0;
+    text-align:center;
+}
+
+.komentarz-area{
+    width:100%;
+    min-height:130px;
+    padding:14px;
+    border:2px solid #CFDBCE;
+    border-radius:12px;
+    background-color:#FFFFFF;
+    color:#363D33;
+    font-size:16px;
+    resize:vertical;
+    margin-bottom:20px;
+}
+
+.komentarz-karta{
+    display:flex;
+    gap:18px;
+    padding:22px;
+    border:2px solid #CFDBCE;
+    border-radius:16px;
+    background-color:#FFFFFF;
+}
+
+.komentarz-avatar{
+    width:60px;
+    height:60px;
+    border-radius:50%;
+    background:linear-gradient(135deg, #E0AF3A, #B8860B);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:28px;
+    flex-shrink:0;
+}
+
+.komentarz-tresc h3{
+    color:#363D33;
+    font-size:20px;
+    margin:0 0 8px 0;
+}
+
+.komentarz-tresc p{
+    color:#6F8069;
+    font-size:16px;
+    line-height:1.5;
+    margin:0;
+}
+
+@media(max-width:900px){
+    .mainksiazki{
+        padding:30px 15px;
+    }
+
+    .ksiazka-blok{
+        grid-template-columns:1fr;
+        padding:24px;
+    }
+
+    .ksiazka-okladka{
+        min-height:320px;
+    }
+
+    .ksiazka-tytul,
+    .ksiazka-autor{
+        text-align:center;
+    }
+
+    .ksiazka-przyciski,
+    .ocena-blok{
+        flex-direction:column;
+    }
+
+    .komentarz-karta{
+        flex-direction:column;
+        align-items:center;
+        text-align:center;
+    }
+}
