@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/css/global.css}">
+    <link rel="stylesheet" th:href="@{/css/header.css}">
+    <link rel="stylesheet" th:href="@{/css/edytuj.css}">
+    <title>Edytuj profil</title>
+</head>
+<body>
+<th:block th:replace="blocks/header :: header"></th:block>
+<main class="edytuj-main">
+    <section class="edytuj-ramka animacja">
+        <h1 class="edytuj-tytul">Edytuj profil</h1>
+        <p class="edytuj-opis">Tutaj możesz zmienić zdjęcie profilowe, nazwę użytkownika oraz opis swojego profilu.</p>
+        <form class="edytuj-formularz">
+            <label class="edytuj-etykieta" for="avatar">Nowe zdjęcie profilowe:</label>
+            <input class="edytuj-input" type="file" id="avatar" name="avatar">
+            <label class="edytuj-etykieta" for="nazwa">Nazwa użytkownika:</label>
+            <input class="edytuj-input" type="text" id="nazwa" name="nazwa" th:value="${loggedUser != null && loggedUser.username != null ? loggedUser.username : ''}" placeholder="Wpisz nową nazwę">
+            <label class="edytuj-etykieta" for="opis">Opis profilu:</label>
+            <textarea class="edytuj-area" id="opis" name="opis" placeholder="Napisz krótko coś o sobie"></textarea>
+            <div class="edytuj-przyciski">
+                <button class="przyciskedytuj" type="submit">Zapisz zmiany</button>
+                <a class="przyciskpowrotu" href="/Profil">Wróć do profilu</a>
+            </div>
+        </form>
+    </section>
+</main>
+<th:block th:replace="blocks/footer :: footer"></th:block>
+<script th:src="@{/js/script.js}"></script>
+</body>
+</html>

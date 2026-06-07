@@ -6,6 +6,7 @@
     <link rel="stylesheet" th:href="@{/css/global.css}">
     <link rel="stylesheet" th:href="@{/css/header.css}">
     <link rel="stylesheet" th:href="@{/css/mojeksiazki.css}">
+    <link rel="stylesheet" th:href="@{/css/gatunki.css}">
     <title>Moje książki</title>
 </head>
 <script th:src="@{/js/script.js}"></script>
@@ -25,6 +26,27 @@
                 <label class="etykietamoje" for="szukaj">Wpisz nazwę książki:</label>
                 <input class="inputmoje" type="text" id="szukaj" name="szukaj" placeholder="Np. Hobbit">
 
+                <button class="przyciskmoje" type="button" onclick="document.querySelector('.gatunki-katalog').classList.toggle('pokaz-gatunki')">Wybierz gatunki</button>
+                <div class="gatunki-katalog">
+                    <h3 class="tytulgatunki">Wybierz gatunki książki</h3>
+                    <div class="lista-gatunkow">
+                        <label><input type="checkbox" name="gatunki" value="fantastyka"> Fantastyka</label>
+                        <label><input type="checkbox" name="gatunki" value="kryminal"> Kryminał</label>
+                        <label><input type="checkbox" name="gatunki" value="romans"> Romans</label>
+                        <label><input type="checkbox" name="gatunki" value="horror"> Horror</label>
+                        <label><input type="checkbox" name="gatunki" value="thriller"> Thriller</label>
+                        <label><input type="checkbox" name="gatunki" value="przygodowa"> Przygodowa</label>
+                        <label><input type="checkbox" name="gatunki" value="historyczna"> Historyczna</label>
+                        <label><input type="checkbox" name="gatunki" value="biografia"> Biografia</label>
+                        <label><input type="checkbox" name="gatunki" value="popularnonaukowa"> Popularnonaukowa</label>
+                        <label><input type="checkbox" name="gatunki" value="science-fiction"> Science fiction</label>
+                        <label><input type="checkbox" name="gatunki" value="dla-dzieci"> Dla dzieci</label>
+                        <label><input type="checkbox" name="gatunki" value="mlodziezowa"> Młodzieżowa</label>
+                        <label><input type="checkbox" name="gatunki" value="poezja"> Poezja</label>
+                        <label><input type="checkbox" name="gatunki" value="dramat"> Dramat</label>
+                        <label><input type="checkbox" name="gatunki" value="komiks"> Komiks</label>
+                    </div>
+                </div>
                 <button class="przyciskmoje" type="submit">Szukaj</button>
             </form>
         </section>

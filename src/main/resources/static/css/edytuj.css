@@ -1,10 +1,9 @@
-
-main{
+.edytuj-main{
     padding:60px 40px;
 }
 
-.ramkarejestracja{
-    max-width:700px;
+.edytuj-ramka{
+    max-width:800px;
     margin:0 auto;
     padding:35px;
     background-color:#F7FFF5;
@@ -12,80 +11,99 @@ main{
     border-radius:18px;
 }
 
-.tytulrejestracja{
+.edytuj-tytul{
     color:#363D33;
     text-align:center;
     font-size:38px;
-    margin-top:0;
+    margin:0 0 15px 0;
 }
 
-.opisrejestracja{
+.edytuj-opis{
     color:#6F8069;
     text-align:center;
     font-size:18px;
-    margin-bottom:35px;
+    line-height:1.5;
+    margin:0 0 35px 0;
 }
 
-.formarejestracja{
+.edytuj-formularz{
     display:flex;
     flex-direction:column;
-    max-width:700px;
-    margin:0 auto;
 }
 
-.etykietarejestracja{
+.edytuj-etykieta{
     color:#363D33;
     font-weight:bold;
     margin-bottom:10px;
 }
 
-.inputrejestracja{
+.edytuj-input{
     padding:14px;
     border:2px solid #CFDBCE;
     border-radius:10px;
     font-size:16px;
     margin-bottom:25px;
+    background-color:white;
+    color:#363D33;
 }
 
-.przyciskrejestracja{
+.edytuj-area{
+    padding:14px;
+    border:2px solid #CFDBCE;
+    border-radius:10px;
+    font-size:16px;
+    margin-bottom:25px;
+    resize:vertical;
+    min-height:150px;
+    background-color:white;
+    color:#363D33;
+}
+
+.edytuj-przyciski{
+    display:flex;
+    gap:18px;
+}
+
+.przyciskedytuj,
+.przyciskpowrotu{
+    flex:1;
+    display:flex;
+    justify-content:center;
+    align-items:center;
     background:linear-gradient(135deg, #E0AF3A, #B8860B);
-    border:none;
-    box-shadow:0 2px 8px rgba(224, 175, 58, 0.3);
     color:#FFFBED;
+    border:none;
     border-radius:12px;
     padding:14px;
     font-size:16px;
     font-weight:bold;
+    text-decoration:none;
     cursor:pointer;
-    width:100%;
+    box-shadow:0 2px 8px rgba(224, 175, 58, 0.3);
+    transition:all 0.25s ease;
 }
 
-.przyciskrejestracja:hover{
+.przyciskedytuj:hover,
+.przyciskpowrotu:hover{
     background:linear-gradient(135deg, #E8BF50, #C49A2E);
     transform:translateY(-2px);
     box-shadow:0 8px 20px rgba(224, 175, 58, 0.45);
 }
 
 @media(max-width:768px){
-    main{
+    .edytuj-main{
         padding:30px 15px;
     }
 
-    .ramkarejestracja{
+    .edytuj-ramka{
         padding:24px;
-        max-width:100%;
     }
 
-    .tytulrejestracja{
+    .edytuj-tytul{
         font-size:30px;
     }
 
-    .formarejestracja{
-        max-width:100%;
-    }
-
-    .inputrejestracja{
-        font-size:15px;
-        padding:12px;
+    .edytuj-przyciski{
+        flex-direction:column;
     }
 }

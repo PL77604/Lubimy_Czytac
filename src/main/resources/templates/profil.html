@@ -18,7 +18,6 @@
             </div>
             <h1 class="profil-nazwa" th:text="${loggedUser != null && loggedUser.username != null ? loggedUser.username : 'Nazwa użytkownika'}">Nazwa użytkownika</h1>
             <p class="profil-email" th:text="${loggedUser != null && loggedUser.email != null ? loggedUser.email : 'email@example.com'}">email@example.com</p>
-            <p class="profil-opis">Informacje o tobie pojawią się tutaj. Możesz opisać swoje ulubione książki, zainteresowania albo styl czytania.</p>
             <div class="profil-ikony">
                 <div class="profil-stat">
                     <span class="ikonastat">❤</span>
@@ -33,7 +32,10 @@
                     <span class="wartoscstat">0</span>
                 </div>
             </div>
+            <p class="profil-opis">Informacje o tobie pojawią się tutaj.
+                Możesz opisać swoje ulubione książki, zainteresowania albo styl czytania.</p>
             <button class="przyciskprofil">Edytuj profil</button>
+            <button class="przyciskpowrot">Powrót</button>
         </aside>
         <section class="profil-prawy">
             <div class="profil-zakladki">

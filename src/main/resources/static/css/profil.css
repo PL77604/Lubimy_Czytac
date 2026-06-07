@@ -6,7 +6,7 @@
     max-width:1250px;
     margin:0 auto;
     display:grid;
-    grid-template-columns:300px 1fr;
+    grid-template-columns:380px 1fr;
     gap:30px;
 }
 
@@ -86,9 +86,10 @@
 
 .przyciskprofil{
     width:100%;
-    background:linear-gradient(180deg, #E0AF3A 0%, #D6A533 55%, #9E771E 100%);
+    background:linear-gradient(135deg, #E0AF3A, #B8860B);
+    border:none;
+    box-shadow:0 2px 8px rgba(224, 175, 58, 0.3);
     color:#FFFBED;
-    border:2px solid #8A6716;
     border-radius:12px;
     padding:14px;
     font-size:16px;
@@ -97,8 +98,9 @@
 }
 
 .przyciskprofil:hover{
-    background:linear-gradient(180deg, #EDBC47 0%, #DEAE3D 55%, #B78928 100%);
+    background:linear-gradient(135deg, #E8BF50, #C49A2E);
     transform:translateY(-2px);
+    box-shadow:0 8px 20px rgba(224, 175, 58, 0.45);
 }
 
 .profil-prawy{
@@ -118,9 +120,10 @@
 }
 
 .przyciskzakladka{
-    background:linear-gradient(180deg, #E0AF3A 0%, #D6A533 55%, #9E771E 100%);
+    background:linear-gradient(135deg, #E0AF3A, #B8860B);
+    border:none;
+    box-shadow:0 2px 8px rgba(224, 175, 58, 0.3);
     color:#FFFBED;
-    border:2px solid #8A6716;
     border-radius:12px;
     padding:14px 20px;
     font-size:16px;
@@ -129,8 +132,29 @@
 }
 
 .przyciskzakladka:hover{
-    background:linear-gradient(180deg, #EDBC47 0%, #DEAE3D 55%, #B78928 100%);
+    background:linear-gradient(135deg, #E8BF50, #C49A2E);
     transform:translateY(-2px);
+    box-shadow:0 8px 20px rgba(224, 175, 58, 0.45);
+}
+
+.przyciskpowrot{
+    width:100%;
+    margin-top:12px;
+    padding:14px;
+    background:#2F5C46;
+    color:#FFFBED;
+    border:none;
+    border-radius:12px;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+    transition:all 0.25s ease;
+}
+
+.przyciskpowrot:hover{
+    transform:translateY(-2px);
+    background:#234A36;
+    box-shadow:0 8px 20px rgba(47,92,70,0.35);
 }
 
 .profil-ksiazki{

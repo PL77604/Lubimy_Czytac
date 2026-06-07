@@ -49,9 +49,10 @@ main{
 }
 
 .przycisklogowanie{
-    background:linear-gradient(180deg, #E0AF3A 0%, #D6A533 55%, #9E771E 100%);
+    background:linear-gradient(135deg, #E0AF3A, #B8860B);
+    border:none;
+    box-shadow:0 2px 8px rgba(224, 175, 58, 0.3);
     color:#FFFBED;
-    border:2px solid #8A6716;
     border-radius:12px;
     padding:14px;
     font-size:16px;
@@ -61,5 +62,7 @@ main{
 }
 
 .przycisklogowanie:hover{
-    background:linear-gradient(180deg, #EDBC47 0%, #DEAE3D 55%, #B78928 100%);
+    background:linear-gradient(135deg, #E8BF50, #C49A2E);
+    transform:translateY(-2px);
+    box-shadow:0 8px 20px rgba(224, 175, 58, 0.45);
 }
