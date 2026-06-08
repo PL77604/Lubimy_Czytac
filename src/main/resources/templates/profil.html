@@ -6,6 +6,7 @@
     <link rel="stylesheet" th:href="@{/css/global.css}">
     <link rel="stylesheet" th:href="@{/css/header.css}">
     <link rel="stylesheet" th:href="@{/css/profil.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <title>Profil użytkownika</title>
 </head>
 <body>
@@ -18,27 +19,29 @@
     <section class="profil-layout animacja">
         <aside class="profil-panel">
             <div class="profil-avatar">
-                <div th:if="${loggedUser.avatar != null and loggedUser.avatar != '📷' and loggedUser.avatar != '👤' and loggedUser.avatar.contains('http')}">
+                <div th:if="${loggedUser.avatar != null and loggedUser.avatar.contains('http')}">
                     <img th:src="${loggedUser.avatar}" th:alt="${loggedUser.username}" class="avatar-image">
                 </div>
-                <div th:unless="${loggedUser.avatar != null and loggedUser.avatar != '📷' and loggedUser.avatar != '👤' and loggedUser.avatar.contains('http')}" class="avatar-text" th:text="${loggedUser.avatar != null ? loggedUser.avatar : '📷'}"></div>
+                <div th:unless="${loggedUser.avatar != null and loggedUser.avatar.contains('http')}" class="avatar-text">
+                    <i class="fa-solid fa-user"></i>
+                </div>
             </div>
             <h1 class="profil-nazwa" th:text="${loggedUser != null && loggedUser.username != null ? loggedUser.username : 'Nazwa użytkownika'}">Nazwa użytkownika</h1>
             <p class="profil-email" th:text="${loggedUser != null && loggedUser.email != null ? loggedUser.email : 'email@example.com'}">email@example.com</p>
 
             <div class="profil-ikony">
                 <div class="profil-stat">
-                    <span class="ikonastat">📖</span>
+                    <span class="ikonastat"><i class="fa-solid fa-book-open"></i></span>
                     <span class="stat-label">Dodane</span>
                     <span class="wartoscstat" th:text="${loggedUser.dodaneKsiazki}">0</span>
                 </div>
                 <div class="profil-stat">
-                    <span class="ikonastat">⬇️</span>
+                    <span class="ikonastat"><i class="fa-solid fa-download"></i></span>
                     <span class="stat-label">Pobrane</span>
                     <span class="wartoscstat" th:text="${loggedUser.pobraneKsiazki}">0</span>
                 </div>
                 <div class="profil-stat">
-                    <span class="ikonastat">📅</span>
+                    <span class="ikonastat"><i class="fa-solid fa-calendar"></i></span>
                     <span class="stat-label">Od</span>
                     <span class="wartoscstat" th:text="${#temporals.format(loggedUser.dataRejestracji, 'dd.MM.yyyy')}">0</span>
                 </div>

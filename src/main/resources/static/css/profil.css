@@ -37,12 +37,18 @@
     display: block;
 }
 
-.profil-avatar span {
-    font-size: 70px;
-    line-height: 1;
-    display: block;
+.avatar-text{
+    width:100%;
+    height:100%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
 }
 
+.avatar-text i{
+    color:#FFF2C7;
+    font-size:62px;
+}
 .profil-nazwa {
     color: #363D33;
     font-size: 28px;
@@ -106,6 +112,12 @@
 .ikonastat {
     font-size: 24px;
     margin-bottom: 5px;
+    color:#2F5C46;
+}
+
+.ikonastat i{
+    color:#2F5C46;
+    font-size:24px;
 }
 
 .wartoscstat {

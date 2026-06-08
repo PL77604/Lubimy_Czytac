@@ -1,5 +1,6 @@
 <div th:fragment="header">
     <header>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
         <div class="pasekheadera">
             <div class="logo">
                 <a href="/">LubimyCzytać</a>
@@ -22,11 +23,11 @@
                 <div th:if="${loggedUser != null}" class="profil-zalogowany">
                     <div class="profilinfo">
                         <div class="avatarprofilu">
-                            <img th:if="${loggedUser.avatar != null and loggedUser.avatar != '📷' and loggedUser.avatar != '👤' and loggedUser.avatar.contains('http')}"
+                            <img th:if="${loggedUser.avatar != null and loggedUser.avatar.contains('http')}"
                                  th:src="${loggedUser.avatar}"
                                  alt="Avatar">
                             <span th:unless="${loggedUser.avatar != null and loggedUser.avatar != '📷' and loggedUser.avatar != '👤' and loggedUser.avatar.contains('http')}"
-                                  th:text="${loggedUser.avatar != null ? loggedUser.avatar : '👤'}"></span>
+                                  th:utext="${loggedUser.avatar != null ? loggedUser.avatar : '<i class=&quot;fa-solid fa-user&quot;></i>'}"></span>
                         </div>
                         <div class="nazwaprofilu">
                             <span th:text="${loggedUser.username}">Profil</span>
