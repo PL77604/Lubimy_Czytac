@@ -1,0 +1,148 @@
+body{
+    background:#B5B186 !important;
+}
+
+.inne-main{
+    padding:60px 40px;
+}
+
+.inne-naglowek{
+    max-width:1100px;
+    margin:0 auto 35px auto;
+    padding:35px;
+    background-color:#47461D;
+    border:2px solid #B5B186;
+    border-radius:18px;
+    text-align:center;
+}
+
+.inne-naglowek h1{
+    color:#F4F2E2;
+    font-size:38px;
+    font-weight:bold;
+    margin:0 0 15px 0;
+}
+
+.inne-naglowek p{
+    color:#D8D4B4;
+    font-size:18px;
+    line-height:1.6;
+    margin:0;
+}
+
+.inne-ramka{
+    max-width:1100px;
+    margin:0 auto;
+    padding:35px;
+    background-color:#47461D;
+    border:2px solid #B5B186;
+    border-radius:18px;
+    display:grid;
+    grid-template-columns:320px 1fr;
+    gap:35px;
+    align-items:stretch;
+}
+
+.inne-okladka{
+    min-height:460px;
+    border:2px solid #B5B186;
+    border-radius:18px;
+    background-color:#343316;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#D8D4B4;
+    font-size:20px;
+    font-weight:bold;
+    text-align:center;
+    padding:20px;
+}
+
+.inne-info{
+    display:flex;
+    flex-direction:column;
+}
+
+.inne-tytul{
+    color:#F4F2E2;
+    font-size:40px;
+    font-weight:bold;
+    margin:0 0 10px 0;
+}
+
+.inne-autor{
+    color:#D8D4B4;
+    font-size:20px;
+    font-weight:bold;
+    margin:0 0 25px 0;
+}
+
+.inne-opis{
+    background-color:#343316;
+    border:2px solid #B5B186;
+    border-radius:16px;
+    padding:25px;
+    margin-bottom:25px;
+}
+
+.inne-opis h2{
+    color:#F4F2E2;
+    font-size:26px;
+    margin:0 0 12px 0;
+}
+
+.inne-opis p{
+    color:#D8D4B4;
+    font-size:17px;
+    line-height:1.6;
+    margin:0;
+}
+
+.przyciskinne{
+    margin-top:auto;
+    background:linear-gradient(135deg, #A9C89C, #94B586);
+    border:none;
+    box-shadow:0 2px 8px rgba(148,181,134,0.35);
+    color:#F7FFF5;
+    border-radius:12px;
+    padding:15px;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+    transition:all 0.25s ease;
+}
+
+.przyciskinne:hover{
+    background:linear-gradient(135deg, #B8D7AC, #A3C695);
+    transform:translateY(-2px);
+    box-shadow:0 8px 20px rgba(148,181,134,0.55);
+}
+
+@media(max-width:900px){
+    .inne-main{
+        padding:30px 15px;
+    }
+
+    .inne-naglowek,
+    .inne-ramka{
+        padding:24px;
+    }
+
+    .inne-ramka{
+        grid-template-columns:1fr;
+    }
+
+    .inne-okladka{
+        min-height:320px;
+    }
+
+    .inne-naglowek h1,
+    .inne-tytul{
+        font-size:32px;
+        text-align:center;
+    }
+
+    .inne-autor{
+        text-align:center;
+    }
+}

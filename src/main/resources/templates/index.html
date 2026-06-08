@@ -21,6 +21,28 @@
             i Arsen Medvid (Pl77604). Strona pozwala dodawać różne książki, shukać ich i czytać w katalogu.
         </p>
         </section>
+        <section class="gatunki-index animacja">
+            <a href="/Katalog" class="gatunek-duzy gatunek-karta">
+                <img th:src="@{/images/inne.png}" alt="Inne">
+                <span>Inne</span>
+            </a>
+            <div class="gatunki-prawa">
+                <a href="/Katalog" class="gatunek-szeroki gatunek-karta">
+                    <img th:src="@{/images/criminal.png}" alt="Kryminały">
+                    <span>Kryminały</span>
+                </a>
+                <div class="gatunki-male">
+                    <a href="/Katalog" class="gatunek-maly gatunek-karta">
+                        <img th:src="@{/images/romantic.png}" alt="Romantyka">
+                        <span>Romantyka</span>
+                    </a>
+                    <a href="/Katalog" class="gatunek-maly gatunek-karta">
+                        <img th:src="@{/images/horror.png}" alt="Horrory">
+                        <span>Horrory</span>
+                    </a>
+                </div>
+            </div>
+        </section>
     </main>
 <div th:insert="blocks/footer :: footer"></div>
 <div class="menu-overlay" id="menuOverlay"></div>

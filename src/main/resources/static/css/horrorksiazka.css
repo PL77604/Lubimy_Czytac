@@ -1,0 +1,148 @@
+.horror-main{
+    padding:60px 40px;
+}
+
+body{
+    background:#A58BD6 !important;
+}
+
+.horror-naglowek{
+    max-width:1100px;
+    margin:0 auto 35px auto;
+    padding:35px;
+    background-color:#28104A;
+    border:2px solid #644191;
+    border-radius:18px;
+    text-align:center;
+}
+
+.horror-naglowek h1{
+    color:#E9DDF7;
+    font-size:38px;
+    font-weight:bold;
+    margin:0 0 15px 0;
+}
+
+.horror-naglowek p{
+    color:#CDB7E8;
+    font-size:18px;
+    line-height:1.6;
+    margin:0;
+}
+
+.horror-ramka{
+    max-width:1100px;
+    margin:0 auto;
+    padding:35px;
+    background-color:#28104A;
+    border:2px solid #644191;
+    border-radius:18px;
+    display:grid;
+    grid-template-columns:320px 1fr;
+    gap:35px;
+    align-items:stretch;
+}
+
+.horror-okladka{
+    min-height:460px;
+    border:2px solid #644191;
+    border-radius:18px;
+    background-color:#1D0B36;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#CDB7E8;
+    font-size:20px;
+    font-weight:bold;
+    text-align:center;
+    padding:20px;
+}
+
+.horror-info{
+    display:flex;
+    flex-direction:column;
+}
+
+.horror-tytul{
+    color:#E9DDF7;
+    font-size:40px;
+    font-weight:bold;
+    margin:0 0 10px 0;
+}
+
+.horror-autor{
+    color:#CDB7E8;
+    font-size:20px;
+    font-weight:bold;
+    margin:0 0 25px 0;
+}
+
+.horror-opis{
+    background-color:#1D0B36;
+    border:2px solid #644191;
+    border-radius:16px;
+    padding:25px;
+    margin-bottom:25px;
+}
+
+.horror-opis h2{
+    color:#E9DDF7;
+    font-size:26px;
+    margin:0 0 12px 0;
+}
+
+.horror-opis p{
+    color:#CDB7E8;
+    font-size:17px;
+    line-height:1.6;
+    margin:0;
+}
+
+.przyciskhorror{
+    margin-top:auto;
+    background:linear-gradient(135deg, #4CA7B5, #34747F);
+    border:none;
+    box-shadow:0 2px 8px rgba(52, 116, 127, 0.35);
+    color:#F1FDFF;
+    border-radius:12px;
+    padding:15px;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+    transition:all 0.25s ease;
+}
+
+.przyciskhorror:hover{
+    background:linear-gradient(135deg, #5CC2D0, #3E8A97);
+    transform:translateY(-2px);
+    box-shadow:0 8px 20px rgba(52, 116, 127, 0.55);
+}
+
+@media(max-width:900px){
+    .horror-main{
+        padding:30px 15px;
+    }
+
+    .horror-naglowek,
+    .horror-ramka{
+        padding:24px;
+    }
+
+    .horror-ramka{
+        grid-template-columns:1fr;
+    }
+
+    .horror-okladka{
+        min-height:320px;
+    }
+
+    .horror-naglowek h1,
+    .horror-tytul{
+        font-size:32px;
+        text-align:center;
+    }
+
+    .horror-autor{
+        text-align:center;
+    }
+}

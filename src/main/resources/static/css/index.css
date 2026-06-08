@@ -40,3 +40,83 @@ p{
     font-size:18px;
     line-height:1.6;
 }
+
+.gatunki-index{
+    max-width:900px;
+    margin:35px auto 0 auto;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px;
+}
+
+.gatunki-prawa{
+    display:grid;
+    grid-template-rows:1fr 1fr;
+    gap:20px;
+}
+
+.gatunki-male{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px;
+}
+
+.gatunek-karta{
+    position:relative;
+    overflow:hidden;
+    border-radius:18px;
+    border:2px solid #CFDBCE;
+    text-decoration:none;
+    box-shadow:0 8px 20px rgba(0,0,0,0.12);
+    transition:all 0.25s ease;
+}
+
+.gatunek-karta:hover{
+    transform:translateY(-3px);
+    box-shadow:0 12px 26px rgba(0,0,0,0.18);
+}
+
+.gatunek-karta img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+}
+
+.gatunek-karta span{
+    position:absolute;
+    left:18px;
+    bottom:18px;
+    color:#FFFBED;
+    font-size:26px;
+    font-weight:bold;
+    text-shadow:0 3px 8px rgba(0,0,0,0.55);
+}
+
+.gatunek-duzy{
+    height:380px;
+}
+
+.gatunek-szeroki{
+    height:180px;
+}
+
+.gatunek-maly{
+    height:180px;
+}
+
+@media(max-width:768px){
+    .gatunki-index{
+        grid-template-columns:1fr;
+    }
+
+    .gatunki-male{
+        grid-template-columns:1fr;
+    }
+
+    .gatunek-duzy,
+    .gatunek-szeroki,
+    .gatunek-maly{
+        height:220px;
+    }
+}
