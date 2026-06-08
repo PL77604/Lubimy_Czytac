@@ -14,13 +14,31 @@
     <section class="edytuj-ramka animacja">
         <h1 class="edytuj-tytul">Edytuj profil</h1>
         <p class="edytuj-opis">Tutaj możesz zmienić zdjęcie profilowe, nazwę użytkownika oraz opis swojego profilu.</p>
-        <form class="edytuj-formularz">
+
+        <div th:if="${success}" class="alert alert-success" th:text="${success}"></div>
+        <div th:if="${error}" class="alert alert-error" th:text="${error}"></div>
+        <div th:if="${info}" class="alert alert-info" th:text="${info}"></div>
+
+        <div class="current-avatar">
+            <div th:if="${loggedUser.avatar != null and loggedUser.avatar != '📷' and loggedUser.avatar != '👤' and loggedUser.avatar.contains('http')}">
+                <img th:src="${loggedUser.avatar}" th:alt="${loggedUser.username}">
+            </div>
+            <div th:unless="${loggedUser.avatar != null and loggedUser.avatar != '📷' and loggedUser.avatar != '👤' and loggedUser.avatar.contains('http')}" class="avatar-text" th:text="${loggedUser.avatar != null ? loggedUser.avatar : '📷'}"></div>
+        </div>
+
+        <form class="edytuj-formularz" th:action="@{/EdytujProfil}" method="post" enctype="multipart/form-data">
             <label class="edytuj-etykieta" for="avatar">Nowe zdjęcie profilowe:</label>
-            <input class="edytuj-input" type="file" id="avatar" name="avatar">
+            <input class="edytuj-input" type="file" id="avatar" name="avatar" accept="image/jpeg,image/png,image/gif,image/webp">
+            <small class="form-text">Dozwolone formaty: JPG, PNG, GIF, WEBP. Maksymalny rozmiar: 5MB</small>
+
             <label class="edytuj-etykieta" for="nazwa">Nazwa użytkownika:</label>
             <input class="edytuj-input" type="text" id="nazwa" name="nazwa" th:value="${loggedUser != null && loggedUser.username != null ? loggedUser.username : ''}" placeholder="Wpisz nową nazwę">
+            <small class="form-text">Nazwa widoczna publicznie na stronie</small>
+
             <label class="edytuj-etykieta" for="opis">Opis profilu:</label>
-            <textarea class="edytuj-area" id="opis" name="opis" placeholder="Napisz krótko coś o sobie"></textarea>
+            <textarea class="edytuj-area" id="opis" name="opis" placeholder="Napisz krótko coś o sobie... Możesz opisać swoje ulubione książki, autorów lub gatunki." th:text="${loggedUser.description}"></textarea>
+            <small class="form-text">Twój osobisty opis widoczny na profilu (maks. 1000 znaków)</small>
+
             <div class="edytuj-przyciski">
                 <button class="przyciskedytuj" type="submit">Zapisz zmiany</button>
                 <a class="przyciskpowrotu" href="/Profil">Wróć do profilu</a>

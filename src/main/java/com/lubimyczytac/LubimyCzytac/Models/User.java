@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // auto_increment
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(unique = true, nullable = false, length = 100)
@@ -35,6 +35,9 @@ public class User {
     @Column(name = "aktywny")
     private boolean aktywny;
 
+    @Column(length = 1000)
+    private String description;
+
     private String rememberToken;
     private LocalDateTime rememberTokenExpiry;
 
@@ -51,6 +54,9 @@ public class User {
         this.password = password;
         this.username = username;
     }
+
+    public String getDescription() { return description; }
+    public void setDescription(String description) { this.description = description; }
 
     public String getRememberToken() { return rememberToken; }
     public void setRememberToken(String rememberToken) { this.rememberToken = rememberToken; }

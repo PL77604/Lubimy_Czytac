@@ -22,7 +22,11 @@
                 <div th:if="${loggedUser != null}" class="profil-zalogowany">
                     <div class="profilinfo">
                         <div class="avatarprofilu">
-                            <span th:text="${loggedUser.avatar != null ? loggedUser.avatar : '👤'}"></span>
+                            <img th:if="${loggedUser.avatar != null and loggedUser.avatar != '📷' and loggedUser.avatar != '👤' and loggedUser.avatar.contains('http')}"
+                                 th:src="${loggedUser.avatar}"
+                                 alt="Avatar">
+                            <span th:unless="${loggedUser.avatar != null and loggedUser.avatar != '📷' and loggedUser.avatar != '👤' and loggedUser.avatar.contains('http')}"
+                                  th:text="${loggedUser.avatar != null ? loggedUser.avatar : '👤'}"></span>
                         </div>
                         <div class="nazwaprofilu">
                             <span th:text="${loggedUser.username}">Profil</span>
