@@ -39,6 +39,9 @@ main {
     color: #6F8069;
     font-size: 16px;
     line-height: 1.5;
+    text-align: center;
+    max-width: 1000px;
+    margin: 0 auto;
 }
 
 /* Wyszukiwanie i przycisk gatunków */
