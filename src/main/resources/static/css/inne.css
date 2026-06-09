@@ -1,5 +1,9 @@
 body {
-    background: #B5B186 !important;
+    background-color: #B5B186 !important;
+    background-image: var(--inne-bg) !important;
+    background-repeat: repeat !important;
+    background-size: 520px auto !important;
+    background-attachment: fixed !important;
 }
 
 .inne-main {

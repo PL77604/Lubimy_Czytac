@@ -1,41 +1,53 @@
+html, body {
+    min-height: 100%;
+}
+
 body {
-    background: #9E549C !important;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: #FFA3D5 !important;
+    background-image: var(--romantik-bg) !important;
+    background-repeat: repeat !important;
+    background-size: 520px auto !important;
+    background-attachment: fixed !important;
 }
 
 .romantik-main {
     padding: 60px 40px;
+    flex: 1;
 }
 
 .romantik-naglowek {
     max-width: 1100px;
     margin: 0 auto 35px auto;
     padding: 35px;
-    background-color: #632062;
-    border: 2px solid #9E549C;
+    background-color: #BF4787;
+    border: 2px solid #FFA3D5;
     border-radius: 18px;
     text-align: center;
 }
 
 .romantik-naglowek h1 {
-    color: #F8DDF7;
+    color: #FFF0F8;
     font-size: 38px;
     font-weight: bold;
     margin: 0 0 15px 0;
 }
 
 .romantik-naglowek p {
-    color: #EDBFEA;
+    color: #FFD5EC;
     font-size: 18px;
     line-height: 1.6;
     margin: 0;
 }
 
 .book-count-info {
-    color: #EDBFEA;
+    color: #FFD5EC;
     font-size: 14px;
     margin-top: 15px;
     display: inline-block;
-    background: #4A1749;
+    background: #9B336D;
     padding: 5px 15px;
     border-radius: 20px;
 }
@@ -51,8 +63,8 @@ body {
 
 /* Karta książki */
 .romantik-ramka {
-    background-color: #632062;
-    border: 2px solid #9E549C;
+    background-color: #BF4787;
+    border: 2px solid #FFA3D5;
     border-radius: 18px;
     padding: 25px;
     display: grid;
@@ -65,7 +77,7 @@ body {
 
 .romantik-ramka:hover {
     transform: translateY(-5px);
-    border-color: #7466B2;
+    border-color: #927EE6;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
 }
 
@@ -73,13 +85,13 @@ body {
 .romantik-okladka {
     position: relative;
     min-height: 260px;
-    border: 2px solid #9E549C;
+    border: 2px solid #FFA3D5;
     border-radius: 18px;
-    background-color: #4A1749;
+    background-color: #9B336D;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #EDBFEA;
+    color: #FFD5EC;
     font-size: 20px;
     font-weight: bold;
     text-align: center;
@@ -131,14 +143,14 @@ body {
 }
 
 .romantik-tytul {
-    color: #F8DDF7;
+    color: #FFF0F8;
     font-size: 24px;
     font-weight: bold;
     margin: 0 0 10px 0;
 }
 
 .romantik-autor {
-    color: #EDBFEA;
+    color: #FFD5EC;
     font-size: 16px;
     font-weight: bold;
     margin: 0 0 15px 0;
@@ -146,21 +158,21 @@ body {
 
 /* Opis */
 .romantik-opis {
-    background-color: #4A1749;
-    border: 2px solid #9E549C;
+    background-color: #9B336D;
+    border: 2px solid #FFA3D5;
     border-radius: 16px;
     padding: 15px;
     margin-bottom: 15px;
 }
 
 .romantik-opis h2 {
-    color: #F8DDF7;
+    color: #FFF0F8;
     font-size: 18px;
     margin: 0 0 8px 0;
 }
 
 .romantik-opis p {
-    color: #EDBFEA;
+    color: #FFD5EC;
     font-size: 14px;
     line-height: 1.5;
     margin: 0;
@@ -175,7 +187,7 @@ body {
 }
 
 .genre-tag-romantik {
-    background: linear-gradient(135deg, #7466B2, #554991);
+    background: linear-gradient(135deg, #927EE6, #7561CC);
     color: #F8F5FF;
     padding: 4px 12px;
     border-radius: 20px;
@@ -186,9 +198,9 @@ body {
 /* Przycisk */
 .przyciskromantik {
     margin-top: auto;
-    background: linear-gradient(135deg, #7466B2, #554991);
+    background: linear-gradient(135deg, #927EE6, #7561CC);
     border: none;
-    box-shadow: 0 2px 8px rgba(85, 73, 145, 0.35);
+    box-shadow: 0 2px 8px rgba(146, 126, 230, 0.35);
     color: #F8F5FF;
     border-radius: 12px;
     padding: 12px;
@@ -202,24 +214,24 @@ body {
 }
 
 .przyciskromantik:hover {
-    background: linear-gradient(135deg, #8A7BCC, #6758AA);
+    background: linear-gradient(135deg, #A795F0, #8874DD);
     transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(85, 73, 145, 0.55);
+    box-shadow: 0 8px 20px rgba(146, 126, 230, 0.55);
 }
 
 /* Brak książek */
 .no-books {
     text-align: center;
     padding: 50px;
-    background: #632062;
-    border: 2px solid #9E549C;
+    background: #BF4787;
+    border: 2px solid #FFA3D5;
     border-radius: 18px;
     max-width: 500px;
     margin: 40px auto;
 }
 
 .no-books p {
-    color: #EDBFEA;
+    color: #FFD5EC;
     font-size: 18px;
     margin-bottom: 20px;
 }
@@ -227,7 +239,7 @@ body {
 .add-book-link {
     display: inline-block;
     padding: 12px 25px;
-    background: linear-gradient(135deg, #7466B2, #554991);
+    background: linear-gradient(135deg, #927EE6, #7561CC);
     color: #F8F5FF;
     text-decoration: none;
     border-radius: 12px;
@@ -235,8 +247,9 @@ body {
 }
 
 .add-book-link:hover {
+    background: linear-gradient(135deg, #A795F0, #8874DD);
     transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(85, 73, 145, 0.55);
+    box-shadow: 0 8px 20px rgba(146, 126, 230, 0.55);
 }
 
 /* Responsywność */

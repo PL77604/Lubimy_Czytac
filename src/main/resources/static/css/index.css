@@ -13,7 +13,6 @@
     display:block;
 }
 
-
 main{
     padding:70px 40px;
 }
@@ -90,7 +89,10 @@ p{
     color:#FFFBED;
     font-size:26px;
     font-weight:bold;
-    text-shadow:0 3px 8px rgba(0,0,0,0.55);
+    text-shadow:
+            0 0 8px rgba(0,0,0,0.95),
+            0 0 16px rgba(0,0,0,0.8),
+            2px 2px 6px rgba(0,0,0,1);
 }
 
 .gatunek-duzy{

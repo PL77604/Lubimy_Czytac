@@ -1,5 +1,9 @@
 body {
-    background: #876445 !important;
+    background-color: #876445 !important;
+    background-image: var(--kryminal-bg) !important;
+    background-repeat: repeat !important;
+    background-size: 520px auto !important;
+    background-attachment: fixed !important;
 }
 
 .kryminal-main {

@@ -3,7 +3,11 @@
 }
 
 body {
-    background: #A58BD6 !important;
+    background-color: #A58BD6 !important;
+    background-image: var(--horror-bg) !important;
+    background-repeat: repeat !important;
+    background-size: 520px auto !important;
+    background-attachment: fixed !important;
 }
 
 .horror-naglowek {
