@@ -37,18 +37,19 @@
     display: block;
 }
 
-.avatar-text{
-    width:100%;
-    height:100%;
-    display:flex;
-    align-items:center;
-    justify-content:center;
+.avatar-text {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.avatar-text i{
-    color:#FFF2C7;
-    font-size:62px;
+.avatar-text i {
+    color: #FFF2C7;
+    font-size: 62px;
 }
+
 .profil-nazwa {
     color: #363D33;
     font-size: 28px;
@@ -83,7 +84,7 @@
 }
 
 .profil-opis:empty::before {
-    content: "Brak opisu. Kliknij 'Edytuj profil' aby dodać opis.";
+    content: "Brak opisu. Kliknij 'Edytuj profil' aby dodac opis.";
     font-style: italic;
 }
 
@@ -97,7 +98,7 @@
 .profil-stat {
     width: 88px;
     min-height: 88px;
-    padding:10px 6px;
+    padding: 10px 6px;
     border: 2px solid #CFDBCE;
     border-radius: 16px;
     background-color: #FFFFFF;
@@ -112,28 +113,35 @@
 .ikonastat {
     font-size: 24px;
     margin-bottom: 5px;
-    color:#2F5C46;
+    color: #2F5C46;
 }
 
-.ikonastat i{
-    color:#2F5C46;
-    font-size:24px;
+.ikonastat i {
+    color: #2F5C46;
+    font-size: 24px;
 }
 
 .wartoscstat {
-    color:#363D33;
-    font-size:16px;
-    font-weight:bold;
-    line-height:1.1;
-    text-align:center;
-    max-width:100%;
-    overflow-wrap:break-word;
+    color: #363D33;
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 1.1;
+    text-align: center;
+    max-width: 100%;
+    overflow-wrap: break-word;
 }
 
 .stat-label {
     font-size: 11px;
     color: #8A9A88;
     margin-top: 4px;
+}
+
+.profil-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-top: 1rem;
 }
 
 .przyciskprofil {
@@ -211,6 +219,10 @@
     font-weight: bold;
     cursor: pointer;
     transition: all 0.25s ease;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
 }
 
 .przyciskzakladka:hover {
@@ -223,102 +235,185 @@
     background-color: #F7FFF5;
     border: 2px solid #CFDBCE;
     border-radius: 18px;
-    padding: 35px;
-    text-align: center;
+    padding: 25px;
 }
 
-.profil-tytul {
+.profil-tytul-small {
     color: #363D33;
-    font-size: 32px;
+    font-size: 20px;
     margin: 0 0 15px 0;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #E0AF3A;
+    text-align: left;
 }
 
-.profil-tekst {
-    color: #6F8069;
-    font-size: 18px;
-    line-height: 1.5;
-    margin: 0;
-}
-
-.karuzela {
+.section-header {
     display: flex;
-    align-items: stretch;
-    gap: 18px;
-    margin-top: 30px;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.view-all {
+    color: #E0AF3A;
+    text-decoration: none;
+    font-size: 13px;
+}
+
+.view-all:hover {
+    text-decoration: underline;
+}
+
+/* Ostatnio czytane ksiazki */
+.recent-books-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+}
+
+.recent-book-card {
+    display: flex;
+    gap: 12px;
+    background: white;
+    border-radius: 10px;
+    padding: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 1px solid #CFDBCE;
+}
+
+.recent-book-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    border-color: #E0AF3A;
+}
+
+.recent-book-cover {
+    width: 50px;
+    height: 75px;
+    overflow: hidden;
+    border-radius: 6px;
+}
+
+.recent-book-cover img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.recent-book-info h4 {
+    margin: 0 0 5px 0;
+    font-size: 13px;
+    color: #363D33;
+}
+
+.recent-book-info p {
+    margin: 0;
+    font-size: 11px;
+    color: #6F8069;
+}
+
+/* Karuzela */
+.karuzela-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    position: relative;
+}
+
+.karuzela-lista {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    flex: 1;
+    padding: 10px 0;
+    scrollbar-width: thin;
+}
+
+.karuzela-lista::-webkit-scrollbar {
+    height: 6px;
+}
+
+.karuzela-lista::-webkit-scrollbar-track {
+    background: #CFDBCE;
+    border-radius: 10px;
+}
+
+.karuzela-lista::-webkit-scrollbar-thumb {
+    background: #E0AF3A;
+    border-radius: 10px;
 }
 
 .strzalka {
-    width: 52px;
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, #2F5C46, #234A36);
     border: none;
-    border-radius: 14px;
-    background: linear-gradient(180deg, #2F5C46 0%, #234A36 55%, #1D402F 100%);
-    color: #FFFBED;
-    font-size: 38px;
-    font-weight: bold;
+    border-radius: 50%;
+    color: white;
+    font-size: 24px;
     cursor: pointer;
-    transition: all 0.25s ease;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .strzalka:hover {
-    background: linear-gradient(180deg, #3A7156 0%, #2B5A43 55%, #234A36 100%);
     transform: scale(1.05);
-}
-
-.ksiazki-lista {
-    flex: 1;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 18px;
+    background: linear-gradient(135deg, #3A7156, #2B5A43);
 }
 
 .karta-ksiazki {
-    min-height: 230px;
-    border: 2px solid #CFDBCE;
-    border-radius: 16px;
-    background-color: #FFFFFF;
-    padding: 18px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    transition: all 0.25s ease;
+    min-width: 150px;
+    background: white;
+    border-radius: 12px;
+    padding: 12px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 1px solid #CFDBCE;
 }
 
 .karta-ksiazki:hover {
     transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    border-color: #E0AF3A;
 }
 
 .okladka-ksiazki {
-    width: 90px;
-    height: 125px;
-    border: 2px solid #CFDBCE;
-    border-radius: 12px;
-    background-color: #F7FFF5;
+    width: 100%;
+    aspect-ratio: 2 / 3;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    border-radius: 8px;
+    margin-bottom: 10px;
+    overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #6F8069;
-    font-weight: bold;
-    margin-bottom: 14px;
 }
 
 .karta-ksiazki h3 {
+    font-size: 14px;
+    margin: 5px 0;
     color: #363D33;
-    font-size: 18px;
-    margin: 0 0 6px 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .karta-ksiazki p {
+    font-size: 12px;
     color: #6F8069;
-    font-size: 15px;
     margin: 0;
 }
 
 /* Alerty */
 .alert {
+    max-width: 1250px;
+    margin: 20px auto 0 auto;
     padding: 1rem;
-    margin-bottom: 1rem;
     border-radius: 8px;
     animation: slideIn 0.3s ease;
 }
@@ -368,27 +463,24 @@
 
     .przyciskzakladka {
         width: 100%;
+        justify-content: center;
     }
 
-    .karuzela {
-        gap: 10px;
-    }
-
-    .ksiazki-lista {
+    .recent-books-grid {
         grid-template-columns: 1fr;
     }
 
+    .karuzela-container {
+        flex-direction: column;
+    }
+
     .strzalka {
-        width: 42px;
-        font-size: 32px;
+        width: 100%;
+        border-radius: 8px;
     }
 
     .profil-avatar {
         width: 120px;
         height: 120px;
-    }
-
-    .profil-avatar span {
-        font-size: 55px;
     }
 }

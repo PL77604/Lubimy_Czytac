@@ -17,6 +17,9 @@
                 <a href="/Katalog">Katalog książek</a>
                 <a href="/MojeKsiazki">Moje książki</a>
                 <a href="/DodanieKsiazek">Dodaj książkę</a>
+                <li th:if="${session.loggedUser != null and session.loggedUser.isAdmin()}">
+                    <a href="/admin/panel">Panel Admina</a>
+                </li>
             </nav>
 
             <div class="panelprofilu">
@@ -26,8 +29,8 @@
                             <img th:if="${loggedUser.avatar != null and loggedUser.avatar.contains('http')}"
                                  th:src="${loggedUser.avatar}"
                                  alt="Avatar">
-                            <span th:unless="${loggedUser.avatar != null and loggedUser.avatar != '📷' and loggedUser.avatar != '👤' and loggedUser.avatar.contains('http')}"
-                                  th:utext="${loggedUser.avatar != null ? loggedUser.avatar : '<i class=&quot;fa-solid fa-user&quot;></i>'}"></span>
+                            <span th:unless="${loggedUser.avatar != null and loggedUser.avatar.contains('http')}"
+                                  th:utext="'<i class=&quot;fa-solid fa-user&quot;></i>'"></span>
                         </div>
                         <div class="nazwaprofilu">
                             <span th:text="${loggedUser.username}">Profil</span>
@@ -44,11 +47,11 @@
                             <div class="stats-row">
                                 <div class="stats-item">
                                     <span class="stats-label">Dodane książki:</span>
-                                    <span class="stats-value" th:text="${loggedUser.dodaneKsiazki}">0</span>
+                                    <span class="stats-value" id="dodaneStatHeader" th:text="${loggedUser.dodaneKsiazki}">0</span>
                                 </div>
                                 <div class="stats-item">
-                                    <span class="stats-label">Pobrane książki:</span>
-                                    <span class="stats-value" th:text="${loggedUser.pobraneKsiazki}">0</span>
+                                    <span class="stats-label">Ulubione książki:</span>
+                                    <span class="stats-value" id="ulubioneStatHeader" th:text="0">0</span>
                                 </div>
                             </div>
                         </div>
@@ -64,4 +67,53 @@
             </div>
         </div>
     </header>
+
+    <script>
+        function refreshHeaderStats() {
+    fetch('/api/user/stats')
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                const ulubioneHeader = document.getElementById('ulubioneStatHeader');
+                if (ulubioneHeader) {
+                    ulubioneHeader.textContent = data.ulubione || 0;
+                }
+                const dodaneHeader = document.getElementById('dodaneStatHeader');
+                if (dodaneHeader) {
+                    dodaneHeader.textContent = data.dodaneKsiazki || 0;
+                }
+            }
+        })
+        .catch(error => console.error('Blad:', error));
+}
+
+        setInterval(refreshHeaderStats, 5000);
+        document.addEventListener('DOMContentLoaded', function() {
+            refreshHeaderStats();
+
+            const burgerMenu = document.getElementById('burgerMenu');
+            const mainMenu = document.getElementById('mainMenu');
+
+            if (burgerMenu && mainMenu) {
+                burgerMenu.addEventListener('click', function() {
+                    mainMenu.classList.toggle('active');
+                    burgerMenu.classList.toggle('active');
+                });
+            }
+
+            const profilZalogowany = document.querySelector('.profil-zalogowany');
+            const dropdownMenu = document.querySelector('.dropdown-menu');
+
+            if (profilZalogowany && dropdownMenu) {
+                profilZalogowany.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    dropdownMenu.classList.toggle('show');
+                });
+
+                document.addEventListener('click', function() {
+                    dropdownMenu.classList.remove('show');
+                });
+            }
+        });
+    </script>
 </div>

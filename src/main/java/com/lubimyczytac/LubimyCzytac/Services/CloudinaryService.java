@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Map;
 
 @Service
@@ -22,20 +23,6 @@ public class CloudinaryService {
         Map<String, Object> params = ObjectUtils.asMap(
                 "folder", "user_avatars",
                 "public_id", "user_" + userId + "_" + System.currentTimeMillis()
-        );
-
-        Map uploadResult = cloudinary.uploader().upload(file.getBytes(), params);
-        return uploadResult.get("secure_url").toString();
-    }
-
-    public String uploadBookCover(MultipartFile file, Long bookId) throws IOException {
-        if (file == null || file.isEmpty()) {
-            return null;
-        }
-
-        Map<String, Object> params = ObjectUtils.asMap(
-                "folder", "book_covers",
-                "public_id", "book_" + bookId + "_" + System.currentTimeMillis()
         );
 
         Map uploadResult = cloudinary.uploader().upload(file.getBytes(), params);
@@ -108,4 +95,13 @@ public class CloudinaryService {
             return null;
         }
     }
+    public String uploadBookCover(MultipartFile file, Long userId) throws Exception {
+        Map<String, Object> uploadParams = new HashMap<>();
+        uploadParams.put("folder", "lubimyczytac/books/" + userId);
+        uploadParams.put("public_id", "book_" + System.currentTimeMillis());
+
+        Map uploadResult = cloudinary.uploader().upload(file.getBytes(), uploadParams);
+        return (String) uploadResult.get("secure_url");
+    }
+
 }

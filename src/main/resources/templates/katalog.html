@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
     <link rel="stylesheet" th:href="@{/css/global.css}">
     <link rel="stylesheet" th:href="@{/css/header.css}">
     <link rel="stylesheet" th:href="@{/css/katalog.css}">
@@ -10,47 +13,148 @@
     <title>Katalog książek</title>
 </head>
 <script th:src="@{/js/script.js}"></script>
+<script th:src="@{/js/katalog.js}"></script>
 <body>
 <th:block th:replace="blocks/header :: header"></th:block>
-    <main  class="glowna">
-        <section class="ramkakatalog animacja">
+<main class="glowna">
+    <section class="ramkakatalog animacja">
         <h1 class="tytulkatalog">Katalog książek</h1>
         <p class="opiskatalog">
             Tutaj znajduje się nasz katalog książek na każdy smak. Możesz wyszukiwać książki po tytule
             albo wybrać odpowiedni tag.
         </p>
-        </section>
-        <section  class="ramkakatalog animacja">
-            <h2 class="tytulszukaj">Wyszukiwanie książek</h2>
+    </section>
 
-            <form class="formakatalog">
-                <label class="etykietakatalog" for="szukaj">Wpisz nazwę książki:</label>
-                <input class="inputkatalog" type="text" id="szukaj" name="szukaj" placeholder="Np. Wiedźmin">
-                <button class="przyciskkatalog" type="button" onclick="document.querySelector('.gatunki-katalog').classList.toggle('pokaz-gatunki')">Wybierz gatunek</button>
-                <div class="gatunki-katalog">
-                    <h3 class="tytulgatunki">Wybierz gatunek książki</h3>
-                    <div class="lista-gatunkow">
-                        <label><input type="checkbox" name="gatunek" value="fantastyka"> Fantastyka</label>
-                        <label><input type="checkbox" name="gatunek" value="kryminal"> Kryminał</label>
-                        <label><input type="checkbox" name="gatunek" value="romans"> Romans</label>
-                        <label><input type="checkbox" name="gatunek" value="horror"> Horror</label>
-                        <label><input type="checkbox" name="gatunek" value="thriller"> Thriller</label>
-                        <label><input type="checkbox" name="gatunek" value="przygodowa"> Przygodowa</label>
-                        <label><input type="checkbox" name="gatunek" value="historyczna"> Historyczna</label>
-                        <label><input type="checkbox" name="gatunek" value="biografia"> Biografia</label>
-                        <label><input type="checkbox" name="gatunek" value="popularnonaukowa"> Popularnonaukowa</label>
-                        <label><input type="checkbox" name="gatunek" value="science-fiction"> Science fiction</label>
-                        <label><input type="checkbox" name="gatunek" value="dla-dzieci"> Dla dzieci</label>
-                        <label><input type="checkbox" name="gatunek" value="mlodziezowa"> Młodzieżowa</label>
-                        <label><input type="checkbox" name="gatunek" value="poezja"> Poezja</label>
-                        <label><input type="checkbox" name="gatunek" value="dramat"> Dramat</label>
-                        <label><input type="checkbox" name="gatunek" value="komiks"> Komiks</label>
+    <section class="ramkakatalog animacja">
+        <h2 class="tytulszukaj">Wyszukiwanie książek</h2>
+
+        <form id="searchForm" class="formakatalog" method="get" action="/Katalog">
+            <label class="etykietakatalog" for="szukaj">Wpisz nazwę książki:</label>
+            <input class="inputkatalog" type="text" id="szukaj" name="szukaj" placeholder="Np. Wiedźmin" th:value="${searchTerm}">
+            <button class="przyciskkatalog" type="submit">Szukaj</button>
+        </form>
+
+        <button class="przycisk-gatunki" type="button" onclick="toggleGenresMenu()">
+            Wybierz gatunek
+        </button>
+
+        <div class="gatunki-menu" id="genresMenu" style="display: none;">
+            <div class="gatunki-grid">
+                <div class="gatunki-kolumna">
+                    <h4>Główne gatunki</h4>
+                    <a href="/Katalog?gatunek=fantastyka" class="gatunek-link" th:classappend="${selectedGenre == 'fantastyka'} ? 'active' : ''">Fantastyka</a>
+                    <a href="/Katalog?gatunek=kryminal" class="gatunek-link" th:classappend="${selectedGenre == 'kryminal'} ? 'active' : ''">Kryminał</a>
+                    <a href="/Katalog?gatunek=romans" class="gatunek-link" th:classappend="${selectedGenre == 'romans'} ? 'active' : ''">Romans</a>
+                    <a href="/Katalog?gatunek=horror" class="gatunek-link" th:classappend="${selectedGenre == 'horror'} ? 'active' : ''">Horror</a>
+                    <a href="/Katalog?gatunek=thriller" class="gatunek-link" th:classappend="${selectedGenre == 'thriller'} ? 'active' : ''">Thriller</a>
+                </div>
+                <div class="gatunki-kolumna">
+                    <h4>Pozostałe gatunki</h4>
+                    <a href="/Katalog?gatunek=przygodowa" class="gatunek-link" th:classappend="${selectedGenre == 'przygodowa'} ? 'active' : ''">Przygodowa</a>
+                    <a href="/Katalog?gatunek=historyczna" class="gatunek-link" th:classappend="${selectedGenre == 'historyczna'} ? 'active' : ''">Historyczna</a>
+                    <a href="/Katalog?gatunek=science-fiction" class="gatunek-link" th:classappend="${selectedGenre == 'science-fiction'} ? 'active' : ''">Sci-Fi</a>
+                    <a href="/Katalog?gatunek=biografia" class="gatunek-link" th:classappend="${selectedGenre == 'biografia'} ? 'active' : ''">Biografia</a>
+                    <a href="/Katalog?gatunek=poezja" class="gatunek-link" th:classappend="${selectedGenre == 'poezja'} ? 'active' : ''">Poezja</a>
+                    <a href="/Katalog?gatunek=komiks" class="gatunek-link" th:classappend="${selectedGenre == 'komiks'} ? 'active' : ''">Komiks</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section th:if="${!isSearching}" class="books-section">
+        <div class="section-header">
+            <h2 class="tytulszukaj">Polecane dla Ciebie</h2>
+            <a href="/Katalog?sort=popular" class="view-all">Zobacz wszystkie</a>
+        </div>
+        <div class="books-grid">
+            <div th:each="book : ${recommendedBooks}" class="book-card" th:data-id="${book.id}" onclick="goToBook(this)">
+                <div class="book-cover">
+                    <img th:src="${book.coverImage != null ? book.coverImage : '/images/default-book.png'}"
+                         th:alt="${book.title}"
+                         onerror="this.src='/images/default-book.png'">
+                    <div class="book-overlay">
+                        <span class="book-likes">❤️ <span th:text="${book.likesCount}">0</span></span>
+                        <span class="book-comments">💬 <span th:text="${book.commentsCount}">0</span></span>
                     </div>
                 </div>
-                <button class="przyciskkatalog" type="submit">Szukaj</button>
-            </form>
-        </section>
-    </main>
+                <div class="book-info">
+                    <h3 class="book-title" th:text="${book.title}">Tytuł książki</h3>
+                    <p class="book-author" th:text="${book.author}">Autor</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section th:if="${!isSearching}" class="books-section">
+        <div class="section-header">
+            <h2 class="tytulszukaj">Ostatnio dodane</h2>
+            <a href="/Katalog?sort=newest" class="view-all">Zobacz wszystkie</a>
+        </div>
+        <div class="books-grid">
+            <div th:each="book : ${recentBooks}" class="book-card" th:data-id="${book.id}" onclick="goToBook(this)">
+                <div class="book-cover">
+                    <img th:src="${book.coverImage != null ? book.coverImage : '/images/default-book.png'}"
+                         th:alt="${book.title}"
+                         onerror="this.src='/images/default-book.png'">
+                    <div class="book-overlay">
+                        <span class="book-likes">❤️ <span th:text="${book.likesCount}">0</span></span>
+                        <span class="book-comments">💬 <span th:text="${book.commentsCount}">0</span></span>
+                    </div>
+                </div>
+                <div class="book-info">
+                    <h3 class="book-title" th:text="${book.title}">Tytuł książki</h3>
+                    <p class="book-author" th:text="${book.author}">Autor</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="books-section">
+        <div class="section-header">
+            <h2 class="tytulszukaj" th:text="${isSearching} ? 'Wyniki wyszukiwania' : 'Wszystkie książki'">Wszystkie książki</h2>
+            <span th:if="${!isSearching}" class="book-count" th:text="${#lists.size(books)} + ' książek'"></span>
+            <span th:if="${isSearching and searchTerm != null}" class="book-count" th:text="'Znaleziono: ' + ${#lists.size(books)} + ' książek'"></span>
+        </div>
+
+        <div th:if="${isSearching and not hasResults}" class="no-results">
+            <div class="no-results-icon">?</div>
+            <h3>Nie znaleziono książek</h3>
+            <p>Nie znaleziono książek dla frazy <strong th:text="${searchTerm}"></strong></p>
+            <p>Spróbuj wpisać inną nazwę lub sprawdź pisownię.</p>
+            <a href="/Katalog" class="clear-search">Wyczyść wyszukiwanie</a>
+        </div>
+
+        <div th:if="${hasResults}" class="books-grid">
+            <div th:each="book : ${books}" class="book-card" th:data-id="${book.id}" onclick="goToBook(this)">
+                <div class="book-cover">
+                    <img th:src="${book.coverImage != null ? book.coverImage : '/images/default-book.png'}"
+                         th:alt="${book.title}"
+                         onerror="this.src='/images/default-book.png'">
+                    <div class="book-overlay">
+                        <span class="book-likes">❤️ <span th:text="${book.likesCount}">0</span></span>
+                        <span class="book-comments">💬 <span th:text="${book.commentsCount}">0</span></span>
+                    </div>
+                </div>
+                <div class="book-info">
+                    <h3 class="book-title" th:text="${book.title}">Tytuł książki</h3>
+                    <p class="book-author" th:text="${book.author}">Autor</p>
+                    <div class="book-genres-mini">
+                        <span th:each="genre, iterStat : ${book.genresArray}"
+                              th:if="${iterStat.index < 2}"
+                              th:text="${genre}"
+                              class="genre-tag-mini"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div th:if="${!isSearching and books.empty}" class="no-books">
+            <p>Brak książek w katalogu. Bądź pierwszym, który doda książkę!</p>
+            <a href="/DodanieKsiazek" class="add-book-link">Dodaj książkę</a>
+        </div>
+    </section>
+</main>
+
 <div th:insert="blocks/footer :: footer"></div>
 <div class="menu-overlay" id="menuOverlay"></div>
 </body>

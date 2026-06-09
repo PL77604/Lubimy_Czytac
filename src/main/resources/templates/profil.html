@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
     <link rel="stylesheet" th:href="@{/css/global.css}">
     <link rel="stylesheet" th:href="@{/css/header.css}">
     <link rel="stylesheet" th:href="@{/css/profil.css}">
@@ -12,8 +15,9 @@
 <body>
 <th:block th:replace="blocks/header :: header"></th:block>
 
-<div th:if="${success}" class="alert alert-success" th:text="${success}" style="max-width: 1200px; margin: 1rem auto;"></div>
-<div th:if="${info}" class="alert alert-info" th:text="${info}" style="max-width: 1200px; margin: 1rem auto;"></div>
+<div th:if="${success}" class="alert alert-success" th:text="${success}"></div>
+<div th:if="${info}" class="alert alert-info" th:text="${info}"></div>
+<div th:if="${error}" class="alert alert-error" th:text="${error}"></div>
 
 <main class="profil-main">
     <section class="profil-layout animacja">
@@ -26,70 +30,148 @@
                     <i class="fa-solid fa-user"></i>
                 </div>
             </div>
-            <h1 class="profil-nazwa" th:text="${loggedUser != null && loggedUser.username != null ? loggedUser.username : 'Nazwa użytkownika'}">Nazwa użytkownika</h1>
-            <p class="profil-email" th:text="${loggedUser != null && loggedUser.email != null ? loggedUser.email : 'email@example.com'}">email@example.com</p>
+            <h1 class="profil-nazwa" th:text="${loggedUser.username}">Nazwa użytkownika</h1>
+            <p class="profil-email" th:text="${loggedUser.email}">email@example.com</p>
 
             <div class="profil-ikony">
                 <div class="profil-stat">
                     <span class="ikonastat"><i class="fa-solid fa-book-open"></i></span>
-                    <span class="stat-label">Dodane</span>
                     <span class="wartoscstat" th:text="${loggedUser.dodaneKsiazki}">0</span>
+                    <span class="stat-label">Dodane</span>
                 </div>
                 <div class="profil-stat">
-                    <span class="ikonastat"><i class="fa-solid fa-download"></i></span>
-                    <span class="stat-label">Pobrane</span>
-                    <span class="wartoscstat" th:text="${loggedUser.pobraneKsiazki}">0</span>
+                    <span class="ikonastat"><i class="fa-solid fa-heart"></i></span>
+                    <span class="wartoscstat" id="ulubioneStatProfil" th:text="0">0</span>
+                    <span class="stat-label">Ulubione</span>
                 </div>
                 <div class="profil-stat">
                     <span class="ikonastat"><i class="fa-solid fa-calendar"></i></span>
-                    <span class="stat-label">Od</span>
                     <span class="wartoscstat" th:text="${#temporals.format(loggedUser.dataRejestracji, 'dd.MM.yyyy')}">0</span>
+                    <span class="stat-label">Od</span>
                 </div>
             </div>
 
-            <p class="profil-opis" th:text="${loggedUser.description != null ? loggedUser.description : ''}"></p>
+            <p class="profil-opis" th:text="${loggedUser.description != null ? loggedUser.description : 'Brak opisu. Kliknij Edytuj profil aby dodać opis.'}"></p>
 
-            <div style="display: flex; flex-direction: column; gap: 0.75rem; margin-top: 1rem;">
+            <div class="profil-buttons">
                 <a href="/EdytujProfil" class="przyciskprofil">Edytuj profil</a>
-                <a href="/" class="przyciskpowrot">Powrót</a>
+                <a href="/" class="przyciskpowrot">Powrot</a>
             </div>
         </aside>
 
-        <section class="profil-prawy">
+        <div class="profil-prawy">
             <div class="profil-zakladki">
-                <button class="przyciskzakladka">Czytane książki</button>
-                <button class="przyciskzakladka">Ulubione książki</button>
-                <button class="przyciskzakladka">Dodane książki</button>
+                <a href="/MojeKsiazki/czytane" class="przyciskzakladka">
+                    <i class="fa-solid fa-book"></i> Czytane ksiazki
+                </a>
+                <a href="/MojeKsiazki/ulubione" class="przyciskzakladka">
+                    <i class="fa-solid fa-heart"></i> Ulubione ksiazki
+                </a>
+                <a href="/MojeKsiazki/dodane" class="przyciskzakladka">
+                    <i class="fa-solid fa-plus-circle"></i> Dodane ksiazki
+                </a>
             </div>
-            <section class="profil-ksiazki">
-                <h2 class="profil-tytul">Rekomendowane książki</h2>
-                <p class="profil-tekst">Tutaj znajdują się książki, które mogą cię zainteresować. Możesz przeglądać rekomendacje i wybrać coś do czytania.</p>
-                <div class="karuzela">
-                    <button class="strzalka">‹</button>
-                    <div class="ksiazki-lista">
-                        <div class="karta-ksiazki">
-                            <div class="okladka-ksiazki"></div>
-                            <h3>Książka 1</h3>
-                            <p>Autor książki</p>
+
+            <!-- Ostatnio czytane - max 4 -->
+            <div th:if="${not #lists.isEmpty(recentBooks)}" class="profil-ksiazki">
+                <div class="section-header">
+                    <h2 class="profil-tytul-small">Ostatnio czytane</h2>
+                    <a href="/MojeKsiazki/czytane" class="view-all">Zobacz wszystkie</a>
+                </div>
+                <div class="recent-books-grid">
+                    <div th:each="book : ${recentBooks}" class="recent-book-card"
+                         th:data-id="${book.id}"
+                         onclick="window.location.href='/Katalog/' + this.getAttribute('data-id')">
+                        <div class="recent-book-cover">
+                            <img th:src="${book.coverImage != null ? book.coverImage : '/images/default-book.png'}"
+                                 th:alt="${book.title}"
+                                 onerror="this.src='/images/default-book.png'">
                         </div>
-                        <div class="karta-ksiazki">
-                            <div class="okladka-ksiazki"></div>
-                            <h3>Książka 2</h3>
-                            <p>Autor książki</p>
-                        </div>
-                        <div class="karta-ksiazki">
-                            <div class="okladka-ksiazki"></div>
-                            <h3>Książka 3</h3>
-                            <p>Autor książki</p>
+                        <div class="recent-book-info">
+                            <h4 th:text="${book.title}">Tytul</h4>
+                            <p th:text="${book.author}">Autor</p>
                         </div>
                     </div>
-                    <button class="strzalka">›</button>
                 </div>
-            </section>
-        </section>
+            </div>
+
+            <!-- Polecane - karuzela z 6 książkami -->
+            <div th:if="${not #lists.isEmpty(recommendedBooks)}" class="profil-ksiazki">
+                <h2 class="profil-tytul-small">Polecane dla Ciebie</h2>
+                <div class="karuzela-container">
+                    <button class="strzalka lewa" onclick="scrollKaruzela(-1)">‹</button>
+                    <div class="karuzela-lista" id="karuzelaLista">
+                        <div th:each="book : ${recommendedBooks}" class="karta-ksiazki"
+                             th:data-id="${book.id}"
+                             onclick="window.location.href='/Katalog/' + this.getAttribute('data-id')">
+                            <div class="okladka-ksiazki">
+                                <img th:if="${book.coverImage != null}"
+                                     th:src="${book.coverImage}"
+                                     style="width:100%; height:100%; object-fit:cover; border-radius:10px;">
+                                <span th:unless="${book.coverImage != null}">?</span>
+                            </div>
+                            <h3 th:text="${book.title}">Tytul</h3>
+                            <p th:text="${book.author}">Autor</p>
+                        </div>
+                    </div>
+                    <button class="strzalka prawa" onclick="scrollKaruzela(1)">›</button>
+                </div>
+            </div>
+        </div>
     </section>
 </main>
+
 <th:block th:replace="blocks/footer :: footer"></th:block>
+
+<script>
+    function scrollKaruzela(direction) {
+        const container = document.getElementById('karuzelaLista');
+        const scrollAmount = 220;
+        container.scrollBy({ left: direction * scrollAmount, behavior: 'smooth' });
+    }
+
+    function refreshProfileStats() {
+        fetch('/api/user/stats')
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    const ulubioneEl = document.getElementById('ulubioneStatProfil');
+                    if (ulubioneEl) ulubioneEl.textContent = data.ulubione || 0;
+                }
+            })
+            .catch(error => console.error('Blad:', error));
+    }
+
+    // Funkcja do pełnego odświeżenia danych profilu
+    function refreshProfileStats() {
+    fetch('/api/user/stats')
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                const ulubioneProfil = document.getElementById('ulubioneStatProfil');
+                if (ulubioneProfil) {
+                    ulubioneProfil.textContent = data.ulubione || 0;
+                }
+            }
+        })
+        .catch(error => console.error('Blad:', error));
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        refreshProfileStats();
+
+        // Dodaj nasłuchiwanie na zdarzenie "pageshow" (działa przy cofaniu)
+        window.addEventListener('pageshow', function(event) {
+            if (event.persisted) {
+                // Strona została załadowana z cache (np. przez cofnięcie)
+                refreshProfileData();
+                setTimeout(function() {
+                    location.reload();
+                }, 100);
+            }
+        });
+    });
+</script>
 <script th:src="@{/js/script.js}"></script>
 </body>
 </html>

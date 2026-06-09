@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <link rel="stylesheet" th:href="@{/css/global.css}">
+    <link rel="stylesheet" th:href="@{/css/header.css}">
+    <link rel="stylesheet" th:href="@{/css/katalog.css}">
+    <title th:text="${pageTitle}">Kategoria książek</title>
+</head>
+<script th:src="@{/js/script.js}"></script>
+<script th:src="@{/js/kategoria-ksiazek.js}"></script>
+<body>
+<th:block th:replace="blocks/header :: header"></th:block>
+<main class="glowna">
+    <section class="ramkakatalog animacja">
+        <div class="section-header">
+            <div>
+                <h1 class="tytulkatalog" th:text="${pageTitle}">Kategoria</h1>
+                <p class="opiskatalog" th:text="${pageDescription}">Opis kategorii</p>
+            </div>
+            <a href="/Profil" class="view-all">Powrot do profilu</a>
+        </div>
+    </section>
+
+    <!-- Wyszukiwanie i filtry -->
+    <section class="ramkakatalog animacja">
+        <div class="search-section-category">
+            <input type="text" id="searchInput" class="inputkatalog" placeholder="Szukaj książki..." onkeyup="filterBooks()">
+            <select id="genreFilter" class="inputkatalog" onchange="filterBooks()">
+                <option value="">Wszystkie gatunki</option>
+                <option value="fantastyka">Fantastyka</option>
+                <option value="kryminal">Kryminał</option>
+                <option value="romans">Romans</option>
+                <option value="horror">Horror</option>
+                <option value="thriller">Thriller</option>
+                <option value="przygodowa">Przygodowa</option>
+                <option value="historyczna">Historyczna</option>
+                <option value="science-fiction">Sci-Fi</option>
+                <option value="biografia">Biografia</option>
+                <option value="poezja">Poezja</option>
+            </select>
+        </div>
+    </section>
+
+    <section class="books-section">
+        <div th:if="${#lists.isEmpty(books)}" class="no-books">
+            <p th:text="${emptyMessage}">Brak książek w tej kategorii</p>
+            <a href="/Katalog" class="add-book-link">Przegladaj katalog</a>
+        </div>
+
+        <div th:if="${not #lists.isEmpty(books)}" class="books-grid" id="booksGrid">
+            <div th:each="book : ${books}" class="book-card" th:data-id="${book.id}" th:data-title="${book.title}" th:data-genre="${book.genres}" onclick="goToBook(this)">
+                <div class="book-cover">
+                    <img th:src="${book.coverImage != null ? book.coverImage : '/images/default-book.png'}"
+                         th:alt="${book.title}"
+                         onerror="this.src='/images/default-book.png'">
+                    <div class="book-overlay">
+                        <span class="book-likes">Likes: <span th:text="${book.likesCount}">0</span></span>
+                        <span class="book-comments">Comments: <span th:text="${book.commentsCount}">0</span></span>
+                    </div>
+                    <button class="remove-btn" onclick="removeFromList(event, this, ${listType})">X</button>
+                </div>
+                <div class="book-info">
+                    <h3 class="book-title" th:text="${book.title}">Tytuł książki</h3>
+                    <p class="book-author" th:text="${book.author}">Autor</p>
+                    <div class="book-genres-mini">
+                        <span th:each="genre, iterStat : ${book.genresArray}"
+                              th:if="${iterStat.index < 2}"
+                              th:text="${genre}"
+                              class="genre-tag-mini"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<div th:insert="blocks/footer :: footer"></div>
+</body>
+</html>

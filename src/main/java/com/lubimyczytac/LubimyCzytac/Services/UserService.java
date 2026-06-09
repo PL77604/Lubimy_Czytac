@@ -7,6 +7,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -66,13 +67,11 @@ public class UserService {
         if (userOpt.isPresent()) {
             User user = userOpt.get();
 
-            // Sprawdź czy token nie wygasł
             if (user.getRememberTokenExpiry() != null &&
                     user.getRememberTokenExpiry().isAfter(LocalDateTime.now())) {
                 return user;
             }
 
-            // Token wygasł - wyczyść go
             user.setRememberToken(null);
             user.setRememberTokenExpiry(null);
             userRepository.save(user);
@@ -112,12 +111,11 @@ public class UserService {
     public void updateStatistics(Long userId, int dodaneDelta, int pobraneDelta) {
         userRepository.findById(userId).ifPresent(user -> {
             user.setDodaneKsiazki(user.getDodaneKsiazki() + dodaneDelta);
-            user.setPobraneKsiazki(user.getPobraneKsiazki() + pobraneDelta);
+            user.setPobraneKsiazki(user.getPobraneKsiazki() + pobraneDelta);  // <-- Dodaje +1
             userRepository.save(user);
         });
     }
 
-    // Metody dla edycji profilu
     public User updateUsername(User user, String newUsername) {
         if (newUsername != null && !newUsername.trim().isEmpty() && !newUsername.equals(user.getUsername())) {
             user.setUsername(newUsername.trim());
@@ -177,5 +175,13 @@ public class UserService {
 
     public User getFreshUser(User user) {
         return userRepository.findById(user.getId()).orElse(user);
+    }
+
+    public User updateUser(User user) {
+        return userRepository.save(user);
+    }
+
+    public List<User> getAllUsers() {
+        return userRepository.findAll();
     }
 }

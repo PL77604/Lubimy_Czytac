@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <link rel="stylesheet" th:href="@{/css/global.css}">
+    <link rel="stylesheet" th:href="@{/css/header.css}">
+    <link rel="stylesheet" th:href="@{/css/katalog.css}">
+    <title>Moje książki</title>
+</head>
+<script th:src="@{/js/script.js}"></script>
+<script th:src="@{/js/moje-ksiazki.js}"></script>
+<body>
+<th:block th:replace="blocks/header :: header"></th:block>
+<main class="glowna">
+    <section class="ramkakatalog animacja">
+        <h1 class="tytulkatalog">Moje książki</h1>
+        <p class="opiskatalog">
+            Tutaj znajdziesz wszystkie swoje książki - czytane, ulubione, dodane oraz historię przeglądania.
+        </p>
+    </section>
+
+    <section id="historia" class="books-section" th:if="${not #lists.isEmpty(historyBooks)}">
+        <div class="section-header">
+            <h2 class="tytulszukaj">Ostatnio czytane</h2>
+        </div>
+        <div class="books-grid">
+            <div th:each="book : ${historyBooks}" class="book-card" th:data-id="${book.id}" onclick="goToBook(this)">
+                <div class="book-cover">
+                    <img th:src="${book.coverImage != null ? book.coverImage : '/images/default-book.png'}"
+                         th:alt="${book.title}"
+                         onerror="this.src='/images/default-book.png'">
+                </div>
+                <div class="book-info">
+                    <h3 class="book-title" th:text="${book.title}">Tytuł</h3>
+                    <p class="book-author" th:text="${book.author}">Autor</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="dodane" class="books-section" th:if="${not #lists.isEmpty(userAddedBooks)}">
+        <div class="section-header">
+            <h2 class="tytulszukaj">Książki które dodałem</h2>
+        </div>
+        <div class="books-grid">
+            <div th:each="book : ${userAddedBooks}" class="book-card" th:data-id="${book.id}" onclick="goToBook(this)">
+                <div class="book-cover">
+                    <img th:src="${book.coverImage != null ? book.coverImage : '/images/default-book.png'}"
+                         th:alt="${book.title}"
+                         onerror="this.src='/images/default-book.png'">
+                </div>
+                <div class="book-info">
+                    <h3 class="book-title" th:text="${book.title}">Tytuł</h3>
+                    <p class="book-author" th:text="${book.author}">Autor</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div th:if="${#lists.isEmpty(historyBooks) and #lists.isEmpty(readingBooks) and #lists.isEmpty(favoriteBooks) and #lists.isEmpty(userAddedBooks)}" class="no-books">
+        <p>Nie masz jeszcze żadnych książek w swoich listach.</p>
+        <a href="/Katalog" class="add-book-link">Przeglądaj katalog</a>
+    </div>
+</main>
+
+<div th:insert="blocks/footer :: footer"></div>
+</body>
+</html>

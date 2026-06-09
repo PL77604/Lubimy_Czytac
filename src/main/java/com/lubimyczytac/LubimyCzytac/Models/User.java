@@ -41,11 +41,15 @@ public class User {
     private String rememberToken;
     private LocalDateTime rememberTokenExpiry;
 
+    @Column(nullable = false)
+    private String role = "USER";
+
     public User() {
         this.dodaneKsiazki = 0;
         this.pobraneKsiazki = 0;
         this.aktywny = true;
         this.dataRejestracji = LocalDateTime.now();
+        this.role = "USER";
     }
 
     public User(String email, String password, String username) {
@@ -53,6 +57,17 @@ public class User {
         this.email = email;
         this.password = password;
         this.username = username;
+    }
+
+    public String getRole() { return role; }
+    public void setRole(String role) { this.role = role; }
+
+    public boolean isAdmin() {
+        return "ADMIN".equals(this.role);
+    }
+
+    public boolean isUser() {
+        return "USER".equals(this.role);
     }
 
     public String getDescription() { return description; }

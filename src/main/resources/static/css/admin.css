@@ -1,0 +1,225 @@
+.admin-main {
+    padding: 60px 40px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.admin-ramka {
+    background-color: #F7FFF5;
+    border: 2px solid #CFDBCE;
+    border-radius: 18px;
+    padding: 30px;
+    margin-bottom: 30px;
+}
+
+.admin-tytul {
+    color: #363D33;
+    font-size: 32px;
+    margin: 0 0 10px 0;
+}
+
+.admin-opis {
+    color: #6F8069;
+    font-size: 16px;
+    line-height: 1.5;
+    margin: 0;
+}
+
+.admin-sekcja-tytul {
+    color: #363D33;
+    font-size: 24px;
+    margin: 0 0 20px 0;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #E0AF3A;
+}
+
+/* Karty statystyk */
+.stats-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.stat-card {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+    border: 1px solid #CFDBCE;
+    transition: all 0.3s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    border-color: #E0AF3A;
+}
+
+.stat-number {
+    font-size: 36px;
+    font-weight: bold;
+    color: #E0AF3A;
+    margin-bottom: 8px;
+}
+
+.stat-label {
+    font-size: 14px;
+    color: #6F8069;
+}
+
+/* Tabela */
+.table-container {
+    overflow-x: auto;
+    border-radius: 12px;
+    background: white;
+    border: 1px solid #CFDBCE;
+}
+
+.users-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+}
+
+.users-table th,
+.users-table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #CFDBCE;
+}
+
+.users-table th {
+    background: #2F5C46;
+    color: white;
+    font-weight: bold;
+}
+
+.users-table tr:hover {
+    background: #F7FFF5;
+}
+
+.users-table td:last-child {
+    white-space: nowrap;
+}
+
+/* Avatar w tabeli */
+.avatar-cell {
+    width: 50px;
+}
+
+.admin-avatar {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    overflow: hidden;
+    background: linear-gradient(135deg, #E0AF3A, #B8860B);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.admin-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.admin-avatar.default span {
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+/* Role badges */
+.role-badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.role-badge.admin {
+    background: linear-gradient(135deg, #E0AF3A, #B8860B);
+    color: white;
+}
+
+.role-badge.user {
+    background: #CFDBCE;
+    color: #363D33;
+}
+
+/* Przyciski akcji */
+.btn-make-admin,
+.btn-remove-admin {
+    padding: 6px 12px;
+    border: none;
+    border-radius: 6px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-make-admin {
+    background: #4CAF50;
+    color: white;
+}
+
+.btn-make-admin:hover {
+    background: #45a049;
+    transform: translateY(-2px);
+}
+
+.btn-remove-admin {
+    background: #f44336;
+    color: white;
+}
+
+.btn-remove-admin:hover {
+    background: #da190b;
+    transform: translateY(-2px);
+}
+
+.current-user-badge {
+    display: inline-block;
+    padding: 4px 12px;
+    background: #CFDBCE;
+    color: #363D33;
+    border-radius: 20px;
+    font-size: 12px;
+}
+
+.actions-cell {
+    white-space: nowrap;
+}
+
+/* Brak użytkowników */
+.no-users {
+    text-align: center;
+    padding: 40px;
+    color: #6F8069;
+}
+
+/* Responsywność */
+@media (max-width: 1000px) {
+    .admin-main {
+        padding: 40px 20px;
+    }
+
+    .stats-cards {
+        grid-template-columns: 1fr;
+    }
+
+    .users-table th,
+    .users-table td {
+        padding: 8px 10px;
+        font-size: 12px;
+    }
+
+    .btn-make-admin,
+    .btn-remove-admin {
+        padding: 4px 8px;
+        font-size: 10px;
+    }
+}

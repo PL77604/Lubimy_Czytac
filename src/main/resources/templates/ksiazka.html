@@ -3,31 +3,91 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
     <link rel="stylesheet" th:href="@{/css/global.css}">
     <link rel="stylesheet" th:href="@{/css/header.css}">
     <link rel="stylesheet" th:href="@{/css/ksiazka.css}">
-    <title>Książka</title>
+    <title th:text="${book.title}">Książka</title>
 </head>
 <body>
 <th:block th:replace="blocks/header :: header"></th:block>
 <main class="ksiazka-main">
     <section class="ksiazka-ramka animacja">
         <div class="ksiazka-okladka">
-            <span>Okładka książki</span>
+            <img th:src="${book.coverImage != null ? book.coverImage : '/images/default-book.png'}"
+                 th:alt="${book.title}"
+                 onerror="this.src='/images/default-book.png'">
         </div>
         <div class="ksiazka-info">
-            <h1 class="ksiazka-tytul">Tytuł książki</h1>
-            <p class="ksiazka-autor">Autor książki</p>
+            <h1 class="ksiazka-tytul" th:text="${book.title}">Tytuł książki</h1>
+            <p class="ksiazka-autor" th:text="${book.author}">Autor książki</p>
+
+            <div class="ksiazka-stats">
+                <span class="stat">❤️ <span th:text="${book.likesCount != null ? book.likesCount : 0}">0</span> polubień</span>
+                <span class="stat">💬 <span th:text="${book.commentsCount != null ? book.commentsCount : 0}">0</span> komentarzy</span>
+                <span class="stat">📥 <span th:text="${book.downloadCount != null ? book.downloadCount : 0}">0</span> pobrań</span>
+            </div>
+
             <div class="ksiazka-opis">
                 <h2>Opis książki</h2>
-                <p>Tutaj pojawi się opis książki. To jest przykładowy tekst, który później zostanie zastąpiony właściwym opisem z bazy danych.</p>
+                <p th:text="${book.description}">Opis książki</p>
             </div>
-            <button class="przyciskksiazka">Przejdź do książki</button>
+
+            <div class="ksiazka-gatunki">
+                <span th:each="genre : ${book.genresArray}" th:text="${genre}" class="genre-tag"></span>
+            </div>
+
+            <div class="ksiazka-przyciski">
+                <a th:href="${book.link}" class="przyciskksiazka" target="_blank"
+                   onclick="goToBookLink(event, this.href)">📖 Przejdź do książki</a>
+                <button class="przycisk-lubie" onclick="toggleLike()" th:class="${book.userLiked == true} ? 'przycisk-lubie liked' : 'przycisk-lubie'">
+                    <span th:text="${book.userLiked == true ? '❤️ Polubione' : '🤍 Polub'}"></span>
+                </button>
+                <button th:if="${session.loggedUser != null and !isMyBook}" class="przycisk-zapisz" onclick="saveToMyBooks()">
+                    📚 Zapisz do moich książek
+                </button>
+                <button th:if="${session.loggedUser != null and isMyBook}" class="przycisk-zapisz usun" onclick="removeFromMyBooks()">
+                    📚 Usuń z moich książek
+                </button>
+                <button th:if="${canDeleteBook == true}" class="przycisk-edycja" onclick="editBook()">✏️ Edytuj</button>
+                <button th:if="${canDeleteBook == true}" class="przycisk-usun" onclick="deleteBook()">🗑️ Usuń</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="komentarze-ramka animacja">
+        <h2>Komentarze (<span th:text="${book.commentsCount != null ? book.commentsCount : 0}">0</span>)</h2>
+
+        <div th:if="${session.loggedUser != null}" class="dodaj-komentarz">
+            <textarea id="commentContent" placeholder="Napisz swój komentarz..." rows="3"></textarea>
+            <button onclick="addComment()" class="przyciskksiazka">Dodaj komentarz</button>
+        </div>
+
+        <div th:unless="${session.loggedUser != null}" class="zaloguj-info">
+            <p><a href="/Logowanie">Zaloguj się</a>, aby dodać komentarz</p>
+        </div>
+
+        <div id="commentsList" class="komentarze-lista">
+            <div th:each="comment : ${comments}" class="komentarz">
+                <div class="komentarz-header">
+                    <strong th:text="${comment.username}">Użytkownik</strong>
+                    <span class="komentarz-data" th:text="${#temporals.format(comment.createdAt, 'dd.MM.yyyy HH:mm')}">01.01.2024 12:00</span>
+                </div>
+                <p class="komentarz-tresc" th:text="${comment.content}">Treść komentarza</p>
+                <div class="komentarz-akcje">
+                    <button class="like-comment" th:data-id="${comment.id}" onclick="likeComment(this)"><span th:text="${comment.likes != null ? comment.likes : 0}">0</span></button>
+                    <button th:if="${session.loggedUser != null and (session.loggedUser.id == comment.userId or session.loggedUser.isAdmin())}"
+                            class="delete-comment" th:data-id="${comment.id}" onclick="deleteComment(this, this.getAttribute('data-id'))">Usuń</button>
+                </div>
+            </div>
         </div>
     </section>
 </main>
 <th:block th:replace="blocks/footer :: footer"></th:block>
 <div class="menu-overlay" id="menuOverlay"></div>
 <script th:src="@{/js/script.js}"></script>
+<script th:src="@{/js/ksiazka.js}"></script>
 </body>
 </html>

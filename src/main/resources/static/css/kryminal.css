@@ -1,148 +1,303 @@
-body{
-    background:#876445 !important;
+body {
+    background: #876445 !important;
 }
 
-.kryminal-main{
-    padding:60px 40px;
+.kryminal-main {
+    padding: 60px 40px;
 }
 
-.kryminal-naglowek{
-    max-width:1100px;
-    margin:0 auto 35px auto;
-    padding:35px;
-    background-color:#4D321B;
-    border:2px solid #876445;
-    border-radius:18px;
-    text-align:center;
+.kryminal-naglowek {
+    max-width: 1100px;
+    margin: 0 auto 35px auto;
+    padding: 35px;
+    background-color: #4D321B;
+    border: 2px solid #876445;
+    border-radius: 18px;
+    text-align: center;
 }
 
-.kryminal-naglowek h1{
-    color:#F4E3D0;
-    font-size:38px;
-    font-weight:bold;
-    margin:0 0 15px 0;
+.kryminal-naglowek h1 {
+    color: #F4E3D0;
+    font-size: 38px;
+    font-weight: bold;
+    margin: 0 0 15px 0;
 }
 
-.kryminal-naglowek p{
-    color:#D7BEA3;
-    font-size:18px;
-    line-height:1.6;
-    margin:0;
+.kryminal-naglowek p {
+    color: #D7BEA3;
+    font-size: 18px;
+    line-height: 1.6;
+    margin: 0;
 }
 
-.kryminal-ramka{
-    max-width:1100px;
-    margin:0 auto;
-    padding:35px;
-    background-color:#4D321B;
-    border:2px solid #876445;
-    border-radius:18px;
-    display:grid;
-    grid-template-columns:320px 1fr;
-    gap:35px;
-    align-items:stretch;
+.book-count-info {
+    color: #D7BEA3;
+    font-size: 14px;
+    margin-top: 15px;
+    display: inline-block;
+    background: #352212;
+    padding: 5px 15px;
+    border-radius: 20px;
 }
 
-.kryminal-okladka{
-    min-height:460px;
-    border:2px solid #876445;
-    border-radius:18px;
-    background-color:#352212;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    color:#D7BEA3;
-    font-size:20px;
-    font-weight:bold;
-    text-align:center;
-    padding:20px;
+/* Siatka książek */
+.books-grid-kryminal {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 30px;
+    max-width: 1100px;
+    margin: 0 auto;
 }
 
-.kryminal-info{
-    display:flex;
-    flex-direction:column;
+/* Karta książki */
+.kryminal-ramka {
+    background-color: #4D321B;
+    border: 2px solid #876445;
+    border-radius: 18px;
+    padding: 25px;
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 25px;
+    align-items: stretch;
+    transition: all 0.3s ease;
+    cursor: pointer;
 }
 
-.kryminal-tytul{
-    color:#F4E3D0;
-    font-size:40px;
-    font-weight:bold;
-    margin:0 0 10px 0;
+.kryminal-ramka:hover {
+    transform: translateY(-5px);
+    border-color: #9CB49B;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
 }
 
-.kryminal-autor{
-    color:#D7BEA3;
-    font-size:20px;
-    font-weight:bold;
-    margin:0 0 25px 0;
+/* Okładka */
+.kryminal-okladka {
+    position: relative;
+    min-height: 260px;
+    border: 2px solid #876445;
+    border-radius: 18px;
+    background-color: #352212;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #D7BEA3;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    padding: 20px;
+    overflow: hidden;
 }
 
-.kryminal-opis{
-    background-color:#352212;
-    border:2px solid #876445;
-    border-radius:16px;
-    padding:25px;
-    margin-bottom:25px;
+.kryminal-okladka img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 12px;
 }
 
-.kryminal-opis h2{
-    color:#F4E3D0;
-    font-size:26px;
-    margin:0 0 12px 0;
+/* Overlay dla statystyk */
+.book-overlay-kryminal {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 100%);
+    padding: 10px;
+    display: flex;
+    gap: 15px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
 }
 
-.kryminal-opis p{
-    color:#D7BEA3;
-    font-size:17px;
-    line-height:1.6;
-    margin:0;
+.kryminal-ramka:hover .book-overlay-kryminal {
+    opacity: 1;
 }
 
-.przyciskkryminal{
-    margin-top:auto;
-    background:linear-gradient(135deg, #9CB49B, #7B967A);
-    border:none;
-    box-shadow:0 2px 8px rgba(123, 150, 122, 0.35);
-    color:#F7FFF5;
-    border-radius:12px;
-    padding:15px;
-    font-size:16px;
-    font-weight:bold;
-    cursor:pointer;
-    transition:all 0.25s ease;
+.book-likes, .book-comments {
+    color: white;
+    font-size: 12px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background: rgba(0,0,0,0.5);
+    padding: 4px 8px;
+    border-radius: 20px;
 }
 
-.przyciskkryminal:hover{
-    background:linear-gradient(135deg, #B2C8B0, #8EAA8D);
-    transform:translateY(-2px);
-    box-shadow:0 8px 20px rgba(123, 150, 122, 0.55);
+/* Informacje o książce */
+.kryminal-info {
+    display: flex;
+    flex-direction: column;
 }
 
-@media(max-width:900px){
-    .kryminal-main{
-        padding:30px 15px;
+.kryminal-tytul {
+    color: #F4E3D0;
+    font-size: 24px;
+    font-weight: bold;
+    margin: 0 0 10px 0;
+}
+
+.kryminal-autor {
+    color: #D7BEA3;
+    font-size: 16px;
+    font-weight: bold;
+    margin: 0 0 15px 0;
+}
+
+/* Opis */
+.kryminal-opis {
+    background-color: #352212;
+    border: 2px solid #876445;
+    border-radius: 16px;
+    padding: 15px;
+    margin-bottom: 15px;
+}
+
+.kryminal-opis h2 {
+    color: #F4E3D0;
+    font-size: 18px;
+    margin: 0 0 8px 0;
+}
+
+.kryminal-opis p {
+    color: #D7BEA3;
+    font-size: 14px;
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* Gatunki */
+.kryminal-gatunki {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 15px;
+}
+
+.genre-tag-kryminal {
+    background: linear-gradient(135deg, #9CB49B, #7B967A);
+    color: #F7FFF5;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+/* Przycisk */
+.przyciskkryminal {
+    margin-top: auto;
+    background: linear-gradient(135deg, #9CB49B, #7B967A);
+    border: none;
+    box-shadow: 0 2px 8px rgba(123, 150, 122, 0.35);
+    color: #F7FFF5;
+    border-radius: 12px;
+    padding: 12px;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    text-decoration: none;
+    text-align: center;
+    display: inline-block;
+}
+
+.przyciskkryminal:hover {
+    background: linear-gradient(135deg, #B2C8B0, #8EAA8D);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(123, 150, 122, 0.55);
+}
+
+/* Brak książek */
+.no-books {
+    text-align: center;
+    padding: 50px;
+    background: #4D321B;
+    border: 2px solid #876445;
+    border-radius: 18px;
+    max-width: 500px;
+    margin: 40px auto;
+}
+
+.no-books p {
+    color: #D7BEA3;
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.add-book-link {
+    display: inline-block;
+    padding: 12px 25px;
+    background: linear-gradient(135deg, #9CB49B, #7B967A);
+    color: #F7FFF5;
+    text-decoration: none;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+}
+
+.add-book-link:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(123, 150, 122, 0.55);
+}
+
+/* Responsywność */
+@media (max-width: 900px) {
+    .kryminal-main {
+        padding: 30px 15px;
     }
 
     .kryminal-naglowek,
-    .kryminal-ramka{
-        padding:24px;
+    .kryminal-ramka {
+        padding: 24px;
     }
 
-    .kryminal-ramka{
-        grid-template-columns:1fr;
+    .kryminal-ramka {
+        grid-template-columns: 1fr;
     }
 
-    .kryminal-okladka{
-        min-height:320px;
+    .kryminal-okladka {
+        min-height: 250px;
+        max-width: 200px;
+        margin: 0 auto;
+        width: 100%;
     }
 
-    .kryminal-naglowek h1,
-    .kryminal-tytul{
-        font-size:32px;
-        text-align:center;
+    .kryminal-naglowek h1 {
+        font-size: 28px;
     }
 
-    .kryminal-autor{
-        text-align:center;
+    .kryminal-tytul {
+        font-size: 22px;
+        text-align: center;
+    }
+
+    .kryminal-autor {
+        text-align: center;
+    }
+
+    .kryminal-gatunki {
+        justify-content: center;
+    }
+
+    .books-grid-kryminal {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .kryminal-ramka {
+        padding: 15px;
+    }
+
+    .kryminal-tytul {
+        font-size: 20px;
+    }
+
+    .kryminal-opis h2 {
+        font-size: 16px;
+    }
+
+    .kryminal-opis p {
+        font-size: 13px;
     }
 }

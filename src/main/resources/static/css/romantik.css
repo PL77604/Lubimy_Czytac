@@ -1,148 +1,303 @@
-body{
-    background:#9E549C !important;
+body {
+    background: #9E549C !important;
 }
 
-.romantik-main{
-    padding:60px 40px;
+.romantik-main {
+    padding: 60px 40px;
 }
 
-.romantik-naglowek{
-    max-width:1100px;
-    margin:0 auto 35px auto;
-    padding:35px;
-    background-color:#632062;
-    border:2px solid #9E549C;
-    border-radius:18px;
-    text-align:center;
+.romantik-naglowek {
+    max-width: 1100px;
+    margin: 0 auto 35px auto;
+    padding: 35px;
+    background-color: #632062;
+    border: 2px solid #9E549C;
+    border-radius: 18px;
+    text-align: center;
 }
 
-.romantik-naglowek h1{
-    color:#F8DDF7;
-    font-size:38px;
-    font-weight:bold;
-    margin:0 0 15px 0;
+.romantik-naglowek h1 {
+    color: #F8DDF7;
+    font-size: 38px;
+    font-weight: bold;
+    margin: 0 0 15px 0;
 }
 
-.romantik-naglowek p{
-    color:#EDBFEA;
-    font-size:18px;
-    line-height:1.6;
-    margin:0;
+.romantik-naglowek p {
+    color: #EDBFEA;
+    font-size: 18px;
+    line-height: 1.6;
+    margin: 0;
 }
 
-.romantik-ramka{
-    max-width:1100px;
-    margin:0 auto;
-    padding:35px;
-    background-color:#632062;
-    border:2px solid #9E549C;
-    border-radius:18px;
-    display:grid;
-    grid-template-columns:320px 1fr;
-    gap:35px;
-    align-items:stretch;
+.book-count-info {
+    color: #EDBFEA;
+    font-size: 14px;
+    margin-top: 15px;
+    display: inline-block;
+    background: #4A1749;
+    padding: 5px 15px;
+    border-radius: 20px;
 }
 
-.romantik-okladka{
-    min-height:460px;
-    border:2px solid #9E549C;
-    border-radius:18px;
-    background-color:#4A1749;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    color:#EDBFEA;
-    font-size:20px;
-    font-weight:bold;
-    text-align:center;
-    padding:20px;
+/* Siatka książek */
+.books-grid-romantik {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 30px;
+    max-width: 1100px;
+    margin: 0 auto;
 }
 
-.romantik-info{
-    display:flex;
-    flex-direction:column;
+/* Karta książki */
+.romantik-ramka {
+    background-color: #632062;
+    border: 2px solid #9E549C;
+    border-radius: 18px;
+    padding: 25px;
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 25px;
+    align-items: stretch;
+    transition: all 0.3s ease;
+    cursor: pointer;
 }
 
-.romantik-tytul{
-    color:#F8DDF7;
-    font-size:40px;
-    font-weight:bold;
-    margin:0 0 10px 0;
+.romantik-ramka:hover {
+    transform: translateY(-5px);
+    border-color: #7466B2;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
 }
 
-.romantik-autor{
-    color:#EDBFEA;
-    font-size:20px;
-    font-weight:bold;
-    margin:0 0 25px 0;
+/* Okładka */
+.romantik-okladka {
+    position: relative;
+    min-height: 260px;
+    border: 2px solid #9E549C;
+    border-radius: 18px;
+    background-color: #4A1749;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #EDBFEA;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    padding: 20px;
+    overflow: hidden;
 }
 
-.romantik-opis{
-    background-color:#4A1749;
-    border:2px solid #9E549C;
-    border-radius:16px;
-    padding:25px;
-    margin-bottom:25px;
+.romantik-okladka img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 12px;
 }
 
-.romantik-opis h2{
-    color:#F8DDF7;
-    font-size:26px;
-    margin:0 0 12px 0;
+/* Overlay dla statystyk */
+.book-overlay-romantik {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 100%);
+    padding: 10px;
+    display: flex;
+    gap: 15px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
 }
 
-.romantik-opis p{
-    color:#EDBFEA;
-    font-size:17px;
-    line-height:1.6;
-    margin:0;
+.romantik-ramka:hover .book-overlay-romantik {
+    opacity: 1;
 }
 
-.przyciskromantik{
-    margin-top:auto;
-    background:linear-gradient(135deg, #7466B2, #554991);
-    border:none;
-    box-shadow:0 2px 8px rgba(85, 73, 145, 0.35);
-    color:#F8F5FF;
-    border-radius:12px;
-    padding:15px;
-    font-size:16px;
-    font-weight:bold;
-    cursor:pointer;
-    transition:all 0.25s ease;
+.book-likes, .book-comments {
+    color: white;
+    font-size: 12px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background: rgba(0,0,0,0.5);
+    padding: 4px 8px;
+    border-radius: 20px;
 }
 
-.przyciskromantik:hover{
-    background:linear-gradient(135deg, #8A7BCC, #6758AA);
-    transform:translateY(-2px);
-    box-shadow:0 8px 20px rgba(85, 73, 145, 0.55);
+/* Informacje o książce */
+.romantik-info {
+    display: flex;
+    flex-direction: column;
 }
 
-@media(max-width:900px){
-    .romantik-main{
-        padding:30px 15px;
+.romantik-tytul {
+    color: #F8DDF7;
+    font-size: 24px;
+    font-weight: bold;
+    margin: 0 0 10px 0;
+}
+
+.romantik-autor {
+    color: #EDBFEA;
+    font-size: 16px;
+    font-weight: bold;
+    margin: 0 0 15px 0;
+}
+
+/* Opis */
+.romantik-opis {
+    background-color: #4A1749;
+    border: 2px solid #9E549C;
+    border-radius: 16px;
+    padding: 15px;
+    margin-bottom: 15px;
+}
+
+.romantik-opis h2 {
+    color: #F8DDF7;
+    font-size: 18px;
+    margin: 0 0 8px 0;
+}
+
+.romantik-opis p {
+    color: #EDBFEA;
+    font-size: 14px;
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* Gatunki */
+.romantik-gatunki {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 15px;
+}
+
+.genre-tag-romantik {
+    background: linear-gradient(135deg, #7466B2, #554991);
+    color: #F8F5FF;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+/* Przycisk */
+.przyciskromantik {
+    margin-top: auto;
+    background: linear-gradient(135deg, #7466B2, #554991);
+    border: none;
+    box-shadow: 0 2px 8px rgba(85, 73, 145, 0.35);
+    color: #F8F5FF;
+    border-radius: 12px;
+    padding: 12px;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    text-decoration: none;
+    text-align: center;
+    display: inline-block;
+}
+
+.przyciskromantik:hover {
+    background: linear-gradient(135deg, #8A7BCC, #6758AA);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(85, 73, 145, 0.55);
+}
+
+/* Brak książek */
+.no-books {
+    text-align: center;
+    padding: 50px;
+    background: #632062;
+    border: 2px solid #9E549C;
+    border-radius: 18px;
+    max-width: 500px;
+    margin: 40px auto;
+}
+
+.no-books p {
+    color: #EDBFEA;
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.add-book-link {
+    display: inline-block;
+    padding: 12px 25px;
+    background: linear-gradient(135deg, #7466B2, #554991);
+    color: #F8F5FF;
+    text-decoration: none;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+}
+
+.add-book-link:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(85, 73, 145, 0.55);
+}
+
+/* Responsywność */
+@media (max-width: 900px) {
+    .romantik-main {
+        padding: 30px 15px;
     }
 
     .romantik-naglowek,
-    .romantik-ramka{
-        padding:24px;
+    .romantik-ramka {
+        padding: 24px;
     }
 
-    .romantik-ramka{
-        grid-template-columns:1fr;
+    .romantik-ramka {
+        grid-template-columns: 1fr;
     }
 
-    .romantik-okladka{
-        min-height:320px;
+    .romantik-okladka {
+        min-height: 250px;
+        max-width: 200px;
+        margin: 0 auto;
+        width: 100%;
     }
 
-    .romantik-naglowek h1,
-    .romantik-tytul{
-        font-size:32px;
-        text-align:center;
+    .romantik-naglowek h1 {
+        font-size: 28px;
     }
 
-    .romantik-autor{
-        text-align:center;
+    .romantik-tytul {
+        font-size: 22px;
+        text-align: center;
+    }
+
+    .romantik-autor {
+        text-align: center;
+    }
+
+    .romantik-gatunki {
+        justify-content: center;
+    }
+
+    .books-grid-romantik {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .romantik-ramka {
+        padding: 15px;
+    }
+
+    .romantik-tytul {
+        font-size: 20px;
+    }
+
+    .romantik-opis h2 {
+        font-size: 16px;
+    }
+
+    .romantik-opis p {
+        font-size: 13px;
     }
 }

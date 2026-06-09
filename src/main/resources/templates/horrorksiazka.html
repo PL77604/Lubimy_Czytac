@@ -3,9 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
     <link rel="stylesheet" th:href="@{/css/global.css}">
     <link rel="stylesheet" th:href="@{/css/header.css}">
     <link rel="stylesheet" th:href="@{/css/horrorksiazka.css}">
+    <link rel="stylesheet" th:href="@{/css/katalog.css}">
     <title>Horrory</title>
 </head>
 <body>
@@ -14,21 +18,42 @@
     <section class="horror-naglowek animacja">
         <h1>Książki po gatunku: Horrory</h1>
         <p>Tutaj znajdują się książki z gatunku horror. Wybierz interesującą pozycję i przejdź do czytania.</p>
+        <p th:if="${books != null}" class="book-count-info">Znaleziono: <span th:text="${#lists.size(books)}"></span> książek</p>
     </section>
-    <section class="horror-ramka animacja">
-        <div class="horror-okladka">
-            <span>Okładka książki</span>
-        </div>
-        <div class="horror-info">
-            <h1 class="horror-tytul">Tytuł książki</h1>
-            <p class="horror-autor">Autor książki</p>
-            <div class="horror-opis">
-                <h2>Opis książki</h2>
-                <p>Tutaj pojawi się opis książki. To jest przykładowy tekst, który później zostanie zastąpiony właściwym opisem z bazy danych.</p>
+
+    <!-- Siatka książek -->
+    <div th:if="${#lists.isEmpty(books)}" class="no-books">
+        <p>Brak książek w tym gatunku.</p>
+        <a href="/Katalog" class="add-book-link">Przeglądaj wszystkie książki</a>
+    </div>
+
+    <div th:if="${not #lists.isEmpty(books)}" class="books-grid-horror">
+        <div th:each="book : ${books}" class="horror-ramka animacja" th:data-id="${book.id}" onclick="window.location.href='/Katalog/' + this.getAttribute('data-id')">
+            <div class="horror-okladka">
+                <img th:src="${book.coverImage != null ? book.coverImage : '/images/default-book.png'}"
+                     th:alt="${book.title}"
+                     onerror="this.src='/images/default-book.png'">
+                <div class="book-overlay-horror">
+                    <span class="book-likes">❤️ <span th:text="${book.likesCount}">0</span></span>
+                    <span class="book-comments">💬 <span th:text="${book.commentsCount}">0</span></span>
+                </div>
             </div>
-            <button class="przyciskhorror">Przejdź do książki</button>
+            <div class="horror-info">
+                <h1 class="horror-tytul" th:text="${book.title}">Tytuł książki</h1>
+                <p class="horror-autor" th:text="${book.author}">Autor książki</p>
+                <div class="horror-opis">
+                    <h2>Opis książki</h2>
+                    <p th:text="${#strings.abbreviate(book.description, 100)}">Opis książki</p>
+                </div>
+                <div class="horror-gatunki">
+                <span th:each="genre : ${book.genresArray}"
+                th:text="${genre}"
+                class="genre-tag-horror"></span>
+                </div>
+                <a th:href="${book.link}" class="przyciskhorror" target="_blank" onclick="event.stopPropagation()">Przejdź do książki</a>
+            </div>
         </div>
-    </section>
+    </div>
 </main>
 <th:block th:replace="blocks/footer :: footer"></th:block>
 <div class="menu-overlay" id="menuOverlay"></div>

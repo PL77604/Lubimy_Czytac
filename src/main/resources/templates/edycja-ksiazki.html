@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <link rel="stylesheet" th:href="@{/css/global.css}">
+    <link rel="stylesheet" th:href="@{/css/header.css}">
+    <link rel="stylesheet" th:href="@{/css/dodanie.css}">
+    <link rel="stylesheet" th:href="@{/css/gatunki.css}">
+    <title>Edytuj książkę</title>
+</head>
+<script th:src="@{/js/script.js}"></script>
+<script th:src="@{/js/edycja.js}"></script>
+<body>
+<th:block th:replace="blocks/header :: header"></th:block>
+<main>
+    <section class="ramkadodanie animacja">
+        <h1 class="tytuldodanie">Edycja książki</h1>
+        <p class="opisdodanie">
+            Tutaj możesz edytować swoją książkę. Zmień dane, okładkę lub gatunki.
+        </p>
+    </section>
+
+    <section class="ramkadodanie animacja">
+        <h2 class="tytulformularz">Formularz edycji książki</h2>
+
+        <form id="editBookForm" class="formadodanie" enctype="multipart/form-data">
+            <label class="etykietadodanie" for="okladka">Zmień obraz książki (opcjonalne):</label>
+            <div class="current-image" th:if="${book.coverImage != null}">
+                <p>Aktualna okładka:</p>
+                <img th:src="${book.coverImage}" th:alt="${book.title}" style="max-width: 150px; border-radius: 8px;">
+            </div>
+            <input class="inputdodanie" type="file" id="okladka" name="okladka" accept="image/*">
+
+            <label class="etykietadodanie" for="link">Link do książki:</label>
+            <input class="inputdodanie" type="url" id="link" name="link" th:value="${book.link}" required>
+
+            <label class="etykietadodanie" for="tytul">Tytuł książki:</label>
+            <input class="inputdodanie" type="text" id="tytul" name="tytul" th:value="${book.title}" required>
+
+            <label class="etykietadodanie" for="autor">Autor:</label>
+            <input class="inputdodanie" type="text" id="autor" name="autor" th:value="${book.author}" required>
+
+            <label class="etykietadodanie" for="opis">Opis książki:</label>
+            <textarea class="areadodanie" id="opis" name="opis" rows="5" th:text="${book.description}"></textarea>
+
+            <button class="przyciskdodanie" type="button" onclick="toggleGenres()">Wybierz gatunki</button>
+            <div class="gatunki-katalog" id="genresPanel" style="display: none;">
+                <h3 class="tytulgatunki">Wybierz gatunki książki</h3>
+                <div class="lista-gatunkow">
+                    <label><input type="checkbox" name="gatunki" value="fantastyka" th:checked="${#lists.contains(book.genresArray, 'fantastyka')}"> Fantastyka</label>
+                    <label><input type="checkbox" name="gatunki" value="kryminal" th:checked="${#lists.contains(book.genresArray, 'kryminal')}"> Kryminał</label>
+                    <label><input type="checkbox" name="gatunki" value="romans" th:checked="${#lists.contains(book.genresArray, 'romans')}"> Romans</label>
+                    <label><input type="checkbox" name="gatunki" value="horror" th:checked="${#lists.contains(book.genresArray, 'horror')}"> Horror</label>
+                    <label><input type="checkbox" name="gatunki" value="thriller" th:checked="${#lists.contains(book.genresArray, 'thriller')}"> Thriller</label>
+                    <label><input type="checkbox" name="gatunki" value="przygodowa" th:checked="${#lists.contains(book.genresArray, 'przygodowa')}"> Przygodowa</label>
+                    <label><input type="checkbox" name="gatunki" value="historyczna" th:checked="${#lists.contains(book.genresArray, 'historyczna')}"> Historyczna</label>
+                    <label><input type="checkbox" name="gatunki" value="biografia" th:checked="${#lists.contains(book.genresArray, 'biografia')}"> Biografia</label>
+                    <label><input type="checkbox" name="gatunki" value="popularnonaukowa" th:checked="${#lists.contains(book.genresArray, 'popularnonaukowa')}"> Popularnonaukowa</label>
+                    <label><input type="checkbox" name="gatunki" value="science-fiction" th:checked="${#lists.contains(book.genresArray, 'science-fiction')}"> Science fiction</label>
+                    <label><input type="checkbox" name="gatunki" value="dla-dzieci" th:checked="${#lists.contains(book.genresArray, 'dla-dzieci')}"> Dla dzieci</label>
+                    <label><input type="checkbox" name="gatunki" value="mlodziezowa" th:checked="${#lists.contains(book.genresArray, 'mlodziezowa')}"> Młodzieżowa</label>
+                    <label><input type="checkbox" name="gatunki" value="poezja" th:checked="${#lists.contains(book.genresArray, 'poezja')}"> Poezja</label>
+                    <label><input type="checkbox" name="gatunki" value="dramat" th:checked="${#lists.contains(book.genresArray, 'dramat')}"> Dramat</label>
+                    <label><input type="checkbox" name="gatunki" value="komiks" th:checked="${#lists.contains(book.genresArray, 'komiks')}"> Komiks</label>
+                </div>
+            </div>
+
+            <div id="formMessage" style="display:none; padding: 10px; margin: 10px 0; border-radius: 5px;"></div>
+
+            <div class="przyciski-edycja">
+                <button class="przyciskdodanie" type="submit">💾 Zapisz zmiany</button>
+                <a href="/Katalog" class="przycisk-anuluj">❌ Anuluj</a>
+            </div>
+        </form>
+    </section>
+</main>
+<div th:insert="blocks/footer :: footer"></div>
+<div class="menu-overlay" id="menuOverlay"></div>
+</body>
+</html>

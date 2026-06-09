@@ -1,70 +1,486 @@
-main{
-    padding:60px 40px;
+main {
+    padding: 60px 40px;
 }
 
-.ramkakatalog{
-    max-width:900px;
-    margin:0 auto 35px auto;
-    padding:35px;
-    background-color:#F7FFF5;
-    border:2px solid #CFDBCE;
-    border-radius:18px;
+.ramkakatalog {
+    max-width: 1200px;
+    margin: 0 auto 10px auto;
+    padding: 20px;
+    background-color: #F7FFF5;
+    border-radius: 18px;
 }
 
-.tytulkatalog{
-    color:#363D33;
-    text-align:center;
-    font-size:38px;
-    margin-top:0;
+/* Wyróżnienie pierwszej sekcji (nagłówek) */
+.ramkakatalog:first-child {
+    background: linear-gradient(135deg, #F7FFF5 0%, #E8F5E6 100%);
 }
 
-.tytulszukaj{
-    color:#363D33;
-    font-size:28px;
-    margin-top:0;
+/* Wyróżnienie drugiej sekcji (wyszukiwanie) */
+.ramkakatalog:nth-child(2) {
+    background: linear-gradient(135deg, #FFFFFF 0%, #F5F5F5 100%);
+    box-shadow: 0 4px 15px rgba(224, 175, 58, 0.15);
 }
 
-.opiskatalog{
-    color:#6F8069;
-    font-size:18px;
-    line-height:1.6;
+.tytulkatalog {
+    color: #363D33;
+    text-align: center;
+    font-size: 38px;
+    margin-top: 0;
 }
 
-.formakatalog{
-    display:flex;
-    flex-direction:column;
+.tytulszukaj {
+    color: #363D33;
+    font-size: 22px;
+    margin-top: 0;
+    margin-bottom: 15px;
 }
 
-.etykietakatalog{
-    color:#363D33;
-    font-weight:bold;
-    margin-bottom:10px;
+.opiskatalog {
+    color: #6F8069;
+    font-size: 16px;
+    line-height: 1.5;
 }
 
-.inputkatalog{
-    padding:14px;
-    border:2px solid #CFDBCE;
-    border-radius:10px;
-    font-size:16px;
-    margin-bottom:25px;
+/* Wyszukiwanie i przycisk gatunków */
+.search-section {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    margin-bottom: 15px;
+    flex-wrap: wrap;
 }
 
-.przyciskkatalog{
-    background:linear-gradient(135deg, #E0AF3A, #B8860B);
-    border:none;
-    box-shadow:0 2px 8px rgba(224, 175, 58, 0.3);
-    color:#FFFBED;
-    border-radius:12px;
-    padding:14px;
-    font-size:16px;
-    font-weight:bold;
-    cursor:pointer;
-    margin-bottom:15px;
+.search-section .formakatalog {
+    flex: 1;
+    margin-bottom: 0;
 }
 
-.przyciskkatalog:hover{
-    background:linear-gradient(135deg, #E8BF50, #C49A2E);
-    transform:translateY(-2px);
-    box-shadow:0 8px 20px rgba(224, 175, 58, 0.45);
+.formakatalog {
+    display: flex;
+    flex-direction: column;
 }
 
+.search-row {
+    display: flex;
+    gap: 10px;
+}
+
+.etykietakatalog {
+    color: #363D33;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.inputkatalog {
+    flex: 1;
+    padding: 10px;
+    border: 2px solid #CFDBCE;
+    border-radius: 10px;
+    font-size: 14px;
+}
+
+.inputkatalog:focus {
+    outline: none;
+    border-color: #E0AF3A;
+    box-shadow: 0 0 0 3px rgba(224, 175, 58, 0.1);
+}
+
+.przyciskkatalog {
+    background: linear-gradient(135deg, #E0AF3A, #B8860B);
+    border: none;
+    box-shadow: 0 2px 8px rgba(224, 175, 58, 0.3);
+    color: #FFFBED;
+    border-radius: 10px;
+    padding: 10px 18px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+.przyciskkatalog:hover {
+    background: linear-gradient(135deg, #E8BF50, #C49A2E);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(224, 175, 58, 0.45);
+}
+
+.przycisk-gatunki {
+    background: white;
+    border: 2px solid #CFDBCE;
+    color: #6F8069;
+    padding: 10px 22px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+.przycisk-gatunki:hover {
+    background: #E0AF3A;
+    border-color: #E0AF3A;
+    color: white;
+    transform: translateY(-2px);
+}
+
+/* Menu gatunków rozwijane */
+.gatunki-menu {
+    margin-top: 15px;
+    padding: 15px;
+    background: white;
+    border: 2px solid #CFDBCE;
+    border-radius: 12px;
+}
+
+.gatunki-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.gatunki-kolumna h4 {
+    color: #363D33;
+    font-size: 14px;
+    margin: 0 0 10px 0;
+    padding-bottom: 5px;
+    border-bottom: 2px solid #E0AF3A;
+}
+
+.gatunek-link {
+    display: block;
+    padding: 5px 0;
+    color: #6F8069;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-size: 13px;
+}
+
+.gatunek-link:hover {
+    color: #E0AF3A;
+    padding-left: 8px;
+}
+
+.gatunek-link.active {
+    color: #E0AF3A;
+    font-weight: bold;
+}
+
+/* Sekcje książek - wyróżnione gradientem */
+.books-section {
+    max-width: 1200px;
+    margin: 0 auto;
+    border-radius: 18px;
+    overflow: hidden;
+}
+
+/* Sekcja Polecane - złoty gradient */
+.books-section:first-of-type {
+    background: linear-gradient(135deg, #FFF9E6 0%, #FFF3D0 100%);
+    border-radius: 18px;
+    padding: 15px 20px;
+    margin-bottom: 10px;
+    box-shadow: 0 4px 12px rgba(224, 175, 58, 0.2);
+}
+
+/* Sekcja Ostatnio dodane - niebieski gradient */
+.books-section:nth-of-type(2) {
+    background: linear-gradient(135deg, #E8F0FE 0%, #D6E4F8 100%);
+    border-radius: 18px;
+    padding: 15px 20px;
+    margin-bottom: 10px;
+    box-shadow: 0 4px 12px rgba(33, 150, 243, 0.15);
+}
+
+/* Sekcja Wszystkie książki - zielony gradient */
+.books-section:nth-of-type(3) {
+    background: linear-gradient(135deg, #F0F8EE 0%, #E5F3E2 100%);
+    border-radius: 18px;
+    padding: 15px 20px;
+    box-shadow: 0 4px 12px rgba(76, 175, 80, 0.15);
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+    padding-bottom: 8px;
+    border-bottom: 2px dashed rgba(0,0,0,0.1);
+}
+
+.section-header .tytulszukaj {
+    margin-bottom: 0;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+/* Kolorowe tytuły sekcji */
+.books-section:first-of-type .section-header .tytulszukaj {
+    color: #B8860B;
+}
+
+.books-section:nth-of-type(2) .section-header .tytulszukaj {
+    color: #1976D2;
+}
+
+.books-section:nth-of-type(3) .section-header .tytulszukaj {
+    color: #388E3C;
+}
+
+.view-all {
+    color: #E0AF3A;
+    text-decoration: none;
+    font-size: 12px;
+    transition: all 0.3s ease;
+    padding: 4px 8px;
+    border-radius: 6px;
+}
+
+.view-all:hover {
+    background: rgba(224, 175, 58, 0.1);
+    text-decoration: underline;
+}
+
+.book-count {
+    color: #6F8069;
+    font-size: 12px;
+    background: white;
+    padding: 3px 8px;
+    border-radius: 20px;
+}
+
+.books-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 10px;
+    padding: 8px 0;
+}
+
+@media (max-width: 1200px) {
+    .books-grid {
+        grid-template-columns: repeat(5, 1fr);
+    }
+}
+
+@media (max-width: 900px) {
+    .books-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+@media (max-width: 700px) {
+    .books-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 500px) {
+    .books-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    main {
+        padding: 40px 15px;
+    }
+
+    .search-row {
+        flex-direction: column;
+    }
+
+    .gatunki-grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    .books-section:first-of-type,
+    .books-section:nth-of-type(2),
+    .books-section:nth-of-type(3) {
+        padding: 12px 15px;
+    }
+}
+
+/* Karta książki */
+.book-card {
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+    position: relative;
+}
+
+.book-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    background: #FFFEF5;
+}
+
+/* Okładka */
+.book-cover {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 2 / 3;
+    overflow: hidden;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.book-cover img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.book-card:hover .book-cover img {
+    transform: scale(1.05);
+}
+
+/* Overlay z statystykami */
+.book-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 100%);
+    padding: 6px;
+    display: flex;
+    gap: 8px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.book-card:hover .book-overlay {
+    opacity: 1;
+}
+
+.book-likes, .book-comments {
+    color: white;
+    font-size: 10px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    background: rgba(0,0,0,0.5);
+    padding: 2px 5px;
+    border-radius: 20px;
+}
+
+/* Informacje o książce */
+.book-info {
+    padding: 8px;
+    text-align: center;
+}
+
+.book-title {
+    font-size: 0.75rem;
+    font-weight: 600;
+    margin: 0 0 2px 0;
+    color: #363D33;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.book-card:hover .book-title {
+    color: #E0AF3A;
+}
+
+.book-author {
+    font-size: 0.65rem;
+    color: #6F8069;
+    margin: 0;
+}
+
+/* Mini gatunki */
+.book-genres-mini {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 3px;
+    justify-content: center;
+    margin-top: 4px;
+}
+
+.genre-tag-mini {
+    background: #f0f0f0;
+    padding: 1px 5px;
+    border-radius: 8px;
+    font-size: 0.6rem;
+    color: #666;
+}
+
+.book-card:hover .genre-tag-mini {
+    background: #E0AF3A;
+    color: white;
+}
+
+/* Brak książek */
+.no-books {
+    text-align: center;
+    padding: 30px;
+    background: #f9f9f9;
+    border-radius: 10px;
+}
+
+.add-book-link {
+    display: inline-block;
+    margin-top: 12px;
+    padding: 8px 18px;
+    background: linear-gradient(135deg, #E0AF3A, #B8860B);
+    color: white;
+    text-decoration: none;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    font-size: 14px;
+}
+
+.add-book-link:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(224, 175, 58, 0.3);
+}
+
+/* Komunikat braku wyników */
+.no-results {
+    text-align: center;
+    padding: 50px 20px;
+    background: white;
+    border-radius: 16px;
+    margin: 20px 0;
+}
+
+.no-results-icon {
+    font-size: 64px;
+    margin-bottom: 20px;
+    opacity: 0.5;
+}
+
+.no-results h3 {
+    color: #363D33;
+    font-size: 24px;
+    margin: 0 0 10px 0;
+}
+
+.no-results p {
+    color: #6F8069;
+    font-size: 14px;
+    margin: 5px 0;
+}
+
+.clear-search {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 24px;
+    background: linear-gradient(135deg, #E0AF3A, #B8860B);
+    color: white;
+    text-decoration: none;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+.clear-search:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(224, 175, 58, 0.3);
+}

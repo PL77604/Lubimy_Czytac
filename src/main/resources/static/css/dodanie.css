@@ -81,3 +81,39 @@ main{
     transform:translateY(-2px);
     box-shadow:0 8px 20px rgba(224, 175, 58, 0.45);
 }
+
+/* Dodaj na końcu pliku dodanie.css */
+.przyciski-edycja {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.przycisk-anuluj {
+    background: #6c757d;
+    border: none;
+    color: white;
+    border-radius: 12px;
+    padding: 14px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+    transition: all 0.25s ease;
+}
+
+.przycisk-anuluj:hover {
+    background: #5a6268;
+    transform: translateY(-2px);
+}
+
+.current-image {
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.current-image p {
+    color: #6F8069;
+    margin-bottom: 8px;
+}

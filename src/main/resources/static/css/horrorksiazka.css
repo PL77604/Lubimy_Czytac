@@ -1,148 +1,303 @@
-.horror-main{
-    padding:60px 40px;
+.horror-main {
+    padding: 60px 40px;
 }
 
-body{
-    background:#A58BD6 !important;
+body {
+    background: #A58BD6 !important;
 }
 
-.horror-naglowek{
-    max-width:1100px;
-    margin:0 auto 35px auto;
-    padding:35px;
-    background-color:#28104A;
-    border:2px solid #644191;
-    border-radius:18px;
-    text-align:center;
+.horror-naglowek {
+    max-width: 1100px;
+    margin: 0 auto 35px auto;
+    padding: 35px;
+    background-color: #28104A;
+    border: 2px solid #644191;
+    border-radius: 18px;
+    text-align: center;
 }
 
-.horror-naglowek h1{
-    color:#E9DDF7;
-    font-size:38px;
-    font-weight:bold;
-    margin:0 0 15px 0;
+.horror-naglowek h1 {
+    color: #E9DDF7;
+    font-size: 38px;
+    font-weight: bold;
+    margin: 0 0 15px 0;
 }
 
-.horror-naglowek p{
-    color:#CDB7E8;
-    font-size:18px;
-    line-height:1.6;
-    margin:0;
+.horror-naglowek p {
+    color: #CDB7E8;
+    font-size: 18px;
+    line-height: 1.6;
+    margin: 0;
 }
 
-.horror-ramka{
-    max-width:1100px;
-    margin:0 auto;
-    padding:35px;
-    background-color:#28104A;
-    border:2px solid #644191;
-    border-radius:18px;
-    display:grid;
-    grid-template-columns:320px 1fr;
-    gap:35px;
-    align-items:stretch;
+.book-count-info {
+    color: #CDB7E8;
+    font-size: 14px;
+    margin-top: 15px;
+    display: inline-block;
+    background: #1D0B36;
+    padding: 5px 15px;
+    border-radius: 20px;
 }
 
-.horror-okladka{
-    min-height:460px;
-    border:2px solid #644191;
-    border-radius:18px;
-    background-color:#1D0B36;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    color:#CDB7E8;
-    font-size:20px;
-    font-weight:bold;
-    text-align:center;
-    padding:20px;
+/* Siatka książek */
+.books-grid-horror {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 30px;
+    max-width: 1100px;
+    margin: 0 auto;
 }
 
-.horror-info{
-    display:flex;
-    flex-direction:column;
+/* Karta książki */
+.horror-ramka {
+    background-color: #28104A;
+    border: 2px solid #644191;
+    border-radius: 18px;
+    padding: 25px;
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 25px;
+    align-items: stretch;
+    transition: all 0.3s ease;
+    cursor: pointer;
 }
 
-.horror-tytul{
-    color:#E9DDF7;
-    font-size:40px;
-    font-weight:bold;
-    margin:0 0 10px 0;
+.horror-ramka:hover {
+    transform: translateY(-5px);
+    border-color: #4CA7B5;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
 }
 
-.horror-autor{
-    color:#CDB7E8;
-    font-size:20px;
-    font-weight:bold;
-    margin:0 0 25px 0;
+/* Okładka */
+.horror-okladka {
+    position: relative;
+    min-height: 260px;
+    border: 2px solid #644191;
+    border-radius: 18px;
+    background-color: #1D0B36;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #CDB7E8;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    padding: 20px;
+    overflow: hidden;
 }
 
-.horror-opis{
-    background-color:#1D0B36;
-    border:2px solid #644191;
-    border-radius:16px;
-    padding:25px;
-    margin-bottom:25px;
+.horror-okladka img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 12px;
 }
 
-.horror-opis h2{
-    color:#E9DDF7;
-    font-size:26px;
-    margin:0 0 12px 0;
+/* Overlay dla statystyk */
+.book-overlay-horror {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 100%);
+    padding: 10px;
+    display: flex;
+    gap: 15px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
 }
 
-.horror-opis p{
-    color:#CDB7E8;
-    font-size:17px;
-    line-height:1.6;
-    margin:0;
+.horror-ramka:hover .book-overlay-horror {
+    opacity: 1;
 }
 
-.przyciskhorror{
-    margin-top:auto;
-    background:linear-gradient(135deg, #4CA7B5, #34747F);
-    border:none;
-    box-shadow:0 2px 8px rgba(52, 116, 127, 0.35);
-    color:#F1FDFF;
-    border-radius:12px;
-    padding:15px;
-    font-size:16px;
-    font-weight:bold;
-    cursor:pointer;
-    transition:all 0.25s ease;
+.book-likes, .book-comments {
+    color: white;
+    font-size: 12px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background: rgba(0,0,0,0.5);
+    padding: 4px 8px;
+    border-radius: 20px;
 }
 
-.przyciskhorror:hover{
-    background:linear-gradient(135deg, #5CC2D0, #3E8A97);
-    transform:translateY(-2px);
-    box-shadow:0 8px 20px rgba(52, 116, 127, 0.55);
+/* Informacje o książce */
+.horror-info {
+    display: flex;
+    flex-direction: column;
 }
 
-@media(max-width:900px){
-    .horror-main{
-        padding:30px 15px;
+.horror-tytul {
+    color: #E9DDF7;
+    font-size: 24px;
+    font-weight: bold;
+    margin: 0 0 10px 0;
+}
+
+.horror-autor {
+    color: #CDB7E8;
+    font-size: 16px;
+    font-weight: bold;
+    margin: 0 0 15px 0;
+}
+
+/* Opis */
+.horror-opis {
+    background-color: #1D0B36;
+    border: 2px solid #644191;
+    border-radius: 16px;
+    padding: 15px;
+    margin-bottom: 15px;
+}
+
+.horror-opis h2 {
+    color: #E9DDF7;
+    font-size: 18px;
+    margin: 0 0 8px 0;
+}
+
+.horror-opis p {
+    color: #CDB7E8;
+    font-size: 14px;
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* Gatunki */
+.horror-gatunki {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 15px;
+}
+
+.genre-tag-horror {
+    background: linear-gradient(135deg, #4CA7B5, #34747F);
+    color: #F1FDFF;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+/* Przycisk */
+.przyciskhorror {
+    margin-top: auto;
+    background: linear-gradient(135deg, #4CA7B5, #34747F);
+    border: none;
+    box-shadow: 0 2px 8px rgba(52, 116, 127, 0.35);
+    color: #F1FDFF;
+    border-radius: 12px;
+    padding: 12px;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    text-decoration: none;
+    text-align: center;
+    display: inline-block;
+}
+
+.przyciskhorror:hover {
+    background: linear-gradient(135deg, #5CC2D0, #3E8A97);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(52, 116, 127, 0.55);
+}
+
+/* Brak książek */
+.no-books {
+    text-align: center;
+    padding: 50px;
+    background: #28104A;
+    border: 2px solid #644191;
+    border-radius: 18px;
+    max-width: 500px;
+    margin: 40px auto;
+}
+
+.no-books p {
+    color: #CDB7E8;
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.add-book-link {
+    display: inline-block;
+    padding: 12px 25px;
+    background: linear-gradient(135deg, #4CA7B5, #34747F);
+    color: #F1FDFF;
+    text-decoration: none;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+}
+
+.add-book-link:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(52, 116, 127, 0.55);
+}
+
+/* Responsywność */
+@media (max-width: 900px) {
+    .horror-main {
+        padding: 30px 15px;
     }
 
     .horror-naglowek,
-    .horror-ramka{
-        padding:24px;
+    .horror-ramka {
+        padding: 24px;
     }
 
-    .horror-ramka{
-        grid-template-columns:1fr;
+    .horror-ramka {
+        grid-template-columns: 1fr;
     }
 
-    .horror-okladka{
-        min-height:320px;
+    .horror-okladka {
+        min-height: 250px;
+        max-width: 200px;
+        margin: 0 auto;
+        width: 100%;
     }
 
-    .horror-naglowek h1,
-    .horror-tytul{
-        font-size:32px;
-        text-align:center;
+    .horror-naglowek h1 {
+        font-size: 28px;
     }
 
-    .horror-autor{
-        text-align:center;
+    .horror-tytul {
+        font-size: 22px;
+        text-align: center;
+    }
+
+    .horror-autor {
+        text-align: center;
+    }
+
+    .horror-gatunki {
+        justify-content: center;
+    }
+
+    .books-grid-horror {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .horror-ramka {
+        padding: 15px;
+    }
+
+    .horror-tytul {
+        font-size: 20px;
+    }
+
+    .horror-opis h2 {
+        font-size: 16px;
+    }
+
+    .horror-opis p {
+        font-size: 13px;
     }
 }

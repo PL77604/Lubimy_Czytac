@@ -1,115 +1,391 @@
-.ksiazka-main{
-    padding:60px 40px;
+.ksiazka-main {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 60px 40px;
 }
 
-.ksiazka-ramka{
-    max-width:1100px;
-    margin:0 auto;
-    padding:35px;
-    background-color:#F7FFF5;
-    border:2px solid #CFDBCE;
-    border-radius:18px;
-    display:grid;
-    grid-template-columns:320px 1fr;
-    gap:35px;
-    align-items:stretch;
+.ksiazka-ramka {
+    background: #F7FFF5;
+    border: 2px solid #CFDBCE;
+    border-radius: 18px;
+    padding: 30px;
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    gap: 30px;
+    margin-bottom: 30px;
 }
 
-.ksiazka-okladka{
-    min-height:460px;
-    border:2px solid #CFDBCE;
-    border-radius:18px;
-    background-color:#FFFFFF;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    color:#6F8069;
-    font-size:20px;
-    font-weight:bold;
-    text-align:center;
-    padding:20px;
+.ksiazka-okladka {
+    width: 100%;
+    aspect-ratio: 2 / 3;
+    overflow: hidden;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
 }
 
-.ksiazka-info{
-    display:flex;
-    flex-direction:column;
+.ksiazka-okladka img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
-.ksiazka-tytul{
-    color:#363D33;
-    font-size:40px;
-    font-weight:bold;
-    margin:0 0 10px 0;
+.ksiazka-info {
+    display: flex;
+    flex-direction: column;
 }
 
-.ksiazka-autor{
-    color:#6F8069;
-    font-size:20px;
-    font-weight:bold;
-    margin:0 0 25px 0;
+.ksiazka-tytul {
+    color: #363D33;
+    font-size: 28px;
+    font-weight: bold;
+    margin: 0 0 8px 0;
 }
 
-.ksiazka-opis{
-    background-color:#FFFFFF;
-    border:2px solid #CFDBCE;
-    border-radius:16px;
-    padding:25px;
-    margin-bottom:25px;
+.ksiazka-autor {
+    color: #6F8069;
+    font-size: 16px;
+    margin-bottom: 15px;
 }
 
-.ksiazka-opis h2{
-    color:#363D33;
-    font-size:26px;
-    margin:0 0 12px 0;
+/* Statystyki */
+.ksiazka-stats {
+    display: flex;
+    gap: 20px;
+    padding: 12px 0;
+    margin-bottom: 15px;
+    border-top: 2px solid #CFDBCE;
+    border-bottom: 2px solid #CFDBCE;
 }
 
-.ksiazka-opis p{
-    color:#6F8069;
-    font-size:17px;
-    line-height:1.6;
-    margin:0;
+.stat {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 14px;
+    color: #363D33;
+    font-weight: 500;
 }
 
-.przyciskksiazka{
-    margin-top:auto;
-    background:linear-gradient(135deg, #E0AF3A, #B8860B);
-    border:none;
-    box-shadow:0 2px 8px rgba(224, 175, 58, 0.3);
-    color:#FFFBED;
-    border-radius:12px;
-    padding:15px;
-    font-size:16px;
-    font-weight:bold;
-    cursor:pointer;
-    transition:all 0.25s ease;
+/* Opis */
+.ksiazka-opis {
+    background: white;
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 15px;
 }
 
-.przyciskksiazka:hover{
-    background:linear-gradient(135deg, #E8BF50, #C49A2E);
-    transform:translateY(-2px);
-    box-shadow:0 8px 20px rgba(224, 175, 58, 0.45);
+.ksiazka-opis h2 {
+    color: #363D33;
+    font-size: 18px;
+    margin: 0 0 8px 0;
 }
 
-@media(max-width:900px){
-    .ksiazka-main{
-        padding:30px 15px;
+.ksiazka-opis p {
+    color: #6F8069;
+    line-height: 1.5;
+    margin: 0;
+    font-size: 14px;
+}
+
+/* Gatunki */
+.ksiazka-gatunki {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.genre-tag {
+    background: linear-gradient(135deg, #E0AF3A, #B8860B);
+    color: white;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+/* Przyciski - lepszy układ */
+.ksiazka-przyciski {
+    display: flex;
+    gap: 12px;
+    margin-top: auto;
+    flex-wrap: wrap;
+}
+
+.przyciskksiazka {
+    flex: 2;
+    background: linear-gradient(135deg, #E0AF3A, #B8860B);
+    border: none;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.przycisk-lubie {
+    flex: 1;
+    background: #f0f0f0;
+    border: 2px solid #ddd;
+    color: #666;
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.przycisk-lubie.liked {
+    background: #ff6b6b;
+    border-color: #ff6b6b;
+    color: white;
+}
+
+.przycisk-usun {
+    background: #f44336;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.przycisk-edycja {
+    background: #2196F3;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.przyciskksiazka:hover, .przycisk-lubie:hover,
+.przycisk-usun:hover, .przycisk-edycja:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.przycisk-usun:hover {
+    background: #da190b;
+}
+
+.przycisk-edycja:hover {
+    background: #0b7dda;
+}
+
+/* Komentarze */
+.komentarze-ramka {
+    background: #F7FFF5;
+    border: 2px solid #CFDBCE;
+    border-radius: 18px;
+    padding: 30px;
+}
+
+.komentarze-ramka h2 {
+    color: #363D33;
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 22px;
+}
+
+.dodaj-komentarz {
+    margin-bottom: 25px;
+}
+
+.dodaj-komentarz textarea {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #CFDBCE;
+    border-radius: 10px;
+    font-size: 14px;
+    font-family: inherit;
+    resize: vertical;
+    margin-bottom: 12px;
+}
+
+.dodaj-komentarz textarea:focus {
+    outline: none;
+    border-color: #E0AF3A;
+}
+
+.komentarz {
+    background: white;
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 12px;
+    transition: box-shadow 0.3s ease;
+}
+
+.komentarz:hover {
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.komentarz-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #eee;
+}
+
+.komentarz-header strong {
+    color: #363D33;
+    font-size: 14px;
+}
+
+.komentarz-data {
+    color: #999;
+    font-size: 11px;
+}
+
+.komentarz-tresc {
+    margin: 0 0 10px 0;
+    color: #555;
+    line-height: 1.5;
+    font-size: 14px;
+}
+
+.komentarz-akcje {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.like-comment {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px 10px;
+    border-radius: 8px;
+    font-size: 12px;
+    transition: background 0.2s ease;
+    color: #666;
+}
+
+.like-comment:hover {
+    background: #f0f0f0;
+}
+
+.delete-comment {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px 10px;
+    border-radius: 8px;
+    font-size: 12px;
+    color: #f44336;
+    transition: background 0.2s ease;
+}
+
+.delete-comment:hover {
+    background: #ffebee;
+}
+
+.zaloguj-info {
+    text-align: center;
+    padding: 25px;
+    background: white;
+    border-radius: 10px;
+    color: #6F8069;
+}
+
+.zaloguj-info a {
+    color: #E0AF3A;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.zaloguj-info a:hover {
+    text-decoration: underline;
+}
+
+/* Responsywność */
+@media (max-width: 768px) {
+    .ksiazka-main {
+        padding: 40px 15px;
     }
 
-    .ksiazka-ramka{
-        grid-template-columns:1fr;
-        padding:24px;
+    .ksiazka-ramka {
+        grid-template-columns: 1fr;
+        padding: 20px;
+        gap: 20px;
     }
 
-    .ksiazka-okladka{
-        min-height:320px;
+    .ksiazka-tytul {
+        font-size: 24px;
+        text-align: center;
     }
 
-    .ksiazka-tytul{
-        font-size:32px;
-        text-align:center;
+    .ksiazka-autor {
+        text-align: center;
     }
 
-    .ksiazka-autor{
-        text-align:center;
+    .ksiazka-stats {
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 12px;
+    }
+
+    .ksiazka-gatunki {
+        justify-content: center;
+    }
+
+    .ksiazka-przyciski {
+        flex-direction: column;
+    }
+
+    .komentarze-ramka {
+        padding: 20px;
+    }
+
+    .komentarze-ramka h2 {
+        font-size: 20px;
+    }
+}
+
+/* Przycisk Zapisz do moich książek */
+.przycisk-zapisz {
+    flex: 1;
+    background: #2196F3;
+    border: none;
+    color: white;
+    padding: 12px 25px;
+    border-radius: 12px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.przycisk-zapisz:hover {
+    background: #0b7dda;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(33, 150, 243, 0.3);
+}
+
+.przycisk-zapisz.usun {
+    background: #ff9800;
+}
+
+.przycisk-zapisz.usun:hover {
+    background: #e68900;
+}
+
+/* Responsywność dla przycisków */
+@media (max-width: 768px) {
+    .ksiazka-przyciski {
+        flex-direction: column;
+    }
+
+    .przycisk-zapisz {
+        width: 100%;
     }
 }
