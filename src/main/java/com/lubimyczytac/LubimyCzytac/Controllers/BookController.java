@@ -857,27 +857,4 @@ public class BookController {
         return ResponseEntity.ok(response);
     }
 
-    @GetMapping("/admin/panel")
-    public String adminPanel(Model model, HttpSession session, HttpServletResponse response) throws IOException {
-        User loggedUser = (User) session.getAttribute("loggedUser");
-
-        if (loggedUser != null) {
-            User freshUser = userService.getFreshUser(loggedUser);
-            if (!freshUser.isAdmin()) {
-                session.setAttribute("loggedUser", freshUser);
-                return "redirect:/";
-            }
-            session.setAttribute("loggedUser", freshUser);
-        }
-
-        if (loggedUser == null || !loggedUser.isAdmin()) {
-            return "redirect:/";
-        }
-
-        List<User> allUsers = userService.getAllUsers();
-        model.addAttribute("users", allUsers);
-        model.addAttribute("loggedUser", loggedUser);
-        return "admin-panel";
-    }
-
 }

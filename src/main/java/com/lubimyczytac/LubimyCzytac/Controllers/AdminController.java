@@ -21,10 +21,12 @@ public class AdminController {
     @Autowired
     private UserService userService;
 
+    // TYLKO TUTAJ JEST METODA adminPanel
     @GetMapping("/admin/panel")
     public String adminPanel(Model model, HttpSession session, HttpServletResponse response) throws IOException {
         User loggedUser = (User) session.getAttribute("loggedUser");
 
+        // Sprawdź czy rola się nie zmieniła
         if (loggedUser != null) {
             User freshUser = userService.getFreshUser(loggedUser);
             if (!freshUser.isAdmin()) {
@@ -74,7 +76,6 @@ public class AdminController {
 
         if (user.getId().equals(currentUser.getId())) {
             session.setAttribute("loggedUser", user);
-            response.put("sessionUpdated", true);
         }
 
         response.put("success", true);
