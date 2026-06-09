@@ -3,9 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-    <meta http-equiv="Pragma" content="no-cache">
-    <meta http-equiv="Expires" content="0">
     <link rel="stylesheet" th:href="@{/css/global.css}">
     <link rel="stylesheet" th:href="@{/css/header.css}">
     <link rel="stylesheet" th:href="@{/css/admin.css}">
@@ -27,23 +24,29 @@
     <section class="admin-ramka animacja">
         <h2 class="admin-sekcja-tytul">Zarzadzanie uzytkownikami</h2>
 
+        <!-- WYSZUKIWARKA -->
+        <div class="search-admin">
+            <input type="text" id="searchUser" class="search-input" placeholder="Szukaj użytkownika po nazwie lub emailu..." onkeyup="filterUsers()">
+            <button class="clear-search-btn" onclick="clearSearch()">Wyczyść</button>
+        </div>
+
         <div class="stats-cards">
             <div class="stat-card">
-                <div class="stat-number" th:text="${#lists.size(users)}">0</div>
+                <div class="stat-number" id="totalUsers">0</div>
                 <div class="stat-label">Wszystkich uzytkownikow</div>
             </div>
             <div class="stat-card">
-                <div class="stat-number" th:text="${#lists.size(users)} - ${#lists.size(regularUsers)}">0</div>
+                <div class="stat-number" id="adminCount">0</div>
                 <div class="stat-label">Administratorow</div>
             </div>
             <div class="stat-card">
-                <div class="stat-number" th:text="${#lists.size(regularUsers)}">0</div>
+                <div class="stat-number" id="regularCount">0</div>
                 <div class="stat-label">Zwyklych uzytkownikow</div>
             </div>
         </div>
 
         <div class="table-container">
-            <table class="users-table">
+            <table class="users-table" id="usersTable">
                 <thead>
                 <tr>
                     <th>ID</th>
@@ -57,8 +60,8 @@
                     <th>Akcje</th>
                 </tr>
                 </thead>
-                <tbody>
-                <tr th:each="user : ${users}">
+                <tbody id="usersTableBody">
+                <tr th:each="user : ${users}" th:data-username="${user.username}" th:data-email="${user.email}">
                     <td th:text="${user.id}">1</td>
                     <td class="avatar-cell">
                         <div th:if="${user.avatar != null and user.avatar.contains('http')}" class="admin-avatar">
@@ -71,34 +74,43 @@
                     <td th:text="${user.username}">username</td>
                     <td th:text="${user.email}">email@example.com</td>
                     <td>
-                        <span th:if="${user.admin}" class="role-badge admin">ADMIN</span>
-                        <span th:unless="${user.admin}" class="role-badge user">USER</span>
+                        <span th:if="${user.isAdmin()}" class="role-badge admin">ADMIN</span>
+                        <span th:unless="${user.isAdmin()}" class="role-badge user">USER</span>
                     </td>
                     <td th:text="${user.dodaneKsiazki}">0</td>
                     <td th:text="${user.pobraneKsiazki}">0</td>
                     <td th:text="${#temporals.format(user.dataRejestracji, 'dd.MM.yyyy')}">01.01.2024</td>
                     <td class="actions-cell">
-                        <button th:if="${!user.admin}"
+                        <button th:if="${!user.isAdmin()}"
                                 class="btn-make-admin"
+                                th:data-id="${user.id}"
                                 th:data-email="${user.email}"
                                 onclick="makeAdmin(this)">
                             Nadaj admina
                         </button>
-                        <button th:if="${user.admin and user.id != session.loggedUser.id}"
+                        <button th:if="${user.isAdmin() and user.id != session.loggedUser.id}"
                                 class="btn-remove-admin"
+                                th:data-id="${user.id}"
                                 th:data-email="${user.email}"
                                 onclick="removeAdmin(this)">
                             Odbierz admina
                         </button>
-                        <span th:if="${user.admin and user.id == session.loggedUser.id}" class="current-user-badge">Ty</span>
+                        <button th:if="${user.id != session.loggedUser.id}"
+                                class="btn-delete-user"
+                                th:data-id="${user.id}"
+                                th:data-username="${user.username}"
+                                onclick="deleteUser(this)">
+                            Usuń
+                        </button>
+                        <span th:if="${user.isAdmin() and user.id == session.loggedUser.id}" class="current-user-badge">Ty</span>
                     </td>
                 </tr>
                 </tbody>
             </table>
         </div>
 
-        <div th:if="${#lists.isEmpty(users)}" class="no-users">
-            <p>Brak uzytkownikow w systemie.</p>
+        <div id="noResults" class="no-results" style="display: none;">
+            <p>Nie znaleziono użytkowników spełniających kryteria wyszukiwania.</p>
         </div>
     </section>
 </main>

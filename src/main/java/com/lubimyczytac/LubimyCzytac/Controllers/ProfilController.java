@@ -201,6 +201,7 @@ public class ProfilController {
             response.put("email", freshUser.getEmail());
             response.put("avatar", freshUser.getAvatar());
             response.put("description", freshUser.getDescription());
+            response.put("isAdmin", freshUser.isAdmin());
         } else {
             response.put("success", false);
         }

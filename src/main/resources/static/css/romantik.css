@@ -52,7 +52,6 @@ body {
     border-radius: 20px;
 }
 
-/* Siatka książek */
 .books-grid-romantik {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
@@ -61,7 +60,6 @@ body {
     margin: 0 auto;
 }
 
-/* Karta książki */
 .romantik-ramka {
     background-color: #BF4787;
     border: 2px solid #FFA3D5;
@@ -81,7 +79,6 @@ body {
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
 }
 
-/* Okładka */
 .romantik-okladka {
     position: relative;
     min-height: 260px;
@@ -106,7 +103,6 @@ body {
     border-radius: 12px;
 }
 
-/* Overlay dla statystyk */
 .book-overlay-romantik {
     position: absolute;
     top: 0;
@@ -136,7 +132,6 @@ body {
     border-radius: 20px;
 }
 
-/* Informacje o książce */
 .romantik-info {
     display: flex;
     flex-direction: column;
@@ -156,7 +151,6 @@ body {
     margin: 0 0 15px 0;
 }
 
-/* Opis */
 .romantik-opis {
     background-color: #9B336D;
     border: 2px solid #FFA3D5;
@@ -178,7 +172,6 @@ body {
     margin: 0;
 }
 
-/* Gatunki */
 .romantik-gatunki {
     display: flex;
     flex-wrap: wrap;
@@ -195,7 +188,6 @@ body {
     font-weight: 500;
 }
 
-/* Przycisk */
 .przyciskromantik {
     margin-top: auto;
     background: linear-gradient(135deg, #927EE6, #7561CC);
@@ -219,7 +211,6 @@ body {
     box-shadow: 0 8px 20px rgba(146, 126, 230, 0.55);
 }
 
-/* Brak książek */
 .no-books {
     text-align: center;
     padding: 50px;
@@ -252,7 +243,6 @@ body {
     box-shadow: 0 8px 20px rgba(146, 126, 230, 0.55);
 }
 
-/* Responsywność */
 @media (max-width: 900px) {
     .romantik-main {
         padding: 30px 15px;

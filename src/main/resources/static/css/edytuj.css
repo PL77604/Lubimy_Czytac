@@ -189,7 +189,6 @@
     border: 1px solid #bee5eb;
 }
 
-/* Responsywność */
 @media (max-width: 768px) {
     .edytuj-main {
         padding: 30px 15px;

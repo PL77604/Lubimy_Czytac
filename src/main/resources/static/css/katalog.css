@@ -10,12 +10,10 @@ main {
     border-radius: 18px;
 }
 
-/* Wyróżnienie pierwszej sekcji (nagłówek) */
 .ramkakatalog:first-child {
     background: linear-gradient(135deg, #F7FFF5 0%, #E8F5E6 100%);
 }
 
-/* Wyróżnienie drugiej sekcji (wyszukiwanie) */
 .ramkakatalog:nth-child(2) {
     background: linear-gradient(135deg, #FFFFFF 0%, #F5F5F5 100%);
     box-shadow: 0 4px 15px rgba(224, 175, 58, 0.15);
@@ -44,7 +42,6 @@ main {
     margin: 0 auto;
 }
 
-/* Wyszukiwanie i przycisk gatunków */
 .search-section {
     display: flex;
     gap: 15px;
@@ -145,7 +142,6 @@ main {
     width: 220px;
 }
 
-/* Menu gatunków rozwijane */
 .gatunki-menu {
     margin-top: 15px;
     padding: 15px;
@@ -187,7 +183,6 @@ main {
     font-weight: bold;
 }
 
-/* Sekcje książek - wyróżnione gradientem */
 .books-section {
     max-width: 1200px;
     margin: 0 auto;
@@ -195,7 +190,6 @@ main {
     overflow: hidden;
 }
 
-/* Sekcja Polecane - złoty gradient */
 .books-section:first-of-type {
     background: linear-gradient(135deg, #FFF9E6 0%, #FFF3D0 100%);
     border-radius: 18px;
@@ -204,7 +198,6 @@ main {
     box-shadow: 0 4px 12px rgba(224, 175, 58, 0.2);
 }
 
-/* Sekcja Ostatnio dodane - niebieski gradient */
 .books-section:nth-of-type(2) {
     background: linear-gradient(135deg, #E8F0FE 0%, #D6E4F8 100%);
     border-radius: 18px;
@@ -213,7 +206,6 @@ main {
     box-shadow: 0 4px 12px rgba(33, 150, 243, 0.15);
 }
 
-/* Sekcja Wszystkie książki - zielony gradient */
 .books-section:nth-of-type(3) {
     background: linear-gradient(135deg, #F0F8EE 0%, #E5F3E2 100%);
     border-radius: 18px;
@@ -237,7 +229,6 @@ main {
     font-weight: 700;
 }
 
-/* Kolorowe tytuły sekcji */
 .books-section:first-of-type .section-header .tytulszukaj {
     color: #B8860B;
 }
@@ -322,7 +313,6 @@ main {
     }
 }
 
-/* Karta książki */
 .book-card {
     background: white;
     border-radius: 8px;
@@ -339,7 +329,6 @@ main {
     background: #FFFEF5;
 }
 
-/* Okładka */
 .book-cover {
     position: relative;
     width: 100%;
@@ -359,7 +348,6 @@ main {
     transform: scale(1.05);
 }
 
-/* Overlay z statystykami */
 .book-overlay {
     position: absolute;
     top: 0;
@@ -389,7 +377,6 @@ main {
     border-radius: 20px;
 }
 
-/* Informacje o książce */
 .book-info {
     padding: 8px;
     text-align: center;
@@ -415,7 +402,6 @@ main {
     margin: 0;
 }
 
-/* Mini gatunki */
 .book-genres-mini {
     display: flex;
     flex-wrap: wrap;
@@ -437,7 +423,6 @@ main {
     color: white;
 }
 
-/* Brak książek */
 .no-books {
     text-align: center;
     padding: 30px;
@@ -462,7 +447,6 @@ main {
     box-shadow: 0 5px 15px rgba(224, 175, 58, 0.3);
 }
 
-/* Komunikat braku wyników */
 .no-results {
     text-align: center;
     padding: 50px 20px;

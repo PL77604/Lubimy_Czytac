@@ -33,7 +33,6 @@
     border-bottom: 2px solid #E0AF3A;
 }
 
-/* Karty statystyk */
 .stats-cards {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -68,7 +67,6 @@
     color: #6F8069;
 }
 
-/* Tabela */
 .table-container {
     overflow-x: auto;
     border-radius: 12px;
@@ -103,7 +101,6 @@
     white-space: nowrap;
 }
 
-/* Avatar w tabeli */
 .avatar-cell {
     width: 50px;
 }
@@ -131,7 +128,6 @@
     font-weight: bold;
 }
 
-/* Role badges */
 .role-badge {
     display: inline-block;
     padding: 4px 12px;
@@ -150,7 +146,6 @@
     color: #363D33;
 }
 
-/* Przyciski akcji */
 .btn-make-admin,
 .btn-remove-admin {
     padding: 6px 12px;
@@ -194,14 +189,12 @@
     white-space: nowrap;
 }
 
-/* Brak użytkowników */
 .no-users {
     text-align: center;
     padding: 40px;
     color: #6F8069;
 }
 
-/* Responsywność */
 @media (max-width: 1000px) {
     .admin-main {
         padding: 40px 20px;
@@ -222,4 +215,66 @@
         padding: 4px 8px;
         font-size: 10px;
     }
+}
+
+.search-admin {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 25px;
+}
+
+.search-input {
+    flex: 1;
+    padding: 12px 15px;
+    border: 2px solid #CFDBCE;
+    border-radius: 10px;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.search-input:focus {
+    outline: none;
+    border-color: #E0AF3A;
+    box-shadow: 0 0 0 3px rgba(224, 175, 58, 0.1);
+}
+
+.clear-search-btn {
+    padding: 12px 20px;
+    background: #6F8069;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.clear-search-btn:hover {
+    background: #5a6b54;
+    transform: translateY(-2px);
+}
+
+.btn-delete-user {
+    padding: 6px 12px;
+    background: #f44336;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 12px;
+    transition: all 0.3s ease;
+    margin-left: 5px;
+}
+
+.btn-delete-user:hover {
+    background: #da190b;
+    transform: translateY(-2px);
+}
+
+.no-results {
+    text-align: center;
+    padding: 30px;
+    color: #6F8069;
+    background: #f9f9f9;
+    border-radius: 10px;
+    margin-top: 20px;
 }

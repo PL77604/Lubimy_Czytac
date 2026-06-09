@@ -44,7 +44,6 @@ body {
     border-radius: 20px;
 }
 
-/* Siatka książek */
 .books-grid-kryminal {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
@@ -53,7 +52,6 @@ body {
     margin: 0 auto;
 }
 
-/* Karta książki */
 .kryminal-ramka {
     background-color: #4D321B;
     border: 2px solid #876445;
@@ -73,7 +71,6 @@ body {
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
 }
 
-/* Okładka */
 .kryminal-okladka {
     position: relative;
     min-height: 260px;
@@ -98,7 +95,6 @@ body {
     border-radius: 12px;
 }
 
-/* Overlay dla statystyk */
 .book-overlay-kryminal {
     position: absolute;
     top: 0;
@@ -128,7 +124,6 @@ body {
     border-radius: 20px;
 }
 
-/* Informacje o książce */
 .kryminal-info {
     display: flex;
     flex-direction: column;
@@ -148,7 +143,6 @@ body {
     margin: 0 0 15px 0;
 }
 
-/* Opis */
 .kryminal-opis {
     background-color: #352212;
     border: 2px solid #876445;
@@ -170,7 +164,6 @@ body {
     margin: 0;
 }
 
-/* Gatunki */
 .kryminal-gatunki {
     display: flex;
     flex-wrap: wrap;
@@ -187,7 +180,6 @@ body {
     font-weight: 500;
 }
 
-/* Przycisk */
 .przyciskkryminal {
     margin-top: auto;
     background: linear-gradient(135deg, #9CB49B, #7B967A);
@@ -211,7 +203,6 @@ body {
     box-shadow: 0 8px 20px rgba(123, 150, 122, 0.55);
 }
 
-/* Brak książek */
 .no-books {
     text-align: center;
     padding: 50px;
@@ -243,7 +234,6 @@ body {
     box-shadow: 0 8px 20px rgba(123, 150, 122, 0.55);
 }
 
-/* Responsywność */
 @media (max-width: 900px) {
     .kryminal-main {
         padding: 30px 15px;
