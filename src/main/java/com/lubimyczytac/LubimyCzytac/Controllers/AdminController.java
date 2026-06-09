@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 @Controller
 public class AdminController {
 
@@ -62,12 +63,15 @@ public class AdminController {
 
         if (user.getId().equals(currentUser.getId())) {
             session.setAttribute("loggedUser", user);
+            response.put("sessionUpdated", true);
         }
 
         response.put("success", true);
         response.put("message", "Uzytkownik " + user.getUsername() + " zostal administratorem!");
         response.put("userId", user.getId());
         response.put("isAdmin", true);
+        response.put("targetUserId", user.getId());
+        response.put("currentUserId", currentUser.getId());
         return ResponseEntity.ok(response);
     }
 

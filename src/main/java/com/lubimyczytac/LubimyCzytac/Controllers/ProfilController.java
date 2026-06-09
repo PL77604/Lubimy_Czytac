@@ -183,29 +183,4 @@ public class ProfilController {
 
         return "redirect:/Profil";
     }
-
-    @GetMapping("/api/user/refresh")
-    @ResponseBody
-    public ResponseEntity<Map<String, Object>> refreshUser(HttpSession session) {
-        Map<String, Object> response = new HashMap<>();
-        User loggedUser = (User) session.getAttribute("loggedUser");
-
-        if (loggedUser != null) {
-            User freshUser = userService.getFreshUser(loggedUser);
-            session.setAttribute("loggedUser", freshUser);
-
-            response.put("success", true);
-            response.put("dodaneKsiazki", freshUser.getDodaneKsiazki());
-            response.put("pobraneKsiazki", freshUser.getPobraneKsiazki());
-            response.put("username", freshUser.getUsername());
-            response.put("email", freshUser.getEmail());
-            response.put("avatar", freshUser.getAvatar());
-            response.put("description", freshUser.getDescription());
-            response.put("isAdmin", freshUser.isAdmin());
-        } else {
-            response.put("success", false);
-        }
-
-        return ResponseEntity.ok(response);
-    }
 }

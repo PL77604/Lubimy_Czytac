@@ -1,25 +1,79 @@
-function refreshHeaderData() {
-    fetch('/api/user/refresh', {
+function refreshUserSession() {
+    return fetch('/api/user/refresh', {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' }
     })
     .then(response => response.json())
     .then(data => {
         if (data.success) {
-            // Aktualizuj dane w headerze jeśli istnieją elementy
-            const usernameEl = document.querySelector('.nazwaprofilu span');
-            if (usernameEl && data.username) {
-                usernameEl.textContent = data.username;
-            }
+            updateHeaderUI(data);
+            return data;
         }
+        return null;
     })
-    .catch(error => console.error('Błąd odświeżania:', error));
+    .catch(error => console.error('Błąd odświeżania sesji:', error));
+}
+
+function updateHeaderUI(userData) {
+    const usernameSpan = document.querySelector('.nazwaprofilu span');
+    if (usernameSpan && userData.username) {
+        usernameSpan.textContent = userData.username;
+    }
+
+    const avatarDiv = document.querySelector('.avatarprofilu');
+    if (avatarDiv) {
+        if (userData.avatar && userData.avatar.includes('http')) {
+            avatarDiv.innerHTML = `<img src="${userData.avatar}" alt="Avatar">`;
+        } else {
+            avatarDiv.innerHTML = `<span><i class="fa-solid fa-user"></i></span>`;
+        }
+    }
+
+    const dodaneStat = document.querySelector('.statystyki-dropdown .stats-item:first-child .stats-value');
+    if (dodaneStat && userData.dodaneKsiazki !== undefined) {
+        dodaneStat.textContent = userData.dodaneKsiazki;
+    }
+
+    const pobraneStat = document.querySelector('.statystyki-dropdown .stats-item:last-child .stats-value');
+    if (pobraneStat && userData.pobraneKsiazki !== undefined) {
+        pobraneStat.textContent = userData.pobraneKsiazki;
+    }
+
+    const adminLink = document.querySelector('.menu a[href="/admin/panel"]');
+    const adminLi = document.querySelector('.menu li');
+
+    if (userData.isAdmin) {
+        if (!adminLink) {
+            const menu = document.querySelector('.menu');
+            const adminLiNew = document.createElement('li');
+            const adminANew = document.createElement('a');
+            adminANew.href = '/admin/panel';
+            adminANew.textContent = 'Panel Admina';
+            adminLiNew.appendChild(adminANew);
+            if (menu) menu.appendChild(adminLiNew);
+        }
+    } else {
+        if (adminLink) {
+            adminLink.closest('li').remove();
+        }
+    }
+
+    if (typeof window.roleChanged === 'undefined') {
+        window.roleChanged = false;
+    }
+
+    if (userData.isAdminChanged && !window.roleChanged) {
+        window.roleChanged = true;
+        setTimeout(() => {
+            location.reload();
+        }, 500);
+    }
 }
 
 function makeAdmin(button) {
     const userId = button.getAttribute('data-id');
     const email = button.getAttribute('data-email');
-    
+
     if (confirm(`Czy na pewno chcesz nadac uprawnienia administratora uzytkownikowi ${email}?`)) {
         fetch('/api/admin/make-admin', {
             method: 'POST',
@@ -32,7 +86,29 @@ function makeAdmin(button) {
         .then(data => {
             if (data.success) {
                 alert(data.message);
-                location.reload();
+
+                if (data.targetUserId === data.currentUserId) {
+                    refreshUserSession().then(() => {
+                        location.reload();
+                    });
+                } else {
+                    const row = button.closest('tr');
+                    const roleCell = row.querySelector('.role-badge');
+                    if (roleCell) {
+                        roleCell.className = 'role-badge admin';
+                        roleCell.textContent = 'ADMIN';
+                    }
+                    button.remove();
+                    const actionsCell = row.querySelector('.actions-cell');
+                    const removeBtn = document.createElement('button');
+                    removeBtn.className = 'btn-remove-admin';
+                    removeBtn.setAttribute('data-id', userId);
+                    removeBtn.setAttribute('data-email', email);
+                    removeBtn.textContent = 'Odbierz admina';
+                    removeBtn.onclick = () => removeAdmin(removeBtn);
+                    actionsCell.appendChild(removeBtn);
+                    updateStats();
+                }
             } else {
                 alert('Blad: ' + data.message);
             }
@@ -47,7 +123,7 @@ function makeAdmin(button) {
 function removeAdmin(button) {
     const userId = button.getAttribute('data-id');
     const email = button.getAttribute('data-email');
-    
+
     if (confirm(`Czy na pewno chcesz odebrac uprawnienia administratora uzytkownikowi ${email}?`)) {
         fetch('/api/admin/remove-admin', {
             method: 'POST',
@@ -60,8 +136,30 @@ function removeAdmin(button) {
         .then(data => {
             if (data.success) {
                 alert(data.message);
-                // Odśwież stronę aby zobaczyć zmiany
-                location.reload();
+
+                if (data.userId === data.currentUserId) {
+                    refreshUserSession().then(() => {
+                        location.reload();
+                    });
+                } else {
+                    // Odśwież tylko wiersz w tabeli
+                    const row = button.closest('tr');
+                    const roleCell = row.querySelector('.role-badge');
+                    if (roleCell) {
+                        roleCell.className = 'role-badge user';
+                        roleCell.textContent = 'USER';
+                    }
+                    button.remove();
+                    const actionsCell = row.querySelector('.actions-cell');
+                    const makeBtn = document.createElement('button');
+                    makeBtn.className = 'btn-make-admin';
+                    makeBtn.setAttribute('data-id', userId);
+                    makeBtn.setAttribute('data-email', email);
+                    makeBtn.textContent = 'Nadaj admina';
+                    makeBtn.onclick = () => makeAdmin(makeBtn);
+                    actionsCell.appendChild(makeBtn);
+                    updateStats();
+                }
             } else {
                 alert('Blad: ' + data.message);
             }
@@ -76,7 +174,7 @@ function removeAdmin(button) {
 function deleteUser(button) {
     const userId = button.getAttribute('data-id');
     const username = button.getAttribute('data-username');
-    
+
     if (confirm(`Czy na pewno chcesz usunąć użytkownika ${username}? Tej operacji nie można cofnąć!`)) {
         fetch(`/api/admin/delete-user/${userId}`, {
             method: 'DELETE',
@@ -105,7 +203,7 @@ function filterUsers() {
     const searchTerm = document.getElementById('searchUser').value.toLowerCase();
     const rows = document.querySelectorAll('#usersTableBody tr');
     let visibleCount = 0;
-    
+
     rows.forEach(row => {
         const username = row.getAttribute('data-username')?.toLowerCase() || '';
         const email = row.getAttribute('data-email')?.toLowerCase() || '';
@@ -113,12 +211,10 @@ function filterUsers() {
         row.style.display = show ? '' : 'none';
         if (show) visibleCount++;
     });
-    
+
     const noResults = document.getElementById('noResults');
-    if (visibleCount === 0 && rows.length > 0) {
-        noResults.style.display = 'block';
-    } else {
-        noResults.style.display = 'none';
+    if (noResults) {
+        noResults.style.display = visibleCount === 0 && rows.length > 0 ? 'block' : 'none';
     }
 }
 
@@ -131,7 +227,7 @@ function updateStats() {
     const rows = document.querySelectorAll('#usersTableBody tr');
     let adminCount = 0;
     let regularCount = 0;
-    
+
     rows.forEach(row => {
         if (row.style.display !== 'none') {
             const roleBadge = row.querySelector('.role-badge');
@@ -142,12 +238,18 @@ function updateStats() {
             }
         }
     });
-    
-    document.getElementById('totalUsers').textContent = rows.length;
-    document.getElementById('adminCount').textContent = adminCount;
-    document.getElementById('regularCount').textContent = regularCount;
+
+    const totalEl = document.getElementById('totalUsers');
+    const adminEl = document.getElementById('adminCount');
+    const regularEl = document.getElementById('regularCount');
+
+    if (totalEl) totalEl.textContent = rows.length;
+    if (adminEl) adminEl.textContent = adminCount;
+    if (regularEl) regularEl.textContent = regularCount;
 }
 
 document.addEventListener('DOMContentLoaded', function() {
     updateStats();
+
+    refreshUserSession();
 });
