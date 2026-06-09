@@ -17,7 +17,7 @@
                 <a href="/Katalog">Katalog książek</a>
                 <a href="/MojeKsiazki">Moje książki</a>
                 <a href="/DodanieKsiazek">Dodaj książkę</a>
-                <li th:if="${session.loggedUser != null and session.loggedUser.isAdmin()}">
+                <li th:if="${session.loggedUser != null and session.loggedUser.isAdmin()}" id="adminPanelLink">
                     <a href="/admin/panel">Panel Admina</a>
                 </li>
             </nav>
@@ -70,24 +70,24 @@
 
     <script>
         function refreshHeaderStats() {
-    fetch('/api/user/stats')
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                const ulubioneHeader = document.getElementById('ulubioneStatHeader');
-                if (ulubioneHeader) {
-                    ulubioneHeader.textContent = data.ulubione || 0;
-                }
-                const dodaneHeader = document.getElementById('dodaneStatHeader');
-                if (dodaneHeader) {
-                    dodaneHeader.textContent = data.dodaneKsiazki || 0;
-                }
-            }
-        })
-        .catch(error => console.error('Blad:', error));
-}
+            fetch('/api/user/stats')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        const ulubioneHeader = document.getElementById('ulubioneStatHeader');
+                        if (ulubioneHeader) {
+                            ulubioneHeader.textContent = data.ulubione || 0;
+                        }
+                        const dodaneHeader = document.getElementById('dodaneStatHeader');
+                        if (dodaneHeader) {
+                            dodaneHeader.textContent = data.dodaneKsiazki || 0;
+                        }
+                    }
+                })
+                .catch(error => console.error('Blad:', error));
+        }
 
-        setInterval(refreshHeaderStats, 5000);
+        // Odśwież statystyki tylko przy ładowaniu strony, NIE co 5 sekund
         document.addEventListener('DOMContentLoaded', function() {
             refreshHeaderStats();
 

@@ -71,7 +71,6 @@ function updateHeaderUI(userData) {
 }
 
 function makeAdmin(button) {
-    const userId = button.getAttribute('data-id');
     const email = button.getAttribute('data-email');
 
     if (confirm(`Czy na pewno chcesz nadac uprawnienia administratora uzytkownikowi ${email}?`)) {
@@ -86,29 +85,8 @@ function makeAdmin(button) {
         .then(data => {
             if (data.success) {
                 alert(data.message);
-
-                if (data.targetUserId === data.currentUserId) {
-                    refreshUserSession().then(() => {
-                        location.reload();
-                    });
-                } else {
-                    const row = button.closest('tr');
-                    const roleCell = row.querySelector('.role-badge');
-                    if (roleCell) {
-                        roleCell.className = 'role-badge admin';
-                        roleCell.textContent = 'ADMIN';
-                    }
-                    button.remove();
-                    const actionsCell = row.querySelector('.actions-cell');
-                    const removeBtn = document.createElement('button');
-                    removeBtn.className = 'btn-remove-admin';
-                    removeBtn.setAttribute('data-id', userId);
-                    removeBtn.setAttribute('data-email', email);
-                    removeBtn.textContent = 'Odbierz admina';
-                    removeBtn.onclick = () => removeAdmin(removeBtn);
-                    actionsCell.appendChild(removeBtn);
-                    updateStats();
-                }
+                // Odśwież stronę TYLKO po zmianie roli
+                location.reload();
             } else {
                 alert('Blad: ' + data.message);
             }
@@ -121,7 +99,6 @@ function makeAdmin(button) {
 }
 
 function removeAdmin(button) {
-    const userId = button.getAttribute('data-id');
     const email = button.getAttribute('data-email');
 
     if (confirm(`Czy na pewno chcesz odebrac uprawnienia administratora uzytkownikowi ${email}?`)) {
@@ -136,30 +113,8 @@ function removeAdmin(button) {
         .then(data => {
             if (data.success) {
                 alert(data.message);
-
-                if (data.userId === data.currentUserId) {
-                    refreshUserSession().then(() => {
-                        location.reload();
-                    });
-                } else {
-                    // Odśwież tylko wiersz w tabeli
-                    const row = button.closest('tr');
-                    const roleCell = row.querySelector('.role-badge');
-                    if (roleCell) {
-                        roleCell.className = 'role-badge user';
-                        roleCell.textContent = 'USER';
-                    }
-                    button.remove();
-                    const actionsCell = row.querySelector('.actions-cell');
-                    const makeBtn = document.createElement('button');
-                    makeBtn.className = 'btn-make-admin';
-                    makeBtn.setAttribute('data-id', userId);
-                    makeBtn.setAttribute('data-email', email);
-                    makeBtn.textContent = 'Nadaj admina';
-                    makeBtn.onclick = () => makeAdmin(makeBtn);
-                    actionsCell.appendChild(makeBtn);
-                    updateStats();
-                }
+                // Odśwież stronę TYLKO po zmianie roli
+                location.reload();
             } else {
                 alert('Blad: ' + data.message);
             }
@@ -186,6 +141,7 @@ function deleteUser(button) {
         .then(data => {
             if (data.success) {
                 alert(data.message);
+                // Tylko usuń wiersz z tabeli, bez odświeżania całej strony
                 button.closest('tr').remove();
                 updateStats();
             } else {
@@ -250,6 +206,4 @@ function updateStats() {
 
 document.addEventListener('DOMContentLoaded', function() {
     updateStats();
-
-    refreshUserSession();
 });
