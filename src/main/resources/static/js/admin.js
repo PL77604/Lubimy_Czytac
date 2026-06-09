@@ -1,75 +1,3 @@
-function refreshUserSession() {
-    return fetch('/api/user/refresh', {
-        method: 'GET',
-        headers: { 'Content-Type': 'application/json' }
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.success) {
-            updateHeaderUI(data);
-            return data;
-        }
-        return null;
-    })
-    .catch(error => console.error('Błąd odświeżania sesji:', error));
-}
-
-function updateHeaderUI(userData) {
-    const usernameSpan = document.querySelector('.nazwaprofilu span');
-    if (usernameSpan && userData.username) {
-        usernameSpan.textContent = userData.username;
-    }
-
-    const avatarDiv = document.querySelector('.avatarprofilu');
-    if (avatarDiv) {
-        if (userData.avatar && userData.avatar.includes('http')) {
-            avatarDiv.innerHTML = `<img src="${userData.avatar}" alt="Avatar">`;
-        } else {
-            avatarDiv.innerHTML = `<span><i class="fa-solid fa-user"></i></span>`;
-        }
-    }
-
-    const dodaneStat = document.querySelector('.statystyki-dropdown .stats-item:first-child .stats-value');
-    if (dodaneStat && userData.dodaneKsiazki !== undefined) {
-        dodaneStat.textContent = userData.dodaneKsiazki;
-    }
-
-    const pobraneStat = document.querySelector('.statystyki-dropdown .stats-item:last-child .stats-value');
-    if (pobraneStat && userData.pobraneKsiazki !== undefined) {
-        pobraneStat.textContent = userData.pobraneKsiazki;
-    }
-
-    const adminLink = document.querySelector('.menu a[href="/admin/panel"]');
-    const adminLi = document.querySelector('.menu li');
-
-    if (userData.isAdmin) {
-        if (!adminLink) {
-            const menu = document.querySelector('.menu');
-            const adminLiNew = document.createElement('li');
-            const adminANew = document.createElement('a');
-            adminANew.href = '/admin/panel';
-            adminANew.textContent = 'Panel Admina';
-            adminLiNew.appendChild(adminANew);
-            if (menu) menu.appendChild(adminLiNew);
-        }
-    } else {
-        if (adminLink) {
-            adminLink.closest('li').remove();
-        }
-    }
-
-    if (typeof window.roleChanged === 'undefined') {
-        window.roleChanged = false;
-    }
-
-    if (userData.isAdminChanged && !window.roleChanged) {
-        window.roleChanged = true;
-        setTimeout(() => {
-            location.reload();
-        }, 500);
-    }
-}
-
 function makeAdmin(button) {
     const email = button.getAttribute('data-email');
 
@@ -85,8 +13,22 @@ function makeAdmin(button) {
         .then(data => {
             if (data.success) {
                 alert(data.message);
-                // Odśwież stronę TYLKO po zmianie roli
-                location.reload();
+                // Sprawdź czy to my straciliśmy lub zyskaliśmy admina
+                fetch('/api/user/refresh')
+                    .then(res => res.json())
+                    .then(userData => {
+                        if (userData.success) {
+                            if (!userData.isAdmin && window.location.pathname === '/admin/panel') {
+                                // Jeśli jesteśmy na admin panelu i straciliśmy admina - wróć na stronę główną
+                                window.location.href = '/';
+                            } else {
+                                // W przeciwnym razie odśwież stronę
+                                location.reload();
+                            }
+                        } else {
+                            location.reload();
+                        }
+                    });
             } else {
                 alert('Blad: ' + data.message);
             }
@@ -113,8 +55,22 @@ function removeAdmin(button) {
         .then(data => {
             if (data.success) {
                 alert(data.message);
-                // Odśwież stronę TYLKO po zmianie roli
-                location.reload();
+                // Sprawdź czy to my straciliśmy admina
+                fetch('/api/user/refresh')
+                    .then(res => res.json())
+                    .then(userData => {
+                        if (userData.success) {
+                            if (!userData.isAdmin && window.location.pathname === '/admin/panel') {
+                                // Jeśli jesteśmy na admin panelu i straciliśmy admina - wróć na stronę główną
+                                window.location.href = '/';
+                            } else {
+                                // W przeciwnym razie odśwież stronę
+                                location.reload();
+                            }
+                        } else {
+                            location.reload();
+                        }
+                    });
             } else {
                 alert('Blad: ' + data.message);
             }
@@ -141,7 +97,6 @@ function deleteUser(button) {
         .then(data => {
             if (data.success) {
                 alert(data.message);
-                // Tylko usuń wiersz z tabeli, bez odświeżania całej strony
                 button.closest('tr').remove();
                 updateStats();
             } else {

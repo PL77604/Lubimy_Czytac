@@ -13,6 +13,7 @@ import com.lubimyczytac.LubimyCzytac.Repositories.UserBookListRepository;
 import com.lubimyczytac.LubimyCzytac.Services.BookService;
 import com.lubimyczytac.LubimyCzytac.Services.UserService;
 import com.lubimyczytac.LubimyCzytac.Services.CloudinaryService;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -21,6 +22,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -812,6 +814,23 @@ public class BookController {
         return ResponseEntity.ok(response);
     }
 
+    private void checkUserSession(HttpSession session, HttpServletResponse response) throws IOException {
+        User loggedUser = (User) session.getAttribute("loggedUser");
+        if (loggedUser != null) {
+            User freshUser = userService.getFreshUser(loggedUser);
+
+            if (freshUser.isAdmin() != loggedUser.isAdmin()) {
+                session.setAttribute("loggedUser", freshUser);
+
+                if (!freshUser.isAdmin() && response != null) {
+                    response.sendRedirect("/");
+                }
+            } else {
+                session.setAttribute("loggedUser", freshUser);
+            }
+        }
+    }
+
     @GetMapping("/api/user/refresh")
     @ResponseBody
     public ResponseEntity<Map<String, Object>> refreshUser(HttpSession session) {
@@ -836,6 +855,29 @@ public class BookController {
         }
 
         return ResponseEntity.ok(response);
+    }
+
+    @GetMapping("/admin/panel")
+    public String adminPanel(Model model, HttpSession session, HttpServletResponse response) throws IOException {
+        User loggedUser = (User) session.getAttribute("loggedUser");
+
+        if (loggedUser != null) {
+            User freshUser = userService.getFreshUser(loggedUser);
+            if (!freshUser.isAdmin()) {
+                session.setAttribute("loggedUser", freshUser);
+                return "redirect:/";
+            }
+            session.setAttribute("loggedUser", freshUser);
+        }
+
+        if (loggedUser == null || !loggedUser.isAdmin()) {
+            return "redirect:/";
+        }
+
+        List<User> allUsers = userService.getAllUsers();
+        model.addAttribute("users", allUsers);
+        model.addAttribute("loggedUser", loggedUser);
+        return "admin-panel";
     }
 
 }

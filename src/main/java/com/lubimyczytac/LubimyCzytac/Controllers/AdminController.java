@@ -2,6 +2,7 @@ package com.lubimyczytac.LubimyCzytac.Controllers;
 
 import com.lubimyczytac.LubimyCzytac.Models.User;
 import com.lubimyczytac.LubimyCzytac.Services.UserService;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -20,8 +22,17 @@ public class AdminController {
     private UserService userService;
 
     @GetMapping("/admin/panel")
-    public String adminPanel(Model model, HttpSession session) {
+    public String adminPanel(Model model, HttpSession session, HttpServletResponse response) throws IOException {
         User loggedUser = (User) session.getAttribute("loggedUser");
+
+        if (loggedUser != null) {
+            User freshUser = userService.getFreshUser(loggedUser);
+            if (!freshUser.isAdmin()) {
+                session.setAttribute("loggedUser", freshUser);
+                return "redirect:/";
+            }
+            session.setAttribute("loggedUser", freshUser);
+        }
 
         if (loggedUser == null || !loggedUser.isAdmin()) {
             return "redirect:/";
