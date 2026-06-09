@@ -31,13 +31,13 @@
         <form id="searchForm" class="formakatalog" method="get" action="/Katalog">
             <label class="etykietakatalog" for="szukaj">Wpisz nazwę książki:</label>
             <input class="inputkatalog" type="text" id="szukaj" name="szukaj" placeholder="Np. Wiedźmin" th:value="${searchTerm}">
-            <button class="przyciskkatalog" type="submit">Szukaj</button>
         </form>
 
-        <button class="przycisk-gatunki" type="button" onclick="toggleGenresMenu()">
-            Wybierz gatunek
-        </button>
-
+        <div class="katalog-przyciski">
+        <button class="przycisk-gatunki" type="button" onclick="toggleGenresMenu()">Wybierz gatunek</button>
+        <button class="przyciskkatalog" type="submit">Szukaj</button>
+        </div>
+        
         <div class="gatunki-menu" id="genresMenu" style="display: none;">
             <div class="gatunki-grid">
                 <div class="gatunki-kolumna">

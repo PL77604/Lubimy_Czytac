@@ -46,7 +46,7 @@
                 </div>
                 <div class="profil-stat">
                     <span class="ikonastat"><i class="fa-solid fa-calendar"></i></span>
-                    <span class="wartoscstat" th:text="${#temporals.format(loggedUser.dataRejestracji, 'dd.MM.yyyy')}">0</span>
+                    <span class="wartoscstat" th:text="${#temporals.format(loggedUser.dataRejestracji, 'dd.MM.yy')}">0</span>
                     <span class="stat-label">Od</span>
                 </div>
             </div>
@@ -99,7 +99,6 @@
             <div th:if="${not #lists.isEmpty(recommendedBooks)}" class="profil-ksiazki">
                 <h2 class="profil-tytul-small">Polecane dla Ciebie</h2>
                 <div class="karuzela-container">
-                    <button class="strzalka lewa" onclick="scrollKaruzela(-1)">‹</button>
                     <div class="karuzela-lista" id="karuzelaLista">
                         <div th:each="book : ${recommendedBooks}" class="karta-ksiazki"
                              th:data-id="${book.id}"
@@ -114,7 +113,6 @@
                             <p th:text="${book.author}">Autor</p>
                         </div>
                     </div>
-                    <button class="strzalka prawa" onclick="scrollKaruzela(1)">›</button>
                 </div>
             </div>
         </div>
