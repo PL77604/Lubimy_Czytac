@@ -77,9 +77,18 @@
                 </div>
                 <p class="komentarz-tresc" th:text="${comment.content}">Treść komentarza</p>
                 <div class="komentarz-akcje">
-                    <button class="like-comment" th:data-id="${comment.id}" onclick="likeComment(this)">❤️ <span th:text="${comment.likes != null ? comment.likes : 0}">0</span></button>
+                    <button class="like-comment"
+                            th:data-id="${comment.id}"
+                            th:class="${comment.userLiked} ? 'like-comment liked' : 'like-comment'"
+                            onclick="likeComment(this)">
+                        ❤️ <span th:text="${comment.likes != null ? comment.likes : 0}">0</span>
+                    </button>
                     <button th:if="${session.loggedUser != null and (session.loggedUser.id == comment.userId or session.loggedUser.isAdmin())}"
-                            class="delete-comment" th:data-id="${comment.id}" onclick="deleteComment(this, this.getAttribute('data-id'))">Usuń</button>
+                            class="delete-comment"
+                            th:data-id="${comment.id}"
+                            onclick="deleteComment(this, this.getAttribute('data-id'))">
+                        Usuń
+                    </button>
                 </div>
             </div>
         </div>

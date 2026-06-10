@@ -1,15 +1,7 @@
 package com.lubimyczytac.LubimyCzytac.Controllers;
 
-import com.lubimyczytac.LubimyCzytac.Models.Book;
-import com.lubimyczytac.LubimyCzytac.Models.BookLike;
-import com.lubimyczytac.LubimyCzytac.Models.Comment;
-import com.lubimyczytac.LubimyCzytac.Models.User;
-import com.lubimyczytac.LubimyCzytac.Models.UserBookHistory;
-import com.lubimyczytac.LubimyCzytac.Models.UserBookList;
-import com.lubimyczytac.LubimyCzytac.Repositories.BookLikeRepository;
-import com.lubimyczytac.LubimyCzytac.Repositories.CommentRepository;
-import com.lubimyczytac.LubimyCzytac.Repositories.UserBookHistoryRepository;
-import com.lubimyczytac.LubimyCzytac.Repositories.UserBookListRepository;
+import com.lubimyczytac.LubimyCzytac.Models.*;
+import com.lubimyczytac.LubimyCzytac.Repositories.*;
 import com.lubimyczytac.LubimyCzytac.Services.BookService;
 import com.lubimyczytac.LubimyCzytac.Services.UserService;
 import com.lubimyczytac.LubimyCzytac.Services.CloudinaryService;
@@ -50,6 +42,9 @@ public class BookController {
 
     @Autowired
     private UserBookListRepository userBookListRepository;
+
+    @Autowired
+    private CommentLikeRepository commentLikeRepository;
 
     @GetMapping("/DodanieKsiazek")
     public String dodanie(Model model, HttpSession session) {
@@ -95,6 +90,13 @@ public class BookController {
         }
 
         List<Comment> comments = commentRepository.findByBookIdOrderByCreatedAtDesc(id);
+
+        if (loggedUser != null) {
+            for (Comment comment : comments) {
+                boolean userLikedComment = commentLikeRepository.findByCommentIdAndUserId(comment.getId(), loggedUser.getId()).isPresent();
+                comment.setUserLiked(userLikedComment);
+            }
+        }
 
         model.addAttribute("book", book);
         model.addAttribute("comments", comments);
@@ -514,11 +516,28 @@ public class BookController {
         }
 
         Comment comment = commentOpt.get();
-        comment.setLikes(comment.getLikes() + 1);
-        commentRepository.save(comment);
 
-        response.put("success", true);
-        response.put("likes", comment.getLikes());
+        Optional<CommentLike> existingLike = commentLikeRepository.findByCommentIdAndUserId(id, loggedUser.getId());
+
+        if (existingLike.isPresent()) {
+            commentLikeRepository.delete(existingLike.get());
+            comment.setLikes(comment.getLikes() - 1);
+            commentRepository.save(comment);
+
+            response.put("success", true);
+            response.put("liked", false);
+            response.put("likes", comment.getLikes());
+        } else {
+            CommentLike like = new CommentLike(id, loggedUser.getId());
+            commentLikeRepository.save(like);
+            comment.setLikes(comment.getLikes() + 1);
+            commentRepository.save(comment);
+
+            response.put("success", true);
+            response.put("liked", true);
+            response.put("likes", comment.getLikes());
+        }
+
         return ResponseEntity.ok(response);
     }
 

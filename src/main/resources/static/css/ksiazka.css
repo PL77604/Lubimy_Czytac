@@ -303,6 +303,15 @@
     text-decoration: underline;
 }
 
+.like-comment.liked {
+    color: #ff4444;
+    background: rgba(255, 68, 68, 0.1);
+}
+
+.like-comment.liked:hover {
+    background: rgba(255, 68, 68, 0.2);
+}
+
 @media (max-width: 768px) {
     .ksiazka-main {
         padding: 40px 15px;

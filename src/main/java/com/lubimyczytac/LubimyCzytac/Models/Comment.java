@@ -2,6 +2,8 @@ package com.lubimyczytac.LubimyCzytac.Models;
 
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "comments")
@@ -29,6 +31,12 @@ public class Comment {
     @Column(name = "likes")
     private Integer likes = 0;
 
+    @Transient
+    private boolean userLiked = false;
+
+    @OneToMany(mappedBy = "comment", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<CommentLike> commentLikes = new HashSet<>();
+
     public Comment() {
         this.createdAt = LocalDateTime.now();
         this.likes = 0;
@@ -54,4 +62,10 @@ public class Comment {
 
     public Integer getLikes() { return likes; }
     public void setLikes(Integer likes) { this.likes = likes; }
+
+    public boolean isUserLiked() { return userLiked; }
+    public void setUserLiked(boolean userLiked) { this.userLiked = userLiked; }
+
+    public Set<CommentLike> getCommentLikes() { return commentLikes; }
+    public void setCommentLikes(Set<CommentLike> commentLikes) { this.commentLikes = commentLikes; }
 }

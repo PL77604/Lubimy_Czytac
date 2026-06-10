@@ -46,6 +46,8 @@ function addComment() {
 
 function likeComment(button) {
     const commentId = button.getAttribute('data-id');
+    const isLiked = button.classList.contains('liked');
+
     fetch(`/api/comments/${commentId}/like`, {
         method: 'POST',
         headers: {
@@ -55,8 +57,23 @@ function likeComment(button) {
     .then(response => response.json())
     .then(data => {
         if (data.success) {
-            location.reload();
+            const likeSpan = button.querySelector('span');
+            if (likeSpan) {
+                likeSpan.textContent = data.likes;
+            }
+
+            if (data.liked) {
+                button.classList.add('liked');
+            } else {
+                button.classList.remove('liked');
+            }
+        } else {
+            alert(data.message);
         }
+    })
+    .catch(error => {
+        console.error('Błąd:', error);
+        alert('Wystąpił błąd podczas polubienia komentarza.');
     });
 }
 
